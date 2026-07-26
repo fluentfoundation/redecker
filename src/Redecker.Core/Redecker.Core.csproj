@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace>Redecker</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NuGet.Versioning" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Path resolution is the part of DanglingAssetRule most worth testing directly, but it is
+         an implementation detail rather than something callers should depend on. -->
+    <InternalsVisibleTo Include="Redecker.Core.Tests" />
+  </ItemGroup>
+
+</Project>

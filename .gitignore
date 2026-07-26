@@ -6,4 +6,4 @@ artifacts/
 *.user
 *.suo
 TestResults/
-.ratchet-cache/
+.redecker-cache/

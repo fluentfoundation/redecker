@@ -11,10 +11,10 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
     <Authors>John Zabroski</Authors>
-    <Company>ratchet</Company>
+    <Company>redecker</Company>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/jzabroski/ratchet</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/jzabroski/ratchet</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/jzabroski/redecker</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/jzabroski/redecker</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 

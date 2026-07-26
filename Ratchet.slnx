@@ -1,9 +1,0 @@
-<Solution>
-  <Folder Name="/src/">
-    <Project Path="src/dotnet-ratchet/dotnet-ratchet.csproj" />
-    <Project Path="src/Ratchet.Core/Ratchet.Core.csproj" />
-  </Folder>
-  <Folder Name="/test/">
-    <Project Path="test/Ratchet.Core.Tests/Ratchet.Core.Tests.csproj" />
-  </Folder>
-</Solution>

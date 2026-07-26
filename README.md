@@ -1,7 +1,10 @@
-# ratchet
+# Redecker
 
 An update tool for .NET dependencies that reads packages, not just their version graph — and
 treats *the reason a pin exists* as machine-readable data with an expiry check.
+
+Named after the German brush and broom makers, because the job is sweeping stale dependencies out
+of a repository — and knowing which dust is load-bearing.
 
 > **Status:** early. Two rules and two commands work end to end and are covered by tests against
 > the real packages. The roadmap below is honest about what is not built yet.
@@ -25,10 +28,10 @@ Nothing about this is expressed in the dependency graph, so no amount of version
 it. Reading the package finds it in about a second:
 
 ```console
-$ ratchet inspect SQLitePCLRaw.lib.e_sqlite3 --from 2.1.11 --to 2.1.12
-error RATCHET0001: buildTransitive/net461/SQLitePCLRaw.lib.e_sqlite3.targets references
+$ redecker inspect SQLitePCLRaw.lib.e_sqlite3 --from 2.1.11 --to 2.1.12
+error RDK0001: buildTransitive/net461/SQLitePCLRaw.lib.e_sqlite3.targets references
     runtimes/win-arm/native/e_sqlite3.dll, which the package does not contain
-warning RATCHET0002: 2.1.11 to 2.1.12 drops 5 runtime identifiers:
+warning RDK0002: 2.1.11 to 2.1.12 drops 5 runtime identifiers:
     win-arm, win10-arm, win10-arm64, win10-x64, win10-x86
 SQLitePCLRaw.lib.e_sqlite3@2.1.12: 1 error(s), 1 warning(s)
 ```
@@ -64,10 +67,10 @@ The subject reuses the `#:package Id@Version` directive syntax from file-based a
 | `api-compat` | Avoiding a breaking change | human review |
 | `transitive-conflict` | Settling a version conflict | the conflict resolves |
 
-`ratchet hints --check` re-evaluates each condition and tells you which pins can now be deleted:
+`redecker hints --check` re-evaluates each condition and tells you which pins can now be deleted:
 
 ```console
-$ ratchet hints Directory.Packages.props --check
+$ redecker hints Directory.Packages.props --check
 Directory.Packages.props:3 SQLitePCLRaw.bundle_e_sqlite3 2.1.11
     kind: UpstreamBug
     until: package-assets-intact(SQLitePCLRaw.lib.e_sqlite3@2.1.12)
@@ -89,23 +92,23 @@ a band has no release.
 
 | Command | Does |
 | --- | --- |
-| `ratchet inspect <id> --to <ver> [--from <ver>]` | Read-only package checks. Exit 1 on any error finding. |
-| `ratchet hints <path> [--check]` | List pin rationales; re-evaluate exit conditions. |
+| `redecker inspect <id> --to <ver> [--from <ver>]` | Read-only package checks. Exit 1 on any error finding. |
+| `redecker hints <path> [--check]` | List pin rationales; re-evaluate exit conditions. |
 
 ## Rules
 
 | Code | Severity | Checks |
 | --- | --- | --- |
-| `RATCHET0001` | error | Package MSBuild files reference files the package does not ship |
-| `RATCHET0002` | warning | An upgrade drops a `lib/` framework or a `runtimes/` RID |
+| `RDK0001` | error | Package MSBuild files reference files the package does not ship |
+| `RDK0002` | warning | An upgrade drops a `lib/` framework or a `runtimes/` RID |
 
-`RATCHET0001` only reports paths it can resolve with certainty — references holding an unexpanded
+`RDK0001` only reports paths it can resolve with certainty — references holding an unexpanded
 property, item metadata, or a wildcard are skipped. That keeps it usable as a gate: a finding
 means a file really is missing.
 
 ## Not built yet
 
-- **`ratchet plan`** — the read-only update proposal. `dotnet package update` has no `--dry-run`
+- **`redecker plan`** — the read-only update proposal. `dotnet package update` has no `--dry-run`
   (verified against SDK 10.0.302: its only options are `--vulnerable`, `--project`, `--interactive`,
   `--verbosity`), so the plan has to be computed rather than delegated.
 - **`transitive-floor` and `advisory-clear` evaluation** — both need a restored graph and the
@@ -118,9 +121,9 @@ means a file really is missing.
 ## Building
 
 ```console
-dotnet build Ratchet.slnx -c Release
-dotnet test  Ratchet.slnx -c Release --filter "TestCategory!=Network"   # offline
-dotnet test  Ratchet.slnx -c Release --filter "TestCategory=Network"    # hits nuget.org
+dotnet build Redecker.slnx -c Release
+dotnet test  Redecker.slnx -c Release --filter "TestCategory!=Network"   # offline
+dotnet test  Redecker.slnx -c Release --filter "TestCategory=Network"    # hits nuget.org
 ```
 
 The network tests assert against the real SQLitePCLRaw packages, so the motivating bug stays a
