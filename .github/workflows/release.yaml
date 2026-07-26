@@ -61,6 +61,19 @@ jobs:
       with:
         updateAssemblyInfo: false
 
+    # An empty version would otherwise be discovered as MSB4044 during the build, or worse,
+    # produce a package named after nothing. GitVersion 6 removed the v5 `nuGetVersionV2`
+    # output; guard against that class of mistake rather than the one instance of it.
+    - name: Verify GitVersion produced a version
+      shell: bash
+      run: |
+        if [ -z "${{ steps.gitversion.outputs.semVer }}" ]; then
+          echo "::error::GitVersion produced an empty semVer. Compare the output name against" \
+               "the variables listed in the Execute GitVersion step log."
+          exit 1
+        fi
+        echo "Version: ${{ steps.gitversion.outputs.semVer }}"
+
     - name: Setup dotnet SDK
       uses: actions/setup-dotnet@v6
       with:
@@ -70,7 +83,7 @@ jobs:
       run: >
         dotnet build ${{ env.solution }}
         --configuration ${{ env.buildConfiguration }}
-        -p:Version=${{ steps.gitversion.outputs.nuGetVersionV2 }}
+        -p:Version=${{ steps.gitversion.outputs.semVer }}
         -p:ContinuousIntegrationBuild=true
 
     # Never publish something that was not tested, including the checks that read real
@@ -87,12 +100,12 @@ jobs:
         dotnet pack ${{ env.solution }}
         --configuration ${{ env.buildConfiguration }}
         --no-build
-        -p:Version=${{ steps.gitversion.outputs.nuGetVersionV2 }}
+        -p:Version=${{ steps.gitversion.outputs.semVer }}
 
     - name: Upload package artifact
       uses: actions/upload-artifact@v7
       with:
-        name: nupkg-${{ steps.gitversion.outputs.nuGetVersionV2 }}
+        name: nupkg-${{ steps.gitversion.outputs.semVer }}
         path: artifacts/packages/*
         retention-days: 14
 
@@ -100,7 +113,7 @@ jobs:
       shell: bash
       run: |
         {
-          echo "### Redecker ${{ steps.gitversion.outputs.nuGetVersionV2 }}"
+          echo "### Redecker ${{ steps.gitversion.outputs.semVer }}"
           echo
           echo '| Package | Size |'
           echo '| --- | ---: |'

@@ -56,6 +56,20 @@ jobs:
       with:
         updateAssemblyInfo: false
 
+    # A misspelled or removed GitVersion output expands to an empty string rather than
+    # failing, and `-p:Version=` then resurfaces far away as MSB4044 against
+    # GenerateAssemblyInfo. GitVersion 6 dropped the v5 `nuGetVersionV2` output, which is
+    # precisely how that happened here. Fail at the source instead.
+    - name: Verify GitVersion produced a version
+      shell: bash
+      run: |
+        if [ -z "${{ steps.gitversion.outputs.semVer }}" ]; then
+          echo "::error::GitVersion produced an empty semVer. Compare the output name against" \
+               "the variables listed in the Execute GitVersion step log."
+          exit 1
+        fi
+        echo "Version: ${{ steps.gitversion.outputs.semVer }}"
+
     - name: Setup dotnet SDK
       uses: actions/setup-dotnet@v6
       with:
@@ -65,7 +79,7 @@ jobs:
       run: >
         dotnet build ${{ env.solution }}
         --configuration ${{ env.buildConfiguration }}
-        -p:Version=${{ steps.gitversion.outputs.nuGetVersionV2 }}
+        -p:Version=${{ steps.gitversion.outputs.semVer }}
 
     - name: Test (offline)
       run: >
@@ -94,7 +108,7 @@ jobs:
         dotnet pack ${{ env.solution }}
         --configuration ${{ env.buildConfiguration }}
         --no-build
-        -p:Version=${{ steps.gitversion.outputs.nuGetVersionV2 }}
+        -p:Version=${{ steps.gitversion.outputs.semVer }}
 
     # A global tool that cannot actually be installed and run is a broken release, and
     # nothing above this point would have caught it.
@@ -103,7 +117,7 @@ jobs:
       run: |
         set -euo pipefail
         dotnet tool install --global --add-source artifacts/packages \
-          --version "${{ steps.gitversion.outputs.nuGetVersionV2 }}" dotnet-redecker
+          --version "${{ steps.gitversion.outputs.semVer }}" dotnet-redecker
         export PATH="$PATH:$HOME/.dotnet/tools"
         redecker --help
         # The motivating case, end to end: this package version is known bad, so a zero exit
