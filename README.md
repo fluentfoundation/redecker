@@ -150,12 +150,12 @@ nuget.org validates it against a policy, and returns an API key valid for one ho
    | Policy owner | `fluentfoundation` (the organization) |
    | Repository Owner | `fluentfoundation` |
    | Repository | `redecker` |
-   | Workflow File | `release.yml` |
+   | Workflow File | `release.yaml` |
    | Environment | `release` |
 
-   > **Workflow File takes the file name only** — `release.yml`, *not*
-   > `.github/workflows/release.yml`. The policy is bound to that name, so renaming
-   > [`.github/workflows/release.yml`](.github/workflows/release.yml) breaks publishing until
+   > **Workflow File takes the file name only** — `release.yaml`, *not*
+   > `.github/workflows/release.yaml`. The policy is bound to that name, so renaming
+   > [`.github/workflows/release.yaml`](.github/workflows/release.yaml) breaks publishing until
    > the policy is updated. Treat the name as part of the published contract.
 
    > The `Environment` value must match `environment: release` in the workflow. If you leave
@@ -168,7 +168,7 @@ git tag v0.1.0
 git push origin v0.1.0
 ```
 
-The tag push triggers [`release.yml`](.github/workflows/release.yml), which builds, tests
+The tag push triggers [`release.yaml`](.github/workflows/release.yaml), which builds, tests
 (including against real packages), packs, and publishes. `workflow_dispatch` runs the same job
 with `dry-run` defaulted to true, so you can rehearse the whole thing without pushing.
 

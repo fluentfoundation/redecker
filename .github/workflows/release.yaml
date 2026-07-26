@@ -3,7 +3,7 @@ name: Release
 # This is the workflow registered with nuget.org Trusted Publishing.
 #
 # IMPORTANT: the trusted publishing policy identifies this workflow by FILE NAME only
-# ("release.yml"), not by path. Renaming this file breaks publishing until the policy is
+# ("release.yaml"), not by path. Renaming this file breaks publishing until the policy is
 # updated to match, so treat the name as part of the published contract.
 #
 # Publishing is keyless: the job requests a short-lived OIDC token from GitHub, nuget.org
