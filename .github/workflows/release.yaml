@@ -117,8 +117,12 @@ jobs:
       if: github.event_name == 'push' || !inputs.dry-run
       uses: NuGet/login@v1
       with:
-        # nuget.org profile name, not an email address. Held as a repository variable so it
-        # can change without renaming this file and invalidating the policy.
+        # The nuget.org profile name of the person who CREATED the policy -- not the policy
+        # name, and not the organization that owns it. NuGet/login sends this as `username`
+        # in the token-exchange body and fails with "Make sure you are using the username of
+        # the policy creator, not the policy owner" when it is wrong.
+        # A variable rather than a secret: a public profile name is not sensitive, and
+        # keeping it readable in the log is what makes that failure diagnosable.
         user: ${{ vars.NUGET_USER }}
 
     - name: NuGet push

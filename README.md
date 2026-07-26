@@ -141,7 +141,13 @@ nuget.org validates it against a policy, and returns an API key valid for one ho
    Add required reviewers if you want a human gate before any push to nuget.org.
 
 2. **Add a repository variable** `NUGET_USER` (Settings → Secrets and variables → Actions →
-   Variables) set to the nuget.org **profile name** — not an email address.
+   Variables), set to the nuget.org **profile name of whoever creates the policy**.
+
+   > This is the single easiest field to get wrong. It is *not* the policy name, and *not*
+   > `fluentfoundation` — an organization can own a policy, but the token exchange
+   > authenticates the individual who created it. `NuGet/login` sends this value as
+   > `username`, and reports `Make sure you are using the username of the policy creator,
+   > not the policy owner` when it is wrong.
 
 3. **Register the policy** at <https://www.nuget.org/account/trustedpublishing>:
 
@@ -152,6 +158,9 @@ nuget.org validates it against a policy, and returns an API key valid for one ho
    | Repository | `redecker` |
    | Workflow File | `release.yaml` |
    | Environment | `release` |
+
+   Note the asymmetry: the policy is **owned** by the organization, but `NUGET_USER` is the
+   **creator's** personal profile name. Those are two different values.
 
    > **Workflow File takes the file name only** — `release.yaml`, *not*
    > `.github/workflows/release.yaml`. The policy is bound to that name, so renaming
