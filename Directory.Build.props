@@ -11,11 +11,23 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
     <Authors>John Zabroski</Authors>
-    <Company>redecker</Company>
+    <Company>Fluent Foundation</Company>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/jzabroski/redecker</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/jzabroski/redecker</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/fluentfoundation/redecker</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/fluentfoundation/redecker</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <!-- Symbols and source stepping. SourceLink is in the SDK from .NET 8 onwards, so this
+         needs no package reference. -->
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <!-- Deterministic output when building in CI; the release workflow sets this explicitly
+         too, so a local build and a CI build of the same commit agree. -->
+    <Deterministic>true</Deterministic>
   </PropertyGroup>
 
 </Project>

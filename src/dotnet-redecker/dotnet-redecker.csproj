@@ -15,6 +15,7 @@
       graph, and treats the reason a pin exists as machine-readable data.
     </Description>
     <PackageTags>nuget;dependencies;updates;dependabot;msbuild</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
 
     <!-- Tools are run by whatever runtime the user happens to have. -->
     <RollForward>major</RollForward>
@@ -22,6 +23,11 @@
 
   <ItemGroup>
     <PackageReference Include="System.CommandLine" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Shown on the nuget.org listing page. -->
+    <None Include="../../README.md" Pack="true" PackagePath="/" Visible="false" />
   </ItemGroup>
 
   <ItemGroup>

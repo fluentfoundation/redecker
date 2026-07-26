@@ -3,6 +3,10 @@
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <RootNamespace>Redecker</RootNamespace>
+    <!-- The tool is the deliverable, and it bundles this assembly. Publishing the library
+         separately would commit to its API before the rule set has settled; flip this to true
+         when that surface is worth supporting for other callers. -->
+    <IsPackable>false</IsPackable>
   </PropertyGroup>
 
   <ItemGroup>

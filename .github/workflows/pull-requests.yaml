@@ -1,0 +1,132 @@
+name: Pull Requests
+
+# NOTE: use `pull_request`, not `pull_request_target`.
+# `pull_request_target` checks out the BASE branch by default, so the job would build `main`
+# on every PR instead of the contributor's code. It also runs with a read/write token and
+# access to secrets, which is why it must never be combined with checking out PR code (the
+# "pwn request" vulnerability). `pull_request` checks out the PR merge ref and hands fork PRs
+# a read-only token with no secrets, which is what a build/test job wants.
+on:
+  pull_request:
+    branches:
+    - '**'
+  push:
+    branches:
+    - 'main'
+
+permissions:
+  contents: read
+
+env:
+  solution: 'Redecker.slnx'
+  buildConfiguration: Release
+
+jobs:
+  build:
+    name: Build & Test
+    runs-on: ${{ matrix.os }}
+    permissions:
+      contents: read
+      checks: write
+      pull-requests: write
+
+    strategy:
+      fail-fast: false
+      matrix:
+        # Both operating systems matter here rather than being belt and braces: Redecker
+        # normalises package paths, which use forward slashes inside a .nupkg regardless of
+        # host, and MSBuild references inside packages use backslashes. Running the path
+        # tests on Windows as well as Linux is what stops that logic regressing.
+        os: [ubuntu-latest, windows-latest]
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v7
+      with:
+        fetch-depth: 0
+
+    - name: Install GitVersion
+      uses: gittools/actions/gitversion/setup@v4.7.0
+      with:
+        versionSpec: 6.3.x
+
+    - name: Execute GitVersion
+      id: gitversion
+      uses: gittools/actions/gitversion/execute@v4.7.0
+      with:
+        updateAssemblyInfo: false
+
+    - name: Setup dotnet SDK
+      uses: actions/setup-dotnet@v6
+      with:
+        dotnet-version: '10.0.x'
+
+    - name: Restore & Build
+      run: >
+        dotnet build ${{ env.solution }}
+        --configuration ${{ env.buildConfiguration }}
+        -p:Version=${{ steps.gitversion.outputs.nuGetVersionV2 }}
+
+    - name: Test (offline)
+      run: >
+        dotnet test ${{ env.solution }}
+        --configuration ${{ env.buildConfiguration }}
+        --no-build
+        --filter "TestCategory!=Network"
+        --logger trx
+        --results-directory "TestResults-${{ matrix.os }}"
+
+    # Split out because these read real packages from nuget.org: when they fail it is worth
+    # knowing immediately whether the cause is Redecker or the network.
+    - name: Test (against real packages on nuget.org)
+      run: >
+        dotnet test ${{ env.solution }}
+        --configuration ${{ env.buildConfiguration }}
+        --no-build
+        --filter "TestCategory=Network"
+        --logger trx
+        --results-directory "TestResults-${{ matrix.os }}"
+
+    # Proves the tool package is well formed on every PR, rather than discovering it during
+    # a release. Uses the GitVersion-computed version so it matches what would ship.
+    - name: Pack
+      run: >
+        dotnet pack ${{ env.solution }}
+        --configuration ${{ env.buildConfiguration }}
+        --no-build
+        -p:Version=${{ steps.gitversion.outputs.nuGetVersionV2 }}
+
+    # A global tool that cannot actually be installed and run is a broken release, and
+    # nothing above this point would have caught it.
+    - name: Smoke test the packed tool
+      shell: bash
+      run: |
+        set -euo pipefail
+        dotnet tool install --global --add-source artifacts/packages \
+          --version "${{ steps.gitversion.outputs.nuGetVersionV2 }}" dotnet-redecker
+        export PATH="$PATH:$HOME/.dotnet/tools"
+        redecker --help
+        # The motivating case, end to end: this package version is known bad, so a zero exit
+        # code here would mean the tool has stopped detecting what it exists to detect.
+        if redecker inspect SQLitePCLRaw.lib.e_sqlite3 --to 2.1.12; then
+          echo "::error::Expected a non-zero exit for the known-bad package version."
+          exit 1
+        fi
+        echo "Tool correctly reported the known-bad package."
+
+    - name: Upload test results
+      uses: actions/upload-artifact@v7
+      if: '!cancelled()'
+      with:
+        name: test-results-${{ matrix.os }}
+        path: "**/TestResults-${{ matrix.os }}/**/*"
+        retention-days: 5
+
+    - name: Publish test results
+      uses: EnricoMi/publish-unit-test-result-action@v2
+      # This is a containerized action, which GitHub Actions does not support on Windows.
+      if: matrix.os == 'ubuntu-latest' && !cancelled()
+      # Fork PRs get a read-only token, so publishing the check is best-effort.
+      continue-on-error: true
+      with:
+        files: "**/*.trx"

@@ -129,6 +129,52 @@ dotnet test  Redecker.slnx -c Release --filter "TestCategory=Network"    # hits 
 The network tests assert against the real SQLitePCLRaw packages, so the motivating bug stays a
 regression test rather than a story in a README.
 
+## Releasing
+
+Publishing uses [nuget.org Trusted Publishing](https://learn.microsoft.com/en-us/nuget/nuget-org/trusted-publishing):
+no API key is stored anywhere. The workflow requests a short-lived OIDC token from GitHub,
+nuget.org validates it against a policy, and returns an API key valid for one hour.
+
+### One-time setup
+
+1. **Create the `release` environment** in the repository settings (Settings → Environments).
+   Add required reviewers if you want a human gate before any push to nuget.org.
+
+2. **Add a repository variable** `NUGET_USER` (Settings → Secrets and variables → Actions →
+   Variables) set to the nuget.org **profile name** — not an email address.
+
+3. **Register the policy** at <https://www.nuget.org/account/trustedpublishing>:
+
+   | Field | Value |
+   | --- | --- |
+   | Policy owner | `fluentfoundation` (the organization) |
+   | Repository Owner | `fluentfoundation` |
+   | Repository | `redecker` |
+   | Workflow File | `release.yml` |
+   | Environment | `release` |
+
+   > **Workflow File takes the file name only** — `release.yml`, *not*
+   > `.github/workflows/release.yml`. The policy is bound to that name, so renaming
+   > [`.github/workflows/release.yml`](.github/workflows/release.yml) breaks publishing until
+   > the policy is updated. Treat the name as part of the published contract.
+
+   > The `Environment` value must match `environment: release` in the workflow. If you leave
+   > the field blank, remove that line from the workflow too, or the exchange fails.
+
+### Cutting a release
+
+```console
+git tag v0.1.0
+git push origin v0.1.0
+```
+
+The tag push triggers [`release.yml`](.github/workflows/release.yml), which builds, tests
+(including against real packages), packs, and publishes. `workflow_dispatch` runs the same job
+with `dry-run` defaulted to true, so you can rehearse the whole thing without pushing.
+
+GitVersion computes the version from the tag; see [`GitVersion.yml`](GitVersion.yml), which
+follows the same conventions as FluentMigrator.
+
 ## License
 
-MIT.
+MIT — see [LICENSE](LICENSE).

@@ -1,0 +1,130 @@
+name: Release
+
+# This is the workflow registered with nuget.org Trusted Publishing.
+#
+# IMPORTANT: the trusted publishing policy identifies this workflow by FILE NAME only
+# ("release.yml"), not by path. Renaming this file breaks publishing until the policy is
+# updated to match, so treat the name as part of the published contract.
+#
+# Publishing is keyless: the job requests a short-lived OIDC token from GitHub, nuget.org
+# validates it against the policy, and returns an API key valid for one hour. There is no
+# long-lived secret to rotate or leak.
+
+on:
+  push:
+    tags:
+    - 'v*'
+  workflow_dispatch:
+    inputs:
+      dry-run:
+        description: 'Build and pack, but do not push to nuget.org'
+        type: boolean
+        default: true
+
+# Least privilege at the top; the publish job widens only what it needs.
+permissions:
+  contents: read
+
+env:
+  solution: 'Redecker.slnx'
+  buildConfiguration: Release
+
+jobs:
+  release:
+    name: Pack & Publish
+    runs-on: ubuntu-latest
+
+    # Gates publishing behind a GitHub environment, so protection rules (required reviewers,
+    # branch restrictions) apply. The name must match the Environment field of the nuget.org
+    # policy. If you leave that field blank, delete this line too, or the token exchange fails.
+    environment: release
+
+    permissions:
+      id-token: write   # required: lets the job request the OIDC token nuget.org validates
+      contents: read
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v7
+      with:
+        # GitVersion needs full history and tags to compute a version.
+        fetch-depth: 0
+
+    - name: Install GitVersion
+      uses: gittools/actions/gitversion/setup@v4.7.0
+      with:
+        versionSpec: 6.3.x
+
+    - name: Execute GitVersion
+      id: gitversion
+      uses: gittools/actions/gitversion/execute@v4.7.0
+      with:
+        updateAssemblyInfo: false
+
+    - name: Setup dotnet SDK
+      uses: actions/setup-dotnet@v6
+      with:
+        dotnet-version: '10.0.x'
+
+    - name: Restore & Build
+      run: >
+        dotnet build ${{ env.solution }}
+        --configuration ${{ env.buildConfiguration }}
+        -p:Version=${{ steps.gitversion.outputs.nuGetVersionV2 }}
+        -p:ContinuousIntegrationBuild=true
+
+    # Never publish something that was not tested, including the checks that read real
+    # packages off nuget.org.
+    - name: Test
+      run: >
+        dotnet test ${{ env.solution }}
+        --configuration ${{ env.buildConfiguration }}
+        --no-build
+        --verbosity quiet
+
+    - name: Pack
+      run: >
+        dotnet pack ${{ env.solution }}
+        --configuration ${{ env.buildConfiguration }}
+        --no-build
+        -p:Version=${{ steps.gitversion.outputs.nuGetVersionV2 }}
+
+    - name: Upload package artifact
+      uses: actions/upload-artifact@v7
+      with:
+        name: nupkg-${{ steps.gitversion.outputs.nuGetVersionV2 }}
+        path: artifacts/packages/*
+        retention-days: 14
+
+    - name: Summarise
+      shell: bash
+      run: |
+        {
+          echo "### Redecker ${{ steps.gitversion.outputs.nuGetVersionV2 }}"
+          echo
+          echo '| Package | Size |'
+          echo '| --- | ---: |'
+          for f in artifacts/packages/*.nupkg artifacts/packages/*.snupkg; do
+            [ -e "$f" ] || continue
+            echo "| $(basename "$f") | $(du -h "$f" | cut -f1) |"
+          done
+        } >> "$GITHUB_STEP_SUMMARY"
+
+    # The API key lives for one hour, so this must come immediately before the push rather
+    # than at the top of the job.
+    - name: NuGet login (OIDC to short-lived API key)
+      id: login
+      if: github.event_name == 'push' || !inputs.dry-run
+      uses: NuGet/login@v1
+      with:
+        # nuget.org profile name, not an email address. Held as a repository variable so it
+        # can change without renaming this file and invalidating the policy.
+        user: ${{ vars.NUGET_USER }}
+
+    - name: NuGet push
+      if: github.event_name == 'push' || !inputs.dry-run
+      run: >
+        dotnet nuget push "artifacts/packages/*.nupkg"
+        --api-key ${{ steps.login.outputs.NUGET_API_KEY }}
+        --source https://api.nuget.org/v3/index.json
+        --skip-duplicate
