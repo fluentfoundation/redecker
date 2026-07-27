@@ -244,14 +244,21 @@ nuget.org validates it against a policy, and returns an API key valid for one ho
 1. **Create the `release` environment** in the repository settings (Settings → Environments).
    Add required reviewers if you want a human gate before any push to nuget.org.
 
-2. **Add a repository variable** `NUGET_USER` (Settings → Secrets and variables → Actions →
-   Variables), set to the nuget.org **profile name of whoever creates the policy**.
+2. **Add `NUGET_USER`** to the `release` environment (Settings → Environments → release), as
+   either a secret or a variable — the workflow accepts both. Set it to the nuget.org
+   **profile name of whoever creates the policy**.
 
-   > This is the single easiest field to get wrong. It is *not* the policy name, and *not*
-   > `fluentfoundation` — an organization can own a policy, but the token exchange
-   > authenticates the individual who created it. `NuGet/login` sends this value as
-   > `username`, and reports `Make sure you are using the username of the policy creator,
-   > not the policy owner` when it is wrong.
+   > This is the single easiest field to get wrong, in two different ways.
+   >
+   > It is *not* the policy name, and *not* `fluentfoundation` — an organization can own a
+   > policy, but the token exchange authenticates the individual who created it.
+   > `NuGet/login` sends this value as `username` and reports `Make sure you are using the
+   > username of the policy creator, not the policy owner` when it is wrong.
+   >
+   > And secrets and variables sit side by side in the same settings page, so adding it as one
+   > and reading the other yields an empty string rather than an error. The workflow reads
+   > `secrets.NUGET_USER || vars.NUGET_USER` for that reason, and fails with a named error if
+   > neither is set.
 
 3. **Register the policy** at <https://www.nuget.org/account/trustedpublishing>:
 

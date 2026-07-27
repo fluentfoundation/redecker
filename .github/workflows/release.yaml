@@ -123,6 +123,21 @@ jobs:
           done
         } >> "$GITHUB_STEP_SUMMARY"
 
+    # Checked before the login rather than after, so a missing value is named for what it is
+    # instead of surfacing as the action's "Input required and not supplied: user". Prints
+    # nothing but the outcome, since the value may be held as a secret.
+    - name: Verify the nuget.org username is configured
+      if: github.event_name == 'push' || !inputs.dry-run
+      shell: bash
+      run: |
+        if [ -z "${{ secrets.NUGET_USER || vars.NUGET_USER }}" ]; then
+          echo "::error::NUGET_USER is not set on the 'release' environment. Add it under" \
+               "Settings > Environments > release, as either a secret or a variable, set to" \
+               "the nuget.org profile name of whoever created the trusted publishing policy."
+          exit 1
+        fi
+        echo "NUGET_USER is configured."
+
     # The API key lives for one hour, so this must come immediately before the push rather
     # than at the top of the job.
     - name: NuGet login (OIDC to short-lived API key)
@@ -134,9 +149,12 @@ jobs:
         # name, and not the organization that owns it. NuGet/login sends this as `username`
         # in the token-exchange body and fails with "Make sure you are using the username of
         # the policy creator, not the policy owner" when it is wrong.
-        # A variable rather than a secret: a public profile name is not sensitive, and
-        # keeping it readable in the log is what makes that failure diagnosable.
-        user: ${{ vars.NUGET_USER }}
+        #
+        # Accepts it as either an environment secret or a variable. GitHub presents the two
+        # side by side under Settings > Environments, and picking the other one silently
+        # yields an empty string rather than an error -- which cost one failed release with
+        # the unhelpful "Input required and not supplied: user".
+        user: ${{ secrets.NUGET_USER || vars.NUGET_USER }}
 
     - name: NuGet push
       if: github.event_name == 'push' || !inputs.dry-run
