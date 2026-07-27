@@ -1,14 +1,24 @@
 import { defineConfig, type HeadConfig } from 'vitepress'
 
+// GitHub Pages serves this as a project site under /redecker/, not at the domain root, so every
+// asset and internal link has to be prefixed. Overridable for a custom domain, where the site
+// would sit at '/' instead.
+const base = process.env.DOCS_BASE ?? '/redecker/'
+
+// VitePress rewrites links inside markdown and themeConfig, but head entries are passed through
+// verbatim -- so these have to carry the prefix themselves or the favicon 404s.
+const asset = (path: string) => base.replace(/\/$/, '') + path
+
 const head: HeadConfig[] = [
-    ['link', { rel: 'icon', href: '/redecker-icon.svg' }],
+    ['link', { rel: 'icon', href: asset('/redecker-icon.svg') }],
     ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { property: 'og:title', content: 'Redecker' }],
     ['meta', {
         property: 'og:description',
         content: 'An update tool for .NET dependencies that reads packages, not just their version graph.'
     }],
-    ['meta', { property: 'og:image', content: '/redecker-icon-512.png' }],
+    // Social previews are fetched by crawlers with no page context, so this one must be absolute.
+    ['meta', { property: 'og:image', content: 'https://fluentfoundation.github.io/redecker/redecker-icon-512.png' }],
 ]
 
 // https://vitepress.dev/reference/site-config
@@ -17,7 +27,7 @@ export default defineConfig({
     description: 'An update tool for .NET dependencies that reads packages, not just their version graph',
     lang: 'en-US',
     head,
-    base: '/',
+    base,
     cleanUrls: true,
 
     // A broken link in the docs should fail the build rather than ship: this site is largely

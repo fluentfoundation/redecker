@@ -35,6 +35,11 @@ jobs:
         cache: npm
         cache-dependency-path: docs-website/package-lock.json
 
+    # Reports the base path Pages will actually serve from, so a project site under /redecker/
+    # is not silently built as if it were at the domain root.
+    - name: Configure Pages
+      uses: actions/configure-pages@v6
+
     - name: Install dependencies
       working-directory: docs-website
       run: npm ci --no-audit --no-fund
@@ -46,7 +51,7 @@ jobs:
       run: npm run docs:build
 
     - name: Upload artifact
-      uses: actions/upload-pages-artifact@v3
+      uses: actions/upload-pages-artifact@v5
       with:
         path: docs-website/.vitepress/dist
 
@@ -60,4 +65,4 @@ jobs:
     steps:
     - name: Deploy to GitHub Pages
       id: deployment
-      uses: actions/deploy-pages@v4
+      uses: actions/deploy-pages@v5
