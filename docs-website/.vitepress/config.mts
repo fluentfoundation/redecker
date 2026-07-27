@@ -40,6 +40,7 @@ export default defineConfig({
         externalLinkIcon: true,
 
         nav: [
+            { text: 'Problems', link: '/problems' },
             { text: 'Guide', link: '/guide/getting-started' },
             { text: 'Rules', link: '/rules/' },
             { text: 'Concepts', link: '/concepts/pin-hints' },
@@ -49,9 +50,15 @@ export default defineConfig({
         sidebar: {
             '/': [
                 {
+                    text: 'Start here',
+                    items: [
+                        { text: 'The problems', link: '/problems' },
+                        { text: 'Getting Started', link: '/guide/getting-started' },
+                    ]
+                },
+                {
                     text: 'Guide',
                     items: [
-                        { text: 'Getting Started', link: '/guide/getting-started' },
                         { text: 'Commands', link: '/guide/commands' },
                         { text: 'MSBuild Integration', link: '/guide/msbuild' },
                     ]
@@ -70,6 +77,7 @@ export default defineConfig({
                     items: [
                         { text: 'Pin Hints', link: '/concepts/pin-hints' },
                         { text: 'Framework Bands', link: '/concepts/framework-bands' },
+                        { text: 'Epochs (not supported)', link: '/concepts/epochs' },
                     ]
                 },
             ]

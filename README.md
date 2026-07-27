@@ -29,23 +29,29 @@ dotnet add package Redecker.MSBuild
 
 Full documentation lives in [docs-website](docs-website).
 
-## Why
+## The problems
 
-Dependabot resolves versions. Its success criterion is *does restore succeed*. That is not enough
-for .NET, and here is a case from a real repository that proves it.
+Every dependency tool in .NET answers one question: *does it restore?* These six failures all
+restore perfectly.
 
-`SQLitePCLRaw.bundle_e_sqlite3` 2.1.11 → 2.1.12 clears a security advisory. It restores cleanly,
-resolves cleanly, and builds cleanly on every target except `net48` on Windows, where it fails:
+| Problem | You find out when | Redecker |
+| --- | --- | --- |
+| **A package ships build logic pointing at files it no longer contains.** Restore, resolution and most target frameworks are fine. | One target framework fails at build time, often only on one OS | [RDK0001](#rules) |
+| **An upgrade quietly stops shipping a platform** you rely on — a `lib/` framework, or a runtime identifier. | Compilation silently binds a different asset, or it fails on the device | [RDK0002](#rules) |
+| **A family that must move together gets split.** Automated updaters *cause* this: they bump whichever members have newer releases. | Run time, as a missing type or a provider that does not match its core package | [RDK0003](#lockstep-families) |
+| **A package tied to a runtime generation gets dragged past it** — a 9.0 extension in a `net8.0` app. | Never loudly. It ships unoptimised app-local assets, or a serialization contract quietly differs | [Framework bands](#the-framework-band-problem) |
+| **A pin outlives its reason.** The comment explaining it is not machine-readable, so nobody dares remove it. | Never. It becomes folklore | [Pin hints](#pin-hints) |
+| **A security advisory has no clean upgrade.** The fix needs a major of a *different* package, or the advisory lists no patched version at all. | When you try to clear the warning and the graph will not resolve | [Pin hints](#pin-hints) |
 
-```
-error MSB3030: Could not copy the file ".../sqlitepclraw.lib.e_sqlite3/2.1.12/runtimes/win-arm/native/e_sqlite3.dll"
-because it was not found.
-```
+The common thread is that **restore succeeding proves almost nothing.** Reading the package, and
+reading what the repository declares, proves considerably more.
 
-2.1.12 stopped shipping `runtimes/win-arm/native/e_sqlite3.dll`, but its
-`buildTransitive/net461/SQLitePCLRaw.lib.e_sqlite3.targets` still lists that file for copying.
-Nothing about this is expressed in the dependency graph, so no amount of version reasoning finds
-it. Reading the package finds it in about a second:
+### One example, briefly
+
+`SQLitePCLRaw.bundle_e_sqlite3` 2.1.11 → 2.1.12 clears a security advisory. It restores, resolves,
+and builds on every target except `net48` on Windows, where it dies with `MSB3030`: the new version
+stopped shipping `runtimes/win-arm/native/e_sqlite3.dll` while its `buildTransitive/net461` targets
+still copies it.
 
 ```console
 $ redecker inspect SQLitePCLRaw.lib.e_sqlite3 --from 2.1.11 --to 2.1.12
@@ -53,10 +59,11 @@ error RDK0001: buildTransitive/net461/SQLitePCLRaw.lib.e_sqlite3.targets referen
     runtimes/win-arm/native/e_sqlite3.dll, which the package does not contain
 warning RDK0002: 2.1.11 to 2.1.12 drops 5 runtime identifiers:
     win-arm, win10-arm, win10-arm64, win10-x64, win10-x86
-SQLitePCLRaw.lib.e_sqlite3@2.1.12: 1 error(s), 1 warning(s)
 ```
 
-Exit code 1. That is a CI round, a red pull request, and a revert commit that never had to happen.
+That is one CI round, one red pull request and one revert commit, found in about a second from
+package metadata. It is also the least interesting problem on the list — it is a single upstream
+mistake. The rest are structural, and recur.
 
 ## Pin hints
 
@@ -239,6 +246,55 @@ means a file really is missing.
 - **Matrix build verification** — the tier that would have caught the SQLite break even without a
   package rule, by building every TFM × OS rather than only restoring.
 - **GitHub Action packaging.**
+
+## Not supported: epochs
+
+Redecker has nothing useful to say about `xunit` → `xunit.v3`, and neither does any other .NET
+dependency tool. This is a limit of the ecosystem rather than a gap in the roadmap, so it is worth
+being explicit about.
+
+When a project is redesigned thoroughly enough that continuing the version line would mislead
+people, the .NET convention is to publish under a **new package id**. xUnit v3 is a redesign of the
+execution model — test assemblies are now executables — so it ships as `xunit.v3` rather than
+`xunit` 3.0.0.
+
+That leaves NuGet describing the situation with the only vocabulary it has:
+
+```
+xunit 2.9.3    deprecated, reason: Legacy
+               "This package will only be updated for security issues.
+                All future feature work has moved onto v3."
+               alternate package: xunit.v3, version range: *
+```
+
+Two things are wrong with that, and neither is xUnit's fault:
+
+- **"Deprecated" conflates *abandoned* with *done*.** The message says the package still receives
+  security fixes. Brad Wilson's framing — that v2 is finished rather than deprecated — is the
+  accurate one, and NuGet has no way to express it.
+- **The alternate range is `*`.** There is no way to say "2.9.3 corresponds to 3.x". The
+  correspondence between the old line and the new one is simply not representable.
+
+SemVer has no concept of an epoch, and no mainstream package manager for .NET, npm or NuGet
+supports one. Two ecosystems do:
+
+| Ecosystem | Syntax | Example |
+| --- | --- | --- |
+| Python ([PEP 440](https://peps.python.org/pep-0440/#version-epochs)) | `N!` | `1!1.0` |
+| Debian | `N:` | `1:1.0` |
+
+Both exist for exactly this: resetting version ordering when a project's versioning scheme changes
+drastically, so `1!1.0` sorts above `2.0` from the previous era. Anthony Fu's
+[Epoch Semantic Versioning](https://antfu.me/posts/epoch-semver) proposes getting the same effect
+without changing any tooling, by folding the epoch into the major component
+(`EPOCH * 1000 + MAJOR`).
+
+**What this means here.** Every Redecker rule operates on *the same package at two versions* —
+comparing assets, checking families, re-evaluating pins. An epoch change is a change of package
+*identity*, so there is no "from" and "to" for the rules to compare. Detecting that a deprecated
+package names an alternate is easy and nearly useless: it cannot tell you whether the migration is
+a version bump or a rewrite of your test host. Until that distinction is expressible, pretending
+to handle it would be worse than declining to.
 
 ## Building
 

@@ -44,5 +44,8 @@ It does not resolve your dependency graph, and it will not replace `dotnet resto
 existing updater. It answers a narrower question those tools cannot: **is this upgrade sound in
 ways that restore succeeding does not prove?**
 
-The [rules](/rules/) are the whole answer to that question. There are three of them today, and
-each exists because of a specific failure that reached a real build.
+If you have not read [the problems](/problems), start there — it is the argument for why that
+question is worth a tool at all.
+
+It also has nothing useful to say about [epoch changes](/concepts/epochs) like
+`xunit` → `xunit.v3`, which is a limit of the ecosystem rather than a gap in the roadmap.
