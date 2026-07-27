@@ -11,7 +11,7 @@ of a repository — and knowing which dust is load-bearing.
 [![dotnet-redecker](https://img.shields.io/nuget/v/dotnet-redecker?label=dotnet-redecker)](https://www.nuget.org/packages/dotnet-redecker)
 [![Redecker.MSBuild](https://img.shields.io/nuget/v/Redecker.MSBuild?label=Redecker.MSBuild)](https://www.nuget.org/packages/Redecker.MSBuild)
 
-> **Status:** early. Three rules and three commands work end to end, covered by tests that run
+> **Status:** early. Four rules and three commands work end to end, covered by tests that run
 > against the real packages and the real GitHub API. The roadmap below is honest about what is
 > not built yet.
 
@@ -40,6 +40,7 @@ restore perfectly.
 | **An upgrade quietly stops shipping a platform** you rely on — a `lib/` framework, or a runtime identifier. | Compilation silently binds a different asset, or it fails on the device | [RDK0002](#rules) |
 | **A family that must move together gets split.** Automated updaters *cause* this: they bump whichever members have newer releases. | Run time, as a missing type or a provider that does not match its core package | [RDK0003](#lockstep-families) |
 | **A package tied to a runtime generation gets dragged past it** — a 9.0 extension in a `net8.0` app. | Never loudly. It ships unoptimised app-local assets, or a serialization contract quietly differs | [Framework bands](#the-framework-band-problem) |
+| **A transitive dependency gets promoted to an explicit `PackageVersion`** to float a floor, and then stays forever because nothing records why. | Never. Nobody can tell whether deleting it reintroduces an advisory | [RDK0004](#rdk0004-undocumented-transitive-pins) |
 | **A pin outlives its reason.** The comment explaining it is not machine-readable, so nobody dares remove it. | Never. It becomes folklore | [Pin hints](#pin-hints) |
 | **A security advisory has no clean upgrade.** The fix needs a major of a *different* package, or the advisory lists no patched version at all. | When you try to clear the warning and the graph will not resolve | [Pin hints](#pin-hints) |
 
@@ -64,6 +65,42 @@ warning RDK0002: 2.1.11 to 2.1.12 drops 5 runtime identifiers:
 That is one CI round, one red pull request and one revert commit, found in about a second from
 package metadata. It is also the least interesting problem on the list — it is a single upstream
 mistake. The rest are structural, and recur.
+
+### RDK0004: undocumented transitive pins
+
+The one most repositories already have, without knowing.
+
+A transitive dependency is an implementation detail of the package you actually chose. It has no
+business appearing in `Directory.Packages.props` — until someone floats its floor to get above a
+vulnerable version, and it appears there permanently:
+
+```xml
+<!-- why is this here? -->
+<PackageVersion Include="System.Text.RegularExpressions" Version="4.3.1" />
+```
+
+Nothing in the file distinguishes that from an ordinary dependency. Nobody can tell whether
+deleting it tidies up or quietly reintroduces a CVE, so nobody touches it — and the day the
+parent package raises its own floor and the entry becomes redundant passes unnoticed.
+
+`redecker check` finds them by comparing what is *declared* against what is *referenced*:
+
+```console
+warning RDK0004: System.Text.RegularExpressions is given a version but no project references it
+    ... either a transitive floor someone raised deliberately, or an entry that has outlived
+    whatever needed it. Nothing in the file says which, so nobody can safely delete it.
+```
+
+A pin carrying a [hint](#pin-hints) is silent, which is the entire point — the rule asks for a
+reason, not for the pin's removal:
+
+```xml
+<PackageVersion Include="System.Text.RegularExpressions" Version="4.3.1"
+                Label="security-floor: #:package System.Text.RegularExpressions@4.3.1;
+                       until: transitive-floor(Serilog) >= 4.3.1" />
+```
+
+Now the entry explains itself, and states the condition under which it can go.
 
 ## Pin hints
 
@@ -228,6 +265,7 @@ nor banding can express. Tracked in [#1](https://github.com/fluentfoundation/red
 | `RDK0001` | error | Package MSBuild files reference files the package does not ship |
 | `RDK0002` | warning | An upgrade drops a `lib/` framework or a `runtimes/` RID |
 | `RDK0003` | error | A lockstep family is split across versions |
+| `RDK0004` | warning | A declared version that no project references, carrying no hint |
 
 `RDK0001` only reports paths it can resolve with certainty — references holding an unexpanded
 property, item metadata, or a wildcard are skipped. That keeps it usable as a gate: a finding

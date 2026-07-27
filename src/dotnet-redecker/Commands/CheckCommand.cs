@@ -59,8 +59,21 @@ public static class CheckCommand
         }
 
         var findings = new List<Finding>(new LockstepFamilyRule().Inspect(pins));
+        findings.AddRange(new UndocumentedTransitivePinRule().Inspect(pins));
 
-        Console.WriteLine($"{pins.Count} declared version(s) across {files.Count} file(s).");
+        var references = pins.Count(p => p.ItemType.Equals("PackageReference", StringComparison.Ordinal));
+        Console.WriteLine(
+            $"{pins.Count} declaration(s) across {files.Count} file(s); {references} direct reference(s).");
+
+        if (references == 0)
+        {
+            // Worth saying out loud: silence here would look like a clean bill of health when in
+            // fact one rule could not run at all.
+            Console.WriteLine(
+                "  note: no PackageReference was found, so RDK0004 was skipped. Point check at a " +
+                "directory containing the projects, not only at Directory.Packages.props.");
+        }
+
         return Report.Write(findings, "declared versions");
     }
 }

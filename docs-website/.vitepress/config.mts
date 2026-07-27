@@ -70,6 +70,7 @@ export default defineConfig({
                         { text: 'RDK0001 Dangling assets', link: '/rules/rdk0001' },
                         { text: 'RDK0002 Asset loss', link: '/rules/rdk0002' },
                         { text: 'RDK0003 Split lockstep family', link: '/rules/rdk0003' },
+                        { text: 'RDK0004 Undocumented transitive pin', link: '/rules/rdk0004' },
                     ]
                 },
                 {

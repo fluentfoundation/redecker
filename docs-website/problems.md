@@ -6,7 +6,7 @@ Restore is a constraint solver over declared version ranges. It is very good at 
 all it does. It never opens a package, never compares one version's contents to another's, and has
 no opinion about whether the set of versions you declared makes sense together.
 
-All six of the following restore perfectly.
+All seven of the following restore perfectly.
 
 ## 1. A package points at files it does not ship
 
@@ -43,7 +43,32 @@ splits the set, and opens a pull request that restores cleanly.
 **You find out:** at run time, as a missing type or a provider that does not match its core
 package. → [RDK0003](/rules/rdk0003)
 
-## 4. A package is dragged past its runtime generation
+## 4. A transitive dependency gets promoted, and stays
+
+This is the one most repositories already have.
+
+A transitive dependency is an implementation detail of the package you actually chose. It has no
+business being named in `Directory.Packages.props` — until someone floats its floor to get above
+a vulnerable version. Then it lives there permanently, looking exactly like an ordinary
+dependency:
+
+```xml
+<!-- why is this here? -->
+<PackageVersion Include="System.Text.RegularExpressions" Version="4.3.1" />
+```
+
+Nothing in the file records that this exists to dodge an advisory. So nobody can tell whether
+removing it tidies up or quietly reintroduces a CVE, and nobody touches it. The day the parent
+package raises its own floor and the entry becomes redundant passes unnoticed, and the entry
+outlives the problem by years.
+
+**You find out:** never — and the cost is not the stale line, it is that the entry constrains
+resolution for everything else, forever.
+
+The check is a comparison between what is *declared* and what is *referenced*, and it goes silent
+the moment the entry carries a reason. → [RDK0004](/rules/rdk0004)
+
+## 5. A package is dragged past its runtime generation
 
 Pull a 9.0 extension into a `net8.0` app and it works. It also lifts those assets out of the
 optimised shared framework and ships them app-local. For a library, it quietly raises the floor
@@ -56,7 +81,7 @@ The trap here is over-correcting: most of `Microsoft.Extensions.*` is compile-at
 simply take the newest release. Treating a whole prefix as runtime-bound is as wrong as treating
 none of it that way. → [Framework bands](/concepts/framework-bands)
 
-## 5. A pin outlives its reason
+## 6. A pin outlives its reason
 
 You hold a package back for a good reason. The reason goes in a comment. Eighteen months later
 nobody remembers whether it still applies, so the pin stays forever — and the upgrade it was
@@ -67,7 +92,7 @@ go away, in a form a tool can re-check on every run.
 
 **You find out:** never. That is the problem. → [Pin hints](/concepts/pin-hints)
 
-## 6. An advisory has no clean upgrade
+## 7. An advisory has no clean upgrade
 
 Sometimes the vulnerable package is transitive and its parent cannot consume the fixed version.
 Sometimes the advisory lists no patched version at all. Sometimes the only remedy is a major

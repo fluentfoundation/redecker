@@ -4,7 +4,7 @@ layout: home
 hero:
   name: Redecker
   text: Restore succeeding proves almost nothing
-  tagline: Six ways a .NET dependency upgrade breaks without your package manager noticing — and a tool that reads packages instead of guessing from version numbers.
+  tagline: Seven ways a .NET dependency upgrade breaks without your package manager noticing — and a tool that reads packages instead of guessing from version numbers.
   image:
     src: /redecker-icon-512.png
     alt: Redecker
@@ -40,6 +40,13 @@ features:
       packages rather than families. It surfaces at run time as a missing type.
     link: /rules/rdk0003
     linkText: RDK0003
+
+  - title: Transitive pins nobody can delete
+    details: >
+      Someone floated a transitive dependency's floor to clear an advisory. A year on it looks
+      like an ordinary dependency, and nobody can tell whether removing it reintroduces a CVE.
+    link: /rules/rdk0004
+    linkText: RDK0004
 
   - title: Packages dragged past their runtime
     details: >
