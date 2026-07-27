@@ -7,3 +7,9 @@ artifacts/
 *.suo
 TestResults/
 .redecker-cache/
+
+# docs-website. package-lock.json is deliberately NOT ignored: the deploy workflow uses
+# `npm ci`, which requires it.
+node_modules/
+docs-website/.vitepress/dist/
+docs-website/.vitepress/cache/

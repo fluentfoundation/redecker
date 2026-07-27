@@ -1,3 +1,5 @@
+<img src="assets/redecker-icon-128.png" alt="" width="96" align="right" />
+
 # Redecker
 
 An update tool for .NET dependencies that reads packages, not just their version graph — and
@@ -6,9 +8,26 @@ treats *the reason a pin exists* as machine-readable data with an expiry check.
 Named after the German brush and broom makers, because the job is sweeping stale dependencies out
 of a repository — and knowing which dust is load-bearing.
 
-> **Status:** early. Three rules and two commands work end to end, covered by tests that run
+[![dotnet-redecker](https://img.shields.io/nuget/v/dotnet-redecker?label=dotnet-redecker)](https://www.nuget.org/packages/dotnet-redecker)
+[![Redecker.MSBuild](https://img.shields.io/nuget/v/Redecker.MSBuild?label=Redecker.MSBuild)](https://www.nuget.org/packages/Redecker.MSBuild)
+
+> **Status:** early. Three rules and three commands work end to end, covered by tests that run
 > against the real packages and the real GitHub API. The roadmap below is honest about what is
 > not built yet.
+
+## Packages
+
+| Package | What it is |
+| --- | --- |
+| [`dotnet-redecker`](https://www.nuget.org/packages/dotnet-redecker) | The global tool: `redecker inspect`, `check`, `hints` |
+| [`Redecker.MSBuild`](https://www.nuget.org/packages/Redecker.MSBuild) | Build-time checks, so a split package family fails the build |
+
+```console
+dotnet tool install --global dotnet-redecker
+dotnet add package Redecker.MSBuild
+```
+
+Full documentation lives in [docs-website](docs-website).
 
 ## Why
 
@@ -228,6 +247,16 @@ dotnet build Redecker.slnx -c Release
 dotnet test  Redecker.slnx -c Release --filter "TestCategory!=Network"   # offline
 dotnet test  Redecker.slnx -c Release --filter "TestCategory=Network"    # nuget.org + GitHub API
 ```
+
+The documentation site is VitePress:
+
+```console
+cd docs-website
+npm ci
+npm run docs:dev      # or docs:build
+```
+
+`ignoreDeadLinks` is off, so a broken internal link fails the build rather than shipping.
 
 The network tests assert against the real SQLitePCLRaw packages and the real GitHub API, so the
 motivating bug stays a regression test rather than a story in a README. Set `GITHUB_TOKEN` before

@@ -1,0 +1,52 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!-- netstandard2.0 so one asset loads in both MSBuild flavours: the .NET Framework MSBuild
+         that Visual Studio uses, and the .NET one behind `dotnet build`. Dual-targeting would
+         mean two assets and a targets file that has to choose between them. -->
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>Redecker.MSBuild</RootNamespace>
+    <!-- Implicit usings pull in System.Threading.Tasks, whose Task collides with the MSBuild
+         Task base class. Being explicit is right for an assembly loaded into a foreign host
+         anyway: every namespace it depends on should be visible in the file. -->
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+
+    <PackageId>Redecker.MSBuild</PackageId>
+    <PackageOutputPath>../../artifacts/packages</PackageOutputPath>
+    <Description>
+      Checks that the package versions a repository declares are coherent, as part of every build.
+      Currently reports families that must move in lockstep but have been split across versions,
+      such as Microsoft.EntityFrameworkCore.*.
+    </Description>
+    <PackageTags>msbuild;nuget;dependencies;entityframeworkcore;versioning</PackageTags>
+
+    <!-- A tasks package ships no lib/, and its own assembly must not become a dependency of the
+         consuming project: it is build logic, not a reference. -->
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
+    <DevelopmentDependency>true</DevelopmentDependency>
+    <!-- No lib/ output means there is nothing for a symbol package to describe, and asking for
+         one only produces an empty .snupkg that fails packing with NU5017. -->
+    <IncludeSymbols>false</IncludeSymbols>
+    <!-- NU5100: the assembly is packed under tasks/ rather than lib/, which is exactly right
+         for build logic and exactly what this warning is asking about. -->
+    <NoWarn>$(NoWarn);NU5100</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Provided by whichever MSBuild is hosting the task, so it must never be copied local or
+         packed; a task package that carries its own MSBuild assemblies breaks in Visual Studio. -->
+    <PackageReference Include="Microsoft.Build.Utilities.Core" PrivateAssets="all" ExcludeAssets="runtime" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="build/Redecker.MSBuild.props" Pack="true" PackagePath="build/" />
+    <None Include="build/Redecker.MSBuild.targets" Pack="true" PackagePath="build/" />
+    <!-- buildTransitive so the check also applies to projects that reference this indirectly. -->
+    <None Include="build/Redecker.MSBuild.props" Pack="true" PackagePath="buildTransitive/" />
+    <None Include="build/Redecker.MSBuild.targets" Pack="true" PackagePath="buildTransitive/" />
+    <None Include="$(OutputPath)$(AssemblyName).dll" Pack="true" PackagePath="tasks/netstandard2.0/" Visible="false" />
+  </ItemGroup>
+
+</Project>

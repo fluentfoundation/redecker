@@ -1,0 +1,63 @@
+name: Deploy Documentation
+
+on:
+  push:
+    branches: [main]
+    paths: ['docs-website/**', '.github/workflows/deploy-docs.yaml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# One deployment at a time, and never cancel one in flight: a half-published site is worse than
+# a slightly stale one.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v7
+      with:
+        # lastUpdated timestamps come from git history, which a shallow clone does not have.
+        fetch-depth: 0
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v7
+      with:
+        node-version: 22
+        cache: npm
+        cache-dependency-path: docs-website/package-lock.json
+
+    - name: Install dependencies
+      working-directory: docs-website
+      run: npm ci --no-audit --no-fund
+
+    # ignoreDeadLinks is false in the VitePress config, so a broken internal link fails here
+    # rather than shipping.
+    - name: Build documentation
+      working-directory: docs-website
+      run: npm run docs:build
+
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: docs-website/.vitepress/dist
+
+  deploy:
+    name: Deploy
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v4

@@ -1,0 +1,22 @@
+<Project>
+
+  <!-- One asset for both MSBuild flavours. $(MSBuildThisFileDirectory) resolves inside the
+       package, and the path must match what the package actually ships: Redecker's own RDK0001
+       rule exists because packages get this wrong and only fail at build time. -->
+  <UsingTask TaskName="Redecker.MSBuild.LockstepFamilyCheck"
+             AssemblyFile="$(MSBuildThisFileDirectory)../tasks/netstandard2.0/Redecker.MSBuild.dll" />
+
+  <Target Name="RedeckerLockstepCheck"
+          BeforeTargets="CollectPackageReferences"
+          Condition="'$(RedeckerCheckEnabled)' == 'true'">
+
+    <!-- Reads the items MSBuild has already evaluated rather than re-parsing
+         Directory.Packages.props, so conditioned and imported declarations are seen exactly as
+         the build sees them. -->
+    <Redecker.MSBuild.LockstepFamilyCheck
+        PackageVersions="@(PackageVersion)"
+        LockstepPrefixes="@(RedeckerLockstepPrefix)"
+        TreatAsError="$(RedeckerTreatAsError)" />
+  </Target>
+
+</Project>

@@ -2,6 +2,7 @@
   <Folder Name="/src/">
     <Project Path="src/dotnet-redecker/dotnet-redecker.csproj" />
     <Project Path="src/Redecker.Core/Redecker.Core.csproj" />
+    <Project Path="src/Redecker.MSBuild/Redecker.MSBuild.csproj" />
   </Folder>
   <Folder Name="/test/">
     <Project Path="test/Redecker.Core.Tests/Redecker.Core.Tests.csproj" />

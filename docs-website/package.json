@@ -1,0 +1,18 @@
+{
+  "name": "redecker-docs",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "description": "VitePress documentation for Redecker",
+  "scripts": {
+    "docs:dev": "vitepress dev",
+    "docs:build": "vitepress build",
+    "docs:preview": "vitepress preview"
+  },
+  "keywords": ["redecker", "nuget", "dependencies", "msbuild", "documentation"],
+  "author": "Fluent Foundation",
+  "license": "MIT",
+  "devDependencies": {
+    "vitepress": "^1.6.4"
+  }
+}

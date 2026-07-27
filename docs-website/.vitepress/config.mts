@@ -1,0 +1,94 @@
+import { defineConfig, type HeadConfig } from 'vitepress'
+
+const head: HeadConfig[] = [
+    ['link', { rel: 'icon', href: '/redecker-icon.svg' }],
+    ['meta', { property: 'og:type', content: 'website' }],
+    ['meta', { property: 'og:title', content: 'Redecker' }],
+    ['meta', {
+        property: 'og:description',
+        content: 'An update tool for .NET dependencies that reads packages, not just their version graph.'
+    }],
+    ['meta', { property: 'og:image', content: '/redecker-icon-512.png' }],
+]
+
+// https://vitepress.dev/reference/site-config
+export default defineConfig({
+    title: 'Redecker',
+    description: 'An update tool for .NET dependencies that reads packages, not just their version graph',
+    lang: 'en-US',
+    head,
+    base: '/',
+    cleanUrls: true,
+
+    // A broken link in the docs should fail the build rather than ship: this site is largely
+    // about the cost of warnings nobody reads.
+    ignoreDeadLinks: false,
+
+    themeConfig: {
+        outline: 2,
+        logo: '/redecker-icon.svg',
+        externalLinkIcon: true,
+
+        nav: [
+            { text: 'Guide', link: '/guide/getting-started' },
+            { text: 'Rules', link: '/rules/' },
+            { text: 'Concepts', link: '/concepts/pin-hints' },
+            { text: 'Releases', link: 'https://github.com/fluentfoundation/redecker/releases' },
+        ],
+
+        sidebar: {
+            '/': [
+                {
+                    text: 'Guide',
+                    items: [
+                        { text: 'Getting Started', link: '/guide/getting-started' },
+                        { text: 'Commands', link: '/guide/commands' },
+                        { text: 'MSBuild Integration', link: '/guide/msbuild' },
+                    ]
+                },
+                {
+                    text: 'Rules',
+                    items: [
+                        { text: 'Overview', link: '/rules/' },
+                        { text: 'RDK0001 Dangling assets', link: '/rules/rdk0001' },
+                        { text: 'RDK0002 Asset loss', link: '/rules/rdk0002' },
+                        { text: 'RDK0003 Split lockstep family', link: '/rules/rdk0003' },
+                    ]
+                },
+                {
+                    text: 'Concepts',
+                    items: [
+                        { text: 'Pin Hints', link: '/concepts/pin-hints' },
+                        { text: 'Framework Bands', link: '/concepts/framework-bands' },
+                    ]
+                },
+            ]
+        },
+
+        socialLinks: [
+            { icon: 'github', link: 'https://github.com/fluentfoundation/redecker' },
+        ],
+
+        footer: {
+            message: 'Released under the MIT License.',
+            copyright: 'Copyright © 2026 Fluent Foundation'
+        },
+
+        search: {
+            provider: 'local'
+        },
+
+        editLink: {
+            pattern: 'https://github.com/fluentfoundation/redecker/edit/main/docs-website/:path',
+            text: 'Edit this page on GitHub',
+        },
+
+        lastUpdated: {
+            text: 'Updated at',
+            formatOptions: {
+                dateStyle: 'full',
+                timeStyle: 'medium',
+            },
+        },
+    },
+})

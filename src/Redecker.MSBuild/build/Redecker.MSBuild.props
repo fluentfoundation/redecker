@@ -1,0 +1,20 @@
+<Project>
+
+  <PropertyGroup>
+    <!-- Set to false to disable the check entirely, or to false-as-warning by setting
+         RedeckerTreatAsError=false. Both are read here so a project can override them before
+         the targets file runs. -->
+    <RedeckerCheckEnabled Condition="'$(RedeckerCheckEnabled)' == ''">true</RedeckerCheckEnabled>
+    <RedeckerTreatAsError Condition="'$(RedeckerTreatAsError)' == ''">true</RedeckerTreatAsError>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'@(RedeckerLockstepPrefix)' == ''">
+    <!-- The default policy. Add to this item to state your own families:
+           <ItemGroup><RedeckerLockstepPrefix Include="Contoso.Data" /></ItemGroup>
+         EF Core requires it explicitly: if one Microsoft.EntityFrameworkCore.* package is at
+         5.0.3 then all of them must be.
+         https://learn.microsoft.com/en-us/ef/core/what-is-new/nuget-packages#package-versions -->
+    <RedeckerLockstepPrefix Include="Microsoft.EntityFrameworkCore" />
+  </ItemGroup>
+
+</Project>

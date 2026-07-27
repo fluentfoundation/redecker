@@ -30,4 +30,21 @@
     <Deterministic>true</Deterministic>
   </PropertyGroup>
 
+  <!-- Shared package presentation, so every package under the Redecker* prefix carries the same
+       identity. nuget.org's ID prefix reservation criteria ask for exactly this consistency, and
+       for an embedded icon rather than the deprecated iconUrl. -->
+  <PropertyGroup>
+    <PackageIcon>redecker-icon-128.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Inert in projects that are not packable. NuGet requires a raster icon; the SVG beside
+         these is the source, kept for editing rather than for packing. -->
+    <None Include="$(MSBuildThisFileDirectory)assets/redecker-icon-128.png"
+          Pack="true" PackagePath="/" Visible="false" />
+    <None Include="$(MSBuildThisFileDirectory)README.md"
+          Pack="true" PackagePath="/" Visible="false" />
+  </ItemGroup>
+
 </Project>
