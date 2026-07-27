@@ -6,8 +6,9 @@ treats *the reason a pin exists* as machine-readable data with an expiry check.
 Named after the German brush and broom makers, because the job is sweeping stale dependencies out
 of a repository — and knowing which dust is load-bearing.
 
-> **Status:** early. Two rules and two commands work end to end and are covered by tests against
-> the real packages. The roadmap below is honest about what is not built yet.
+> **Status:** early. Three rules and two commands work end to end, covered by tests that run
+> against the real packages and the real GitHub API. The roadmap below is honest about what is
+> not built yet.
 
 ## Why
 
@@ -182,15 +183,17 @@ error RDK0003: Microsoft.EntityFrameworkCore* packages are split across 2 versio
 ```
 
 The same documentation notes that external providers must be compatible with the EF Core version
-in use, and that a new major usually requires an updated provider — a cross-family constraint
-Redecker does not model yet.
+in use, and that a new major usually requires an updated provider. That is a *cross-family*
+constraint — two independently versioned families that must move together — which neither lockstep
+nor banding can express. Tracked in [#1](https://github.com/fluentfoundation/redecker/issues/1).
 
 ## Commands
 
-| Command | Does |
-| --- | --- |
-| `redecker inspect <id> --to <ver> [--from <ver>]` | Read-only package checks. Exit 1 on any error finding. |
-| `redecker hints <path> [--check]` | List pin rationales; re-evaluate exit conditions. |
+| Command | Does | Network |
+| --- | --- | --- |
+| `redecker inspect <id> --to <ver> [--from <ver>]` | Read a package version and check it. Exit 1 on any error finding. | yes |
+| `redecker check <path>` | Check that the versions a repository declares are coherent. | no |
+| `redecker hints <path> [--check]` | List pin rationales; re-evaluate exit conditions. | with `--check` |
 
 ## Rules
 
@@ -211,6 +214,8 @@ means a file really is missing.
   `--verbosity`), so the plan has to be computed rather than delegated.
 - **`transitive-floor` and `advisory-clear` evaluation** — both need a restored graph and the
   advisory database. Today they report `Undetermined` rather than guessing.
+- **Cross-family constraints** — providers that must track another family's version, such as an EF
+  Core provider following EF Core's major. [#1](https://github.com/fluentfoundation/redecker/issues/1).
 - **NuGet.config source support** — `--source` takes a single V3 flat container.
 - **Matrix build verification** — the tier that would have caught the SQLite break even without a
   package rule, by building every TFM × OS rather than only restoring.
@@ -221,11 +226,12 @@ means a file really is missing.
 ```console
 dotnet build Redecker.slnx -c Release
 dotnet test  Redecker.slnx -c Release --filter "TestCategory!=Network"   # offline
-dotnet test  Redecker.slnx -c Release --filter "TestCategory=Network"    # hits nuget.org
+dotnet test  Redecker.slnx -c Release --filter "TestCategory=Network"    # nuget.org + GitHub API
 ```
 
-The network tests assert against the real SQLitePCLRaw packages, so the motivating bug stays a
-regression test rather than a story in a README.
+The network tests assert against the real SQLitePCLRaw packages and the real GitHub API, so the
+motivating bug stays a regression test rather than a story in a README. Set `GITHUB_TOKEN` before
+running them: unauthenticated GitHub allows only 60 requests an hour.
 
 ## Releasing
 

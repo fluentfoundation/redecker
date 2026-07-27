@@ -142,24 +142,5 @@ public static class HintsCommand
     private static string Location(PackagePin pin) =>
         pin.Line > 0 ? $"{pin.File}:{pin.Line}" : pin.File;
 
-    private static IEnumerable<string> ResolveFiles(string path)
-    {
-        if (File.Exists(path))
-        {
-            return [path];
-        }
-
-        if (!Directory.Exists(path))
-        {
-            return [];
-        }
-
-        var candidates = new List<string>();
-        candidates.AddRange(Directory.GetFiles(path, "Directory.Packages.props", SearchOption.AllDirectories));
-        candidates.AddRange(Directory.GetFiles(path, "*.csproj", SearchOption.AllDirectories));
-        return candidates
-            .Where(f => !f.Contains($"{Path.DirectorySeparatorChar}obj{Path.DirectorySeparatorChar}"))
-            .Where(f => !f.Contains($"{Path.DirectorySeparatorChar}bin{Path.DirectorySeparatorChar}"))
-            .OrderBy(f => f, StringComparer.Ordinal);
-    }
+    private static IEnumerable<string> ResolveFiles(string path) => ProjectFiles.Resolve(path);
 }

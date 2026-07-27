@@ -15,6 +15,7 @@ public static class Program
             "Inspect and update .NET dependencies with knowledge of how NuGet packages are built.");
 
         root.Add(InspectCommand.Create());
+        root.Add(CheckCommand.Create());
         root.Add(HintsCommand.Create());
 
         return root.Parse(args).InvokeAsync();
