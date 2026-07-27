@@ -1,5 +1,6 @@
 using System.CommandLine;
 using Redecker.Hints;
+using Redecker.Issues;
 using Redecker.Packages;
 using Redecker.Projects;
 
@@ -31,11 +32,19 @@ public static class HintsCommand
             DefaultValueFactory = _ => FlatContainerPackageStore.NuGetOrg,
         };
 
+        var tokenOption = new Option<string?>("--github-token")
+        {
+            Description =
+                "GitHub token used by issue-blocker conditions. Defaults to $GITHUB_TOKEN. " +
+                "Without one GitHub allows only 60 requests an hour.",
+        };
+
         var command = new Command("hints", "List pin rationales and check whether they still apply.")
         {
             pathArgument,
             checkOption,
             sourceOption,
+            tokenOption,
         };
 
         command.SetAction(async (parseResult, cancellationToken) =>
@@ -43,6 +52,8 @@ public static class HintsCommand
             var path = parseResult.GetRequiredValue(pathArgument);
             var check = parseResult.GetValue(checkOption);
             var source = parseResult.GetRequiredValue(sourceOption);
+            var token = parseResult.GetValue(tokenOption)
+                        ?? Environment.GetEnvironmentVariable("GITHUB_TOKEN");
 
             var files = ResolveFiles(path).ToList();
             if (files.Count == 0)
@@ -52,7 +63,8 @@ public static class HintsCommand
             }
 
             using var store = new FlatContainerPackageStore(source, InspectCommand.CacheDirectory());
-            return await RunAsync(files, check, store, cancellationToken).ConfigureAwait(false);
+            using var tracker = new GitHubIssueTracker(token);
+            return await RunAsync(files, check, store, tracker, cancellationToken).ConfigureAwait(false);
         });
 
         return command;
@@ -62,9 +74,10 @@ public static class HintsCommand
         IReadOnlyList<string> files,
         bool check,
         IPackageStore store,
+        Redecker.Issues.IIssueTracker? issues,
         CancellationToken cancellationToken)
     {
-        var evaluator = new HintEvaluator(store);
+        var evaluator = new HintEvaluator(store, issues);
         var hinted = 0;
         var retirable = 0;
         var malformed = 0;

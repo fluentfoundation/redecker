@@ -25,7 +25,12 @@ public sealed record PinVerdict(PinStatus Status, string Explanation);
 /// <summary>
 /// Evaluates exit conditions, turning a recorded rationale into a recurring check.
 /// </summary>
-public sealed class HintEvaluator(IPackageStore store)
+/// <param name="store">Where packages are read from.</param>
+/// <param name="issues">
+/// An upstream issue tracker. Optional, because most exit conditions never need one; issue
+/// conditions report Undetermined rather than failing when it is absent.
+/// </param>
+public sealed class HintEvaluator(IPackageStore store, Redecker.Issues.IIssueTracker? issues = null)
 {
     private readonly DanglingAssetRule _dangling = new();
 
@@ -59,6 +64,15 @@ public sealed class HintEvaluator(IPackageStore store)
                 return new PinVerdict(
                     PinStatus.Undetermined,
                     $"Evaluating {advisory} needs the vulnerability database, which is not wired up yet.");
+
+            case ExitCondition.IssuesResolved issuesResolved:
+                return issues is null
+                    ? new PinVerdict(
+                        PinStatus.Undetermined,
+                        $"Evaluating {issuesResolved} needs access to the upstream tracker. Pass " +
+                        "--github-token, or set GITHUB_TOKEN, and run 'redecker hints --check'.")
+                    : await new IssueConditionEvaluator(store, issues)
+                        .EvaluateAsync(hint, issuesResolved, cancellationToken).ConfigureAwait(false);
 
             default:
                 return new PinVerdict(PinStatus.Undetermined, $"Unhandled exit condition '{hint.Exit}'.");

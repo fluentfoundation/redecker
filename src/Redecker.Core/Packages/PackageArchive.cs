@@ -1,4 +1,5 @@
 using System.IO.Compression;
+using System.Text.RegularExpressions;
 
 namespace Redecker.Packages;
 
@@ -67,6 +68,40 @@ public sealed class PackageArchive : IDisposable
             (e.EndsWith(".props", StringComparison.OrdinalIgnoreCase) ||
              e.EndsWith(".targets", StringComparison.OrdinalIgnoreCase)))
         .OrderBy(e => e, StringComparer.Ordinal);
+
+    /// <summary>
+    /// The source repository the package declares in its nuspec, or <see langword="null"/>.
+    /// </summary>
+    /// <remarks>
+    /// Packages already carry this, so a hint about upstream issues need not spell out a URL:
+    /// naming the package is enough to find where its issues live. Falls back to
+    /// <c>projectUrl</c>, which older packages use in place of <c>repository</c>, but only when
+    /// that points at a source host rather than a documentation site.
+    /// </remarks>
+    public string? RepositoryUrl()
+    {
+        var nuspecPath = _entries.FirstOrDefault(
+            e => e.EndsWith(".nuspec", StringComparison.OrdinalIgnoreCase) && !e.Contains('/'));
+        var nuspec = nuspecPath is null ? null : ReadText(nuspecPath);
+        if (nuspec is null)
+        {
+            return null;
+        }
+
+        var repository = Regex.Match(
+            nuspec, @"<repository[^>]*\burl\s*=\s*""([^""]+)""", RegexOptions.IgnoreCase);
+        if (repository.Success)
+        {
+            return repository.Groups[1].Value;
+        }
+
+        var project = Regex.Match(
+            nuspec, @"<projectUrl>\s*([^<]+?)\s*</projectUrl>", RegexOptions.IgnoreCase);
+        return project.Success &&
+               project.Groups[1].Value.Contains("github.com", StringComparison.OrdinalIgnoreCase)
+            ? project.Groups[1].Value
+            : null;
+    }
 
     /// <summary>The target framework folder names under <c>lib/</c>.</summary>
     public IReadOnlySet<string> LibFrameworks() => SecondSegmentsUnder("lib/");

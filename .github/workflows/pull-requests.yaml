@@ -92,7 +92,12 @@ jobs:
 
     # Split out because these read real packages from nuget.org: when they fail it is worth
     # knowing immediately whether the cause is Redecker or the network.
-    - name: Test (against real packages on nuget.org)
+    - name: Test (against real packages on nuget.org and the GitHub API)
+      # Runner IPs are shared, so unauthenticated GitHub API calls hit the 60-per-hour limit
+      # almost immediately. The default token raises that to 1,000 per hour per repository,
+      # which is far more than these tests need.
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: >
         dotnet test ${{ env.solution }}
         --configuration ${{ env.buildConfiguration }}

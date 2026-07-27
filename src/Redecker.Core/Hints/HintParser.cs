@@ -217,6 +217,35 @@ public static partial class HintParser
                 condition = new ExitCondition.AdvisoryClear(argument);
                 return true;
 
+            case "issues-closed":
+            case "issues-released":
+            {
+                var numbers = new List<int>();
+                foreach (var part in argument.Split(
+                    ',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries))
+                {
+                    // Accept "#123" as readily as "123": the hash is how issues are written
+                    // everywhere else, and rejecting it would be pedantry.
+                    if (!int.TryParse(part.TrimStart('#'), out var n) || n <= 0)
+                    {
+                        error = $"'{part}' is not an issue number in {function}(...).";
+                        return false;
+                    }
+
+                    numbers.Add(n);
+                }
+
+                if (numbers.Count == 0)
+                {
+                    error = $"{function} expects at least one issue number.";
+                    return false;
+                }
+
+                condition = new ExitCondition.IssuesResolved(
+                    numbers, function == "issues-released");
+                return true;
+            }
+
             default:
                 error = $"Unknown exit condition function '{function}'.";
                 return false;

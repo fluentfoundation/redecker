@@ -67,6 +67,63 @@ The subject reuses the `#:package Id@Version` directive syntax from file-based a
 | `api-compat` | Avoiding a breaking change | human review |
 | `transitive-conflict` | Settling a version conflict | the conflict resolves |
 
+A label on an `<ItemGroup>` applies to every package inside it, which is the natural place for a
+hint covering a whole family:
+
+```xml
+<ItemGroup Label="framework-band: #:package Microsoft.Extensions.*; until: never">
+  <PackageVersion Include="Microsoft.Extensions.Logging" Version="8.0.0" />
+  <PackageVersion Include="Microsoft.Extensions.Options" Version="8.0.0" />
+</ItemGroup>
+```
+
+### Exit conditions
+
+| Condition | Retires when | Evaluated today |
+| --- | --- | --- |
+| `package-assets-intact(Id@Version)` | that version stops failing the package rules | ✅ |
+| `issues-closed(123, 456)` | every issue is closed **as completed** | ✅ |
+| `issues-released(123)` | …and the closing commits have reached a release tag | ✅ |
+| `transitive-floor(Id) >= 1.2.3` | a dependant raises its own floor | needs a resolved graph |
+| `advisory-clear(GHSA-…)` | the advisory stops applying | needs the advisory database |
+| `never` / `review` | structural / human decision | n/a |
+
+### Waiting on upstream issues
+
+```xml
+<PackageVersion Include="Some.Package" Version="1.2.3"
+                Label="upstream-bug: #:package Some.Package@1.2.3;
+                       until: issues-released(1234, 1235);
+                       note: crashes on net48 when the RID graph is trimmed" />
+```
+
+The repository is **not** named. It comes from the pinned package's own nuspec
+(`<repository url="...">`, falling back to `projectUrl` when that points at a source host), so a
+hint only states which issues it waits on — and it stays correct if the project moves, because
+the URL is read from whichever version is pinned.
+
+Two deliberate distinctions:
+
+- **Closed as *not planned* does not discharge a pin.** The tracker is tidy, but upstream has
+  declined to fix the defect, so the pin is still earning its place. Only *closed as completed*
+  counts.
+- **`issues-closed` is not `issues-released`.** A fix merged to `main` is not a fix you can
+  consume. `issues-released` additionally requires the closing commit to appear in a release tag,
+  and reports the milestone when one is assigned.
+
+#### This does not clone anything
+
+`git tag --contains` needs the commit graph, but the REST compare endpoint answers the same
+question directly: comparing a tag against a commit returns `identical` or `behind` when the tag
+contains it, and `ahead` when it does not. Containment is monotonic along an ordered release
+history, so the *earliest* containing tag is found by binary search over version-sorted tags —
+on a repository with 72 tags that is **8 requests instead of 73**, and no clone at all.
+
+For scale: an authenticated user gets 5,000 REST requests an hour, and a workflow's
+`GITHUB_TOKEN` gets 1,000 per hour per repository. A pin waiting on three issues costs roughly a
+dozen requests. Pass `--github-token`, or set `GITHUB_TOKEN`; without one GitHub allows 60 an
+hour, which is not enough from a shared CI address.
+
 `redecker hints --check` re-evaluates each condition and tells you which pins can now be deleted:
 
 ```console

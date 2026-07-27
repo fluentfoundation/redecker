@@ -60,6 +60,35 @@ public abstract record ExitCondition
         public override string ToString() => $"advisory-clear({AdvisoryId})";
     }
 
+    /// <summary>
+    /// Retires when every listed upstream issue is closed as completed, and -- when
+    /// <c>RequireReleased</c> is set -- the commits that closed them have reached a release tag.
+    /// </summary>
+    /// <remarks>
+    /// The repository is deliberately not named here: it is read from the pinned package's own
+    /// nuspec, so a hint only states which issues it waits on. Closed as "not planned" does not
+    /// satisfy this, because the problem the pin guards against is then still real -- upstream
+    /// has simply declined to fix it.
+    /// </remarks>
+    /// <param name="Issues">The upstream issue numbers.</param>
+    /// <param name="RequireReleased">Whether a fix must also have shipped in a tag.</param>
+    public sealed record IssuesResolved(IReadOnlyList<int> Issues, bool RequireReleased) : ExitCondition
+    {
+        /// <inheritdoc />
+        public override string ToString() =>
+            $"{(RequireReleased ? "issues-released" : "issues-closed")}({string.Join(", ", Issues)})";
+
+        /// <inheritdoc />
+        public bool Equals(IssuesResolved? other) =>
+            other is not null &&
+            RequireReleased == other.RequireReleased &&
+            Issues.SequenceEqual(other.Issues);
+
+        /// <inheritdoc />
+        public override int GetHashCode() =>
+            Issues.Aggregate(RequireReleased.GetHashCode(), HashCode.Combine);
+    }
+
     /// <summary>Never retires automatically; it is structural.</summary>
     public sealed record Never : ExitCondition
     {
