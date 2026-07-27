@@ -114,3 +114,8 @@ Both of those can be checked. That is the whole of what Redecker does.
 It will not replace `dotnet restore` or your existing updater, and it has nothing useful to say
 about [epoch changes](/concepts/epochs) such as `xunit` → `xunit.v3` — a limit of the ecosystem
 rather than a gap in the roadmap.
+
+Problem 5 in particular is now partly handled inside the SDK: .NET 10's package pruning removes
+platform-supplied packages from the graph automatically, and where it applies you should use it
+rather than anything here. See [alternatives](/alternatives) for exactly where that boundary
+falls, and for how Snitch overlaps with problem 4.

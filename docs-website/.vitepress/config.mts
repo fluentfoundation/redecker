@@ -41,6 +41,7 @@ export default defineConfig({
 
         nav: [
             { text: 'Problems', link: '/problems' },
+            { text: 'Alternatives', link: '/alternatives' },
             { text: 'Guide', link: '/guide/getting-started' },
             { text: 'Rules', link: '/rules/' },
             { text: 'Concepts', link: '/concepts/pin-hints' },
@@ -54,6 +55,7 @@ export default defineConfig({
                     items: [
                         { text: 'The problems', link: '/problems' },
                         { text: 'Getting Started', link: '/guide/getting-started' },
+                        { text: 'Alternatives', link: '/alternatives' },
                     ]
                 },
                 {

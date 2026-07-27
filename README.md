@@ -285,6 +285,61 @@ means a file really is missing.
   package rule, by building every TFM × OS rather than only restoring.
 - **GitHub Action packaging.**
 
+## Alternatives
+
+Redecker is not the first tool to notice that .NET dependency manifests drift from reality. Two
+existing pieces of work cover ground next to it, both worth using, and one of them removes part of
+Redecker's job outright.
+
+| | Question it answers | Needs |
+| --- | --- | --- |
+| [Package pruning](https://devblogs.microsoft.com/dotnet/nuget-package-pruning-in-dotnet-10/) (.NET 10 SDK) | Is this package already supplied by the platform? | Restore, `net10.0`+ |
+| [Snitch](https://github.com/spectresystems/snitch) | Do I reference something directly that another project already brings in? | The resolved graph |
+| **Redecker** | Is this package's *content* sound, and does the manifest record *why* it looks like this? | Package bytes, and the declared text |
+
+### NuGet package pruning
+
+On by default for `net10.0` and later, it removes platform-supplied packages from the dependency
+graph during restore — reportedly around 70% fewer transitive vulnerability reports and up to half
+the restore time. It happens inside restore, which is strictly better than anything a third-party
+tool can manage. **Where it overlaps with Redecker, use pruning.**
+
+Two boundaries matter:
+
+- **It prunes what the platform supplies, at the versions it supplies.** `net8.0` ships
+  `System.Text.Json` 8.0.x, so a transitive dependency in that range disappears; a dependency on
+  **9.0.0** does not, because the platform does not supply it. That remaining case is exactly the
+  [framework band](#the-framework-band-problem) problem. Pruning removes the easy half and leaves
+  the half that was already interesting.
+- **Direct references are marked, not removed.** Pruning sets `PrivateAssets="all"` rather than
+  deleting the line, so the manifest keeps naming a package that no longer participates as it
+  appears to — the same class of problem as [RDK0004](#rdk0004-undocumented-transitive-pins),
+  arriving from the other direction.
+
+### Snitch
+
+Patrick Svensson's [Snitch](https://github.com/spectresystems/snitch) finds direct references you
+can delete because a referenced project already supplies them, and flags shared dependencies that
+have been quietly upgraded or downgraded between projects. It and RDK0004 are near mirror images:
+
+- **Snitch:** *you reference this directly, and you did not need to.*
+- **RDK0004:** *you declared a version for this, and nothing references it.*
+
+Snitch reasons over the resolved graph, which is what lets it name *who* supplies the package.
+Redecker's check is a text comparison needing no restore. Neither subsumes the other.
+
+### The gap between them
+
+Both Snitch and pruning answer **can this be removed?** Neither can answer **should it be?**,
+because neither has any record of why the entry exists.
+
+A `PackageVersion` floated above a vulnerable version looks exactly like redundancy. A tool that
+reports it as removable is, in that case, recommending you reintroduce a CVE — not a criticism of
+Snitch, since the information simply is not in the file to read.
+
+That is the argument for [pin hints](#pin-hints). Removal advice is only safe once intent sits
+next to the version, with a condition saying when the reason expires.
+
 ## Not supported: epochs
 
 Redecker has nothing useful to say about `xunit` → `xunit.v3`, and neither does any other .NET
