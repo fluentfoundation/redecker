@@ -4,21 +4,21 @@ using NuGet.Versioning;
 namespace Redecker.Frameworks;
 
 /// <summary>
-/// Knows which packages ship in lockstep with the runtime, and therefore have to be versioned per
-/// target framework rather than simply moved to the newest release.
+/// Version selection for packages that are tied to a target framework's generation.
 /// </summary>
 /// <remarks>
 /// <para>
-/// This is the edge case that makes a generic "bump everything to latest" updater wrong for .NET.
-/// A project targeting net8.0 wants <c>Microsoft.Extensions.*</c> 8.0.x; the same package at 9.0.x
-/// drags in a newer runtime surface, and for a library it silently raises the floor every consumer
-/// must meet. The correct unit of update is therefore not the package but the pair
-/// <c>(package, target framework band)</c>.
+/// This is the edge case that makes a generic "bump everything to latest" updater wrong for
+/// .NET. For a banded package the correct unit of update is not the package but the pair
+/// <c>(package, target framework band)</c>: a net8.0 project wants the 8.x line even when 9.x
+/// exists, because 9.x is written against a runtime it is not running on.
 /// </para>
 /// <para>
-/// Central package management makes expressing that awkward, because a <c>PackageVersion</c> is
-/// global. The honest encoding is a set of target-framework-conditioned <c>PackageVersion</c>
-/// items -- which is exactly the shape a naive updater flattens back into one.
+/// Which packages those are is policy rather than a prefix -- see <see cref="BandPolicy"/>.
+/// Central package management then makes expressing the result awkward, because a
+/// <c>PackageVersion</c> is global; the honest encoding is a set of
+/// target-framework-conditioned <c>PackageVersion</c> items, which is exactly the shape a naive
+/// updater flattens back into one.
 /// </para>
 /// </remarks>
 public static partial class FrameworkBand
@@ -26,24 +26,17 @@ public static partial class FrameworkBand
     [GeneratedRegex(@"^net(?<major>\d+)\.(?<minor>\d+)$", RegexOptions.IgnoreCase)]
     private static partial Regex ModernTfmPattern();
 
-    private static readonly string[] BandedPrefixes =
-    [
-        "System.",
-        "Microsoft.Extensions.",
-        "Microsoft.AspNetCore.",
-        "Microsoft.NETCore.",
-        "Microsoft.Bcl.",
-    ];
-
     /// <summary>
-    /// Whether <paramref name="packageId"/> belongs to a family that ships with the runtime.
+    /// Whether <paramref name="packageId"/> is tied to a runtime generation under
+    /// <paramref name="policy"/>, defaulting to <see cref="BandPolicy.Default"/>.
     /// </summary>
-    public static bool IsBanded(string packageId) =>
-        BandedPrefixes.Any(p => packageId.StartsWith(p, StringComparison.OrdinalIgnoreCase));
+    public static bool IsBanded(string packageId, BandPolicy? policy = null) =>
+        (policy ?? BandPolicy.Default).IsBanded(packageId);
 
     /// <summary>
     /// The major version band a target framework expects, e.g. <c>net8.0</c> gives 8.
-    /// Returns <see langword="null"/> for frameworks with no in-box band, such as netstandard2.0.
+    /// Returns <see langword="null"/> for frameworks with no in-box band, such as
+    /// netstandard2.0.
     /// </summary>
     public static int? BandFor(string targetFramework)
     {
@@ -58,12 +51,14 @@ public static partial class FrameworkBand
     /// <param name="targetFramework">The framework the version has to suit.</param>
     /// <param name="available">Every published version.</param>
     /// <param name="allowPrerelease">Whether prerelease versions may be chosen.</param>
+    /// <param name="policy">Which packages are banded; defaults to <see cref="BandPolicy.Default"/>.</param>
     /// <returns>The chosen version, or null when nothing is suitable.</returns>
     public static NuGetVersion? HighestInBand(
         string packageId,
         string targetFramework,
         IEnumerable<string> available,
-        bool allowPrerelease = false)
+        bool allowPrerelease = false,
+        BandPolicy? policy = null)
     {
         var versions = available
             .Select(v => NuGetVersion.TryParse(v, out var parsed) ? parsed : null)
@@ -78,13 +73,16 @@ public static partial class FrameworkBand
         }
 
         var band = BandFor(targetFramework);
-        if (band is null || !IsBanded(packageId))
+        if (band is null || !IsBanded(packageId, policy))
         {
+            // Compile-at-head: most of Microsoft.Extensions.* belongs here, and taking the
+            // newest stable release is simply correct.
             return versions.Max();
         }
 
-        // Inside the band if one exists; a banded package with no release in the band is a real
-        // signal, so fall back to null rather than quietly jumping bands.
+        // A banded package with no release in the band is a real signal -- a project on a
+        // framework the family has not shipped for -- so report nothing rather than quietly
+        // jumping generations.
         var inBand = versions.Where(v => v.Major == band.Value).ToList();
         return inBand.Count > 0 ? inBand.Max() : null;
     }

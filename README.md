@@ -71,9 +71,10 @@ A label on an `<ItemGroup>` applies to every package inside it, which is the nat
 hint covering a whole family:
 
 ```xml
-<ItemGroup Label="framework-band: #:package Microsoft.Extensions.*; until: never">
-  <PackageVersion Include="Microsoft.Extensions.Logging" Version="8.0.0" />
-  <PackageVersion Include="Microsoft.Extensions.Options" Version="8.0.0" />
+<ItemGroup Label="framework-band: #:package Microsoft.EntityFrameworkCore.*; until: never">
+  <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="8.0.11" />
+  <PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.11" />
+  <PackageVersion Include="Microsoft.EntityFrameworkCore.Relational" Version="8.0.11" />
 </ItemGroup>
 ```
 
@@ -139,11 +140,50 @@ tells you when to remove it instead of becoming folklore.
 
 ## The framework band problem
 
-A generic "bump to latest" is wrong for packages that ship with the runtime. A project targeting
-`net8.0` wants `Microsoft.Extensions.*` 8.0.x; the same package at 9.0.x raises the floor every
-consumer must meet. The update unit is `(package, target framework band)`, not `(package)` —
-`FrameworkBand.HighestInBand` implements that, and returns nothing rather than jumping bands when
-a band has no release.
+A generic "bump to latest" is wrong for packages tied to a runtime generation. A project
+targeting `net8.0` wants the 8.x line even when 9.x exists, because 9.x is written against a
+runtime it is not running on. The update unit is `(package, target framework band)`, not
+`(package)` — and an empty band reports nothing rather than quietly jumping generations.
+
+**Which packages those are is policy, not a prefix.** The tempting shortcut — treat all
+`Microsoft.Extensions.*` and `System.*` as banded — is wrong in both directions, so
+[`BandPolicy`](src/Redecker.Core/Frameworks/BandPolicy.cs) states it as data you can override.
+
+| Banded | Why |
+| --- | --- |
+| `Microsoft.EntityFrameworkCore.*` | Providers and tools rely on runtime behaviour exclusive to the generation they ship with |
+| `Microsoft.AspNetCore.OpenApi`, `Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore`, `Microsoft.AspNetCore.Identity.EntityFrameworkCore` | Shipped outside the shared framework but written against a specific ASP.NET Core |
+| `Microsoft.Extensions.Hosting`, `.DependencyInjection`, `.Configuration`, `.Http.Polly` | Pulling a 9.0 extension into a `net8.0` app lifts the assets out of the shared framework and ships them app-local and unoptimised |
+| `System.Diagnostics.DiagnosticSource`, `System.Text.Json` | Deep runtime and serialization integration; mismatches surface as missing types or contract differences |
+
+**Not banded**, and deliberately so: most of `Microsoft.Extensions.*` is compile-at-head. Caching,
+options, primitives and the abstractions packages support older frameworks through netstandard2.0
+and should simply take the newest stable release. Holding them at 8.x achieves nothing.
+
+Note the failure mode throughout: none of these break restore. They ship an unoptimised asset, or
+surface a missing type at run time. That is precisely why a version-graph updater cannot see them.
+
+### Lockstep families
+
+A separate constraint, and conflating it with banding loses it. Banding says a package must match
+the *target framework*; lockstep says a set of packages must match *each other*, whatever version
+that is. EF Core's [package documentation](https://learn.microsoft.com/en-us/ef/core/what-is-new/nuget-packages#package-versions)
+states it directly:
+
+> Make sure to install the same version of all EF Core packages shipped by Microsoft. For example,
+> if version 5.0.3 of `Microsoft.EntityFrameworkCore.SqlServer` is installed, then all other
+> `Microsoft.EntityFrameworkCore.*` packages must also be at 5.0.3.
+
+`RDK0003` reports a split family. This is exactly what an automatic updater creates: it bumps
+whichever members happen to have newer releases, splits the set, and restore still succeeds.
+
+```console
+error RDK0003: Microsoft.EntityFrameworkCore* packages are split across 2 versions: 9.0.0, 9.0.5
+```
+
+The same documentation notes that external providers must be compatible with the EF Core version
+in use, and that a new major usually requires an updated provider — a cross-family constraint
+Redecker does not model yet.
 
 ## Commands
 
@@ -158,6 +198,7 @@ a band has no release.
 | --- | --- | --- |
 | `RDK0001` | error | Package MSBuild files reference files the package does not ship |
 | `RDK0002` | warning | An upgrade drops a `lib/` framework or a `runtimes/` RID |
+| `RDK0003` | error | A lockstep family is split across versions |
 
 `RDK0001` only reports paths it can resolve with certainty — references holding an unexpanded
 property, item metadata, or a wildcard are skipped. That keeps it usable as a gate: a finding
