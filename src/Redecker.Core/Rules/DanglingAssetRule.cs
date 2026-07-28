@@ -203,6 +203,16 @@ public sealed class DanglingAssetRule : IPackageRule
         var candidate = reference[(index + thisFileDirectory.Length)..];
         candidate = candidate.Replace('\\', '/').Trim();
 
+        // The path is often embedded in an expression rather than standing alone, e.g.
+        // $([MSBuild]::NormalizePath('$(MSBuildThisFileDirectory)../../analyzers/x.dll')).
+        // None of these characters can appear in a package entry path, so the first one ends it;
+        // without this the trailing "'))" made a file the package really ships look missing.
+        var terminator = candidate.IndexOfAny(['\'', '"', ')', '<', '>', '|']);
+        if (terminator >= 0)
+        {
+            candidate = candidate[..terminator];
+        }
+
         // Anything still holding a property or item metadata depends on evaluation context.
         if (candidate.Contains("$(", StringComparison.Ordinal) ||
             candidate.Contains("%(", StringComparison.Ordinal) ||

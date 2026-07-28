@@ -51,6 +51,32 @@ public class UnimportableBuildFolderRuleTests
     }
 
     [Test]
+    public void Accepts_helper_subfolders_imported_from_a_root_entry_point()
+    {
+        // Grpc.Tools does exactly this: build/Grpc.Tools.props imports _grpc/ and _protobuf/.
+        // Only build/ and build/<tfm>/ are import roots, so a package with an entry point at the
+        // root may organise everything beneath it however it likes.
+        var findings = Inspect(new SyntheticPackage()
+            .With("build/Contoso.Widgets.props", "<Project />")
+            .With("build/Contoso.Widgets.targets", "<Project />")
+            .With("build/_helpers/Internal.props", "<Project />")
+            .With("build/_helpers/Internal.targets", "<Project />"));
+
+        Assert.That(findings, Is.Empty);
+    }
+
+    [Test]
+    public void Still_reports_a_subfolder_when_there_is_no_root_entry_point()
+    {
+        // Without an entry point at the root, nothing can reach the subfolder.
+        var findings = Inspect(new SyntheticPackage()
+            .With("build/_helpers/Internal.targets", "<Project />"));
+
+        Assert.That(findings, Has.Count.EqualTo(1));
+        Assert.That(findings[0].Title, Does.Contain("_helpers"));
+    }
+
+    [Test]
     public void Checks_each_framework_folder_separately()
     {
         var findings = Inspect(new SyntheticPackage()

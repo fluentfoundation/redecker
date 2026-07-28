@@ -98,6 +98,43 @@ public class DanglingAssetRuleTests
     }
 
     [Test]
+    public void Resolves_a_path_embedded_in_an_msbuild_property_function()
+    {
+        // Microsoft.AspNetCore.Components.Analyzers wraps the path in
+        // $([MSBuild]::NormalizePath('...')). Capturing the trailing "'))" made a file the
+        // package really ships look missing.
+        var findings = Inspect(new SyntheticPackage()
+            .With("build/netstandard2.0/Test.targets",
+                """
+                <Project>
+                  <PropertyGroup>
+                    <AnalyzerPath>$([MSBuild]::NormalizePath('$(MSBuildThisFileDirectory)../../analyzers/dotnet/cs/Test.dll'))</AnalyzerPath>
+                  </PropertyGroup>
+                </Project>
+                """)
+            .With("analyzers/dotnet/cs/Test.dll"));
+
+        Assert.That(findings, Is.Empty);
+    }
+
+    [Test]
+    public void Still_reports_a_missing_file_referenced_through_a_property_function()
+    {
+        var findings = Inspect(new SyntheticPackage()
+            .With("build/netstandard2.0/Test.targets",
+                """
+                <Project>
+                  <PropertyGroup>
+                    <AnalyzerPath>$([MSBuild]::NormalizePath('$(MSBuildThisFileDirectory)../../analyzers/dotnet/cs/Test.dll'))</AnalyzerPath>
+                  </PropertyGroup>
+                </Project>
+                """));
+
+        Assert.That(findings, Has.Count.EqualTo(1));
+        Assert.That(findings[0].Title, Does.Contain("analyzers/dotnet/cs/Test.dll"));
+    }
+
+    [Test]
     public void Does_not_report_an_optional_import_guarded_by_Exists()
     {
         // How a package offers an extension point: import the consumer's overrides if they wrote

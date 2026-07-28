@@ -92,8 +92,7 @@ public class UntrackedOutputCopyRuleTests
     [TestCase("$(OutDir)")]
     [TestCase("$(OutputPath)")]
     [TestCase("$(TargetDir)")]
-    [TestCase("$(PublishDir)")]
-    public void Recognises_each_output_location(string property)
+    public void Recognises_each_build_output_location(string property)
     {
         var findings = Inspect(
             $"""
@@ -105,6 +104,23 @@ public class UntrackedOutputCopyRuleTests
              """);
 
         Assert.That(findings, Has.Count.EqualTo(1));
+    }
+
+    [Test]
+    public void Ignores_copies_to_the_publish_directory()
+    {
+        // IncrementalClean governs build output; publish has its own lifecycle. coverlet.collector
+        // copies to $(PublishDir) and is not doing anything wrong.
+        var findings = Inspect(
+            """
+            <Project>
+              <Target Name="T">
+                <Copy SourceFiles="@(Files)" DestinationFolder="$(PublishDir)%(RecursiveDir)" />
+              </Target>
+            </Project>
+            """);
+
+        Assert.That(findings, Is.Empty);
     }
 
     [Test]

@@ -29,8 +29,12 @@ namespace Redecker.Rules;
 /// </remarks>
 public sealed class UntrackedOutputCopyRule : IPackageRule
 {
+    // Deliberately not $(PublishDir). IncrementalClean governs the build output directory;
+    // publish is a separate operation with its own lifecycle, and copying there without
+    // recording FileWrites is normal rather than a hazard. Including it made coverlet.collector
+    // look like a defect when it is not.
     private static readonly string[] OutputProperties =
-        ["$(OutDir)", "$(OutputPath)", "$(TargetDir)", "$(PublishDir)"];
+        ["$(OutDir)", "$(OutputPath)", "$(TargetDir)"];
 
     /// <inheritdoc />
     public string Code => "RDK0007";

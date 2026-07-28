@@ -30,53 +30,71 @@ public sealed class UnimportableBuildFolderRule : IPackageRule
     /// <inheritdoc />
     public IEnumerable<Finding> Inspect(PackageArchive package)
     {
-        // Group by the folder an import would be resolved from: build/, or build/<tfm>/.
-        var folders = new Dictionary<string, List<string>>(StringComparer.OrdinalIgnoreCase);
+        var expectedProps = package.Id + ".props";
+        var expectedTargets = package.Id + ".targets";
 
-        foreach (var entry in package.Entries)
+        bool IsEntryPoint(string fileName) =>
+            fileName.Equals(expectedProps, StringComparison.OrdinalIgnoreCase) ||
+            fileName.Equals(expectedTargets, StringComparison.OrdinalIgnoreCase);
+
+        var msbuildFiles = package.Entries
+            .Where(e => e.EndsWith(".props", StringComparison.OrdinalIgnoreCase) ||
+                        e.EndsWith(".targets", StringComparison.OrdinalIgnoreCase))
+            .Where(e => BuildRoots.Contains(e.Split('/')[0], StringComparer.OrdinalIgnoreCase))
+            .ToList();
+
+        foreach (var root in BuildRoots)
         {
-            if (!entry.EndsWith(".props", StringComparison.OrdinalIgnoreCase) &&
-                !entry.EndsWith(".targets", StringComparison.OrdinalIgnoreCase))
+            var inRoot = msbuildFiles
+                .Where(e => e.Split('/')[0].Equals(root, StringComparison.OrdinalIgnoreCase))
+                .ToList();
+
+            if (inRoot.Count == 0)
             {
                 continue;
             }
 
-            var root = entry.Split('/')[0];
-            if (!BuildRoots.Contains(root, StringComparer.OrdinalIgnoreCase))
+            // NuGet imports from the build root itself, or from one framework folder beneath it.
+            // Nothing deeper is ever an import root, so a package with an entry point at the root
+            // may organise the rest however it likes -- Grpc.Tools imports build/_grpc/ and
+            // build/_protobuf/ from build/Grpc.Tools.props, which is entirely correct.
+            if (inRoot.Any(e => e.Count(c => c == '/') == 1 && IsEntryPoint(e.Split('/')[^1])))
             {
                 continue;
             }
 
-            var slash = entry.LastIndexOf('/');
-            var folder = slash < 0 ? string.Empty : entry[..slash];
-            if (!folders.TryGetValue(folder, out var files))
+            var candidates = inRoot
+                .Where(e => e.Count(c => c == '/') == 1)
+                .Select(_ => root)
+                .Concat(inRoot.Where(e => e.Count(c => c == '/') >= 2)
+                              .Select(e => string.Join('/', e.Split('/').Take(2))))
+                .Distinct(StringComparer.OrdinalIgnoreCase)
+                .OrderBy(e => e, StringComparer.Ordinal);
+
+            foreach (var folder in candidates)
             {
-                folders[folder] = files = [];
+                var files = inRoot
+                    .Where(e => e.StartsWith(folder + "/", StringComparison.OrdinalIgnoreCase) &&
+                                e[(folder.Length + 1)..].Count(c => c == '/') == 0)
+                    .Select(e => e.Split('/')[^1])
+                    .ToList();
+
+                if (files.Count == 0 || files.Any(IsEntryPoint))
+                {
+                    continue;
+                }
+
+                yield return new Finding(
+                    Code,
+                    FindingSeverity.Error,
+                    $"{folder}/ ships MSBuild files that can never be imported",
+                    $"NuGet imports only {expectedProps} or {expectedTargets} from a build folder. " +
+                    $"{folder}/ contains {string.Join(", ", files.OrderBy(f => f, StringComparer.Ordinal))}, " +
+                    "none of which matches the package id, and no entry point at the root of " +
+                    $"{root}/ could import them. Restore succeeds and the build logic silently " +
+                    "does nothing.",
+                    package.Moniker);
             }
-
-            files.Add(entry[(slash + 1)..]);
-        }
-
-        foreach (var (folder, files) in folders.OrderBy(f => f.Key, StringComparer.Ordinal))
-        {
-            var expectedProps = package.Id + ".props";
-            var expectedTargets = package.Id + ".targets";
-
-            if (files.Any(f => f.Equals(expectedProps, StringComparison.OrdinalIgnoreCase) ||
-                               f.Equals(expectedTargets, StringComparison.OrdinalIgnoreCase)))
-            {
-                continue;
-            }
-
-            yield return new Finding(
-                Code,
-                FindingSeverity.Error,
-                $"{folder}/ ships MSBuild files that can never be imported",
-                $"NuGet imports only {expectedProps} or {expectedTargets} from a build folder. " +
-                $"{folder}/ contains {string.Join(", ", files.OrderBy(f => f, StringComparer.Ordinal))}, " +
-                "none of which matches the package id, and nothing else imports them. Restore " +
-                "succeeds and the build logic silently does nothing.",
-                package.Moniker);
         }
     }
 }

@@ -103,9 +103,64 @@ condition must not excuse every other reference in scope.
 The lesson generalises. Every rule here is checked against a spread of real packages before being
 believed, because a rule that fires on healthy packages is worse than no rule at all.
 
-## Corpus scanning
+## The corpus sweep
 
-The obvious next step is to stop hand-picking examples. The nuget.org search endpoint ranks all
+Hand-picking examples does not scale, and it biases the rule set towards whatever broke recently
+in one person's build. `tools/Redecker.Corpus` runs every single-package rule across the
+most-downloaded packages on nuget.org. Downloads are cached, so a repeat sweep of 500 packages
+takes about three seconds.
+
+### Results across the top 500
+
+| Rule | Packages | Rate |
+| --- | ---: | ---: |
+| RDK0001 | 0 | 0% |
+| RDK0005 | 0 | 0% |
+| RDK0006 | 0 | 0% |
+| RDK0007 | 2 | 0.4% |
+
+That is the state *after* the sweep found and killed three false positives. Before it, the same
+run reported findings against Grpc.Tools, coverlet.collector and
+Microsoft.AspNetCore.Components.Analyzers — none of which have the defect claimed.
+
+### Three bugs it caught
+
+**Grpc.Tools: RDK0006 misunderstood build folders.** `build/Grpc.Tools.props` exists and imports
+`_grpc/_Grpc.Tools.props` and `_protobuf/Google.Protobuf.Tools.props`. Those subfolders are
+helpers reached from a correctly named entry point, which is entirely legitimate. The rule was
+treating *every* directory under `build/` as an import root, when only `build/` itself and
+`build/<tfm>/` ever are.
+
+**coverlet.collector: RDK0007 was too broad.** It copies only to `$(PublishDir)`, and
+`IncrementalClean` governs the build output directory, not publish. `$(PublishDir)` was dropped
+from the rule.
+
+**Microsoft.AspNetCore.Components.Analyzers: RDK0001 mis-parsed a path.** The package writes:
+
+```xml
+$([MSBuild]::NormalizePath('$(MSBuildThisFileDirectory)../../analyzers/dotnet/cs/....dll'))
+```
+
+The extractor captured the trailing `'))` along with the path, so a file the package genuinely
+ships looked missing. Paths embedded in property functions now terminate at the first character
+that cannot appear in a package entry.
+
+### What survived
+
+Both remaining RDK0007 findings copy into `$(OutDir)` with no `FileWrites` accounting, which is
+exactly the pattern: `Microsoft.AspNetCore.Mvc.Testing` and `Microsoft.NET.Sdk.Functions`.
+
+A 0.4% rate on widely-used packages is the right shape. A rule firing on 20% of the top 500 would
+be telling you about itself rather than about the ecosystem, which is why the sweep prints an
+interpretation beside the number rather than the number alone.
+
+### Running it
+
+```console
+dotnet run --project tools/Redecker.Corpus -c Release -- 500
+```
+
+It needs no Azure subscription and no credentials. The nuget.org search endpoint ranks all
 471,406 packages by download count and pages with skip/take, and the flat container serves every
 `.nupkg` over plain HTTP — so a top-N sweep needs no Azure subscription and no credentials.
 
