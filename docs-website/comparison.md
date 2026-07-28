@@ -14,6 +14,7 @@ The useful way to tell them apart is not what they *do* but **what they read**.
 | [Dependabot](https://github.com/dependabot/dependabot-core) · [Renovate](https://github.com/renovatebot/renovate) | Version metadata | Which upgrades exist, as pull requests |
 | [Package pruning](https://devblogs.microsoft.com/dotnet/nuget-package-pruning-in-dotnet-10/) (.NET 10 SDK) | The resolved graph | Is this already supplied by the platform? |
 | [Snitch](https://github.com/spectresystems/snitch) | The resolved graph | Do I reference this directly without needing to? |
+| [Package validation / ApiCompat](https://learn.microsoft.com/en-us/dotnet/fundamentals/apicompat/package-validation/overview) | API surfaces in your package | Are my assets API-consistent with each other? |
 | [.NET upgrade tooling](https://github.com/dotnet/modernize-dotnet) | Your source code | How do I move to a newer framework? |
 | **Redecker** | **Package contents, and declared intent** | **Is this upgrade sound, and does the manifest say why it looks like this?** |
 
@@ -88,6 +89,31 @@ That is not a criticism of Snitch — the information is not in the file for it 
 Which is the entire argument for [pin hints](/concepts/pin-hints). Removal advice is only safe when
 intent sits beside the version, and an exit condition says when the reason expires.
 
+## Package validation and ApiCompat
+
+The SDK's `EnablePackageValidation`, and the
+[`Microsoft.DotNet.ApiCompat.Tool`](https://learn.microsoft.com/en-us/dotnet/fundamentals/apicompat/package-validation/overview)
+behind it, validate that a multi-targeting package is **API-consistent**:
+
+| Validator | Checks |
+| --- | --- |
+| Baseline version | No breaking changes against a previously released version |
+| Compatible runtime | Runtime-specific assets match the compile-time ones |
+| Compatible framework | Code compiled against one framework runs against the others |
+
+If you ship a library, turn it on. It answers a question Redecker does not ask, and answers it
+better than any third-party tool could — it is comparing API surfaces, with Microsoft's own
+compatibility rules.
+
+The two are orthogonal. Package validation asks whether your package's **APIs** are consistent
+across the assets it ships. Redecker asks whether the package is **structurally** capable of doing
+its job at all: whether its MSBuild logic points at files that exist
+([RDK0001](/rules/rdk0001)), whether a tool package can actually be installed
+([RDK0005](/rules/rdk0005)), whether its build folder will ever be imported
+([RDK0006](/rules/rdk0006)).
+
+A package can pass every API validator and still be uninstallable.
+
 ## .NET upgrade tooling
 
 The .NET Upgrade Assistant lineage — now [modernize-dotnet](https://github.com/dotnet/modernize-dotnet),
@@ -122,5 +148,7 @@ still fail at build time on a single target framework, on a single operating sys
 | A smaller, cleaner restore graph | .NET 10 package pruning — nothing beats it |
 | To delete references you do not need | Snitch |
 | To move to a newer target framework | The .NET upgrade tooling |
+| Your library's APIs to stay consistent | `EnablePackageValidation` — turn it on |
 | To know whether an upgrade is *sound* | Redecker |
+| Your package to be installable at all | Redecker |
 | Your manifest to explain itself | Redecker |
