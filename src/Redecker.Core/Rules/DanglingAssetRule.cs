@@ -115,7 +115,10 @@ public sealed class DanglingAssetRule : IPackageRule
 
                 foreach (var value in Split(attribute.Value))
                 {
-                    yield return value;
+                    if (!IsGuardedByExists(element, value))
+                    {
+                        yield return value;
+                    }
                 }
             }
 
@@ -124,10 +127,50 @@ public sealed class DanglingAssetRule : IPackageRule
             {
                 foreach (var value in Split(element.Value))
                 {
-                    yield return value;
+                    if (!IsGuardedByExists(element, value))
+                    {
+                        yield return value;
+                    }
                 }
             }
         }
+    }
+
+    /// <summary>
+    /// Whether a reference is deliberately optional, because the author guarded it with
+    /// <c>Exists(...)</c>.
+    /// </summary>
+    /// <remarks>
+    /// This is how a package offers an extension point. Microsoft.Data.SqlClient.SNI imports a
+    /// <c>.targets.user</c> file if the consumer has written one, guarded by
+    /// <c>Exists(...)</c> — the file is *meant* to be absent, and reporting it as a dangling
+    /// reference turns a deliberate hook into a false accusation.
+    /// </remarks>
+    private static bool IsGuardedByExists(XElement element, string reference)
+    {
+        var trimmed = reference.Trim();
+
+        foreach (var scope in element.AncestorsAndSelf())
+        {
+            var condition = scope.Attributes()
+                .FirstOrDefault(a => a.Name.LocalName.Equals("Condition", StringComparison.OrdinalIgnoreCase))
+                ?.Value;
+
+            if (condition is null ||
+                !condition.Contains("Exists(", StringComparison.OrdinalIgnoreCase))
+            {
+                continue;
+            }
+
+            // Only treat it as guarded when the condition mentions this same path, so an
+            // unrelated Exists() elsewhere in the condition does not excuse everything.
+            if (condition.Contains(trimmed, StringComparison.OrdinalIgnoreCase))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /// <summary>MSBuild treats semicolons as list separators almost everywhere.</summary>

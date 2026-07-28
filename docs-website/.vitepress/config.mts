@@ -42,6 +42,7 @@ export default defineConfig({
         nav: [
             { text: 'Problems', link: '/problems' },
             { text: 'Comparison', link: '/comparison' },
+            { text: 'Evidence', link: '/evidence' },
             { text: 'Guide', link: '/guide/getting-started' },
             { text: 'Rules', link: '/rules/' },
             { text: 'Concepts', link: '/concepts/pin-hints' },
@@ -54,6 +55,7 @@ export default defineConfig({
                     text: 'Start here',
                     items: [
                         { text: 'The problems', link: '/problems' },
+                        { text: 'Real-world examples', link: '/evidence' },
                         { text: 'Getting Started', link: '/guide/getting-started' },
                         { text: 'Comparison', link: '/comparison' },
                     ]
@@ -75,6 +77,7 @@ export default defineConfig({
                         { text: 'RDK0004 Undocumented transitive pin', link: '/rules/rdk0004' },
                         { text: 'RDK0005 Tool package not installable', link: '/rules/rdk0005' },
                         { text: 'RDK0006 Unimportable build folder', link: '/rules/rdk0006' },
+                        { text: 'RDK0007 Untracked output copies', link: '/rules/rdk0007' },
                     ]
                 },
                 {

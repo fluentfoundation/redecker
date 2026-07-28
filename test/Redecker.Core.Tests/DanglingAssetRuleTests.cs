@@ -98,6 +98,42 @@ public class DanglingAssetRuleTests
     }
 
     [Test]
+    public void Does_not_report_an_optional_import_guarded_by_Exists()
+    {
+        // How a package offers an extension point: import the consumer's overrides if they wrote
+        // any. Microsoft.Data.SqlClient.SNI does exactly this with a .targets.user file, and
+        // reporting it turned a deliberate hook into a false accusation.
+        var findings = Inspect(new SyntheticPackage()
+            .With("build/net462/Test.targets",
+                """
+                <Project>
+                  <Import Condition="Exists('$(MSBuildThisFileDirectory)Test.targets.user')"
+                          Project="$(MSBuildThisFileDirectory)Test.targets.user" />
+                </Project>
+                """));
+
+        Assert.That(findings, Is.Empty);
+    }
+
+    [Test]
+    public void Still_reports_a_missing_file_when_an_unrelated_Exists_is_present()
+    {
+        // An Exists() check on something else must not excuse every other reference in scope.
+        var findings = Inspect(new SyntheticPackage()
+            .With("build/net462/Test.targets",
+                """
+                <Project>
+                  <ItemGroup Condition="Exists('$(MSBuildThisFileDirectory)Other.props')">
+                    <None Include="$(MSBuildThisFileDirectory)../../runtimes/win-arm/native/x.dll" />
+                  </ItemGroup>
+                </Project>
+                """));
+
+        Assert.That(findings, Has.Count.EqualTo(1));
+        Assert.That(findings[0].Title, Does.Contain("runtimes/win-arm/native/x.dll"));
+    }
+
+    [Test]
     public void Only_reads_msbuild_files_that_consumers_import()
     {
         // A targets file under tools/ is not imported by consumers, so its references are not

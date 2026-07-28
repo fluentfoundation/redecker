@@ -8,6 +8,7 @@
 | [RDK0004](./rdk0004) | warning | A declared version no project references, carrying no hint | `check` |
 | [RDK0005](./rdk0005) | error | A .NET tool package that cannot be installed or run | `inspect` |
 | [RDK0006](./rdk0006) | error | Build folder whose files NuGet will never import | `inspect` |
+| [RDK0007](./rdk0007) | warning | Output copies MSBuild does not track in FileWrites | `inspect` |
 
 ## Publishing your own package?
 
