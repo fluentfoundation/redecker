@@ -38,6 +38,44 @@ public sealed class PackageArchive : IDisposable
     public static PackageArchive Open(string id, string version, Stream stream) =>
         new(id, version, new ZipArchive(stream, ZipArchiveMode.Read));
 
+    /// <summary>
+    /// Opens a <c>.nupkg</c> from disk, taking its identity from the nuspec inside.
+    /// </summary>
+    /// <remarks>
+    /// Lets a package be checked before it is published, which is the only point at which a
+    /// finding is still cheap to act on. Redecker's own CI uses this on its packed output.
+    /// </remarks>
+    public static PackageArchive OpenFile(string path)
+    {
+        var archive = new ZipArchive(File.OpenRead(path), ZipArchiveMode.Read);
+
+        var nuspec = archive.Entries.FirstOrDefault(
+            e => e.FullName.EndsWith(".nuspec", StringComparison.OrdinalIgnoreCase) &&
+                 !e.FullName.Contains('/'));
+
+        var id = Path.GetFileNameWithoutExtension(path);
+        var version = "unknown";
+
+        if (nuspec is not null)
+        {
+            using var reader = new StreamReader(nuspec.Open());
+            var text = reader.ReadToEnd();
+            var idMatch = Regex.Match(text, @"<id>\s*([^<]+?)\s*</id>", RegexOptions.IgnoreCase);
+            var versionMatch = Regex.Match(text, @"<version>\s*([^<]+?)\s*</version>", RegexOptions.IgnoreCase);
+            if (idMatch.Success)
+            {
+                id = idMatch.Groups[1].Value;
+            }
+
+            if (versionMatch.Success)
+            {
+                version = versionMatch.Groups[1].Value;
+            }
+        }
+
+        return new PackageArchive(id, version, archive);
+    }
+
     /// <summary>Whether the package contains <paramref name="path"/> (case-insensitive).</summary>
     public bool Contains(string path) => _entries.Contains(Normalize(path));
 

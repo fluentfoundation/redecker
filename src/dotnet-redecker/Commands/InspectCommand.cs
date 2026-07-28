@@ -16,13 +16,24 @@ public static class InspectCommand
     {
         var packageArgument = new Argument<string>("package")
         {
-            Description = "Package identifier to inspect.",
+            Description = "Package identifier to inspect. Omit when using --file.",
+            // Optional, because --file names the package by pointing at it. Left required, the
+            // parser rejects `inspect --file x.nupkg` before the command ever runs.
+            Arity = ArgumentArity.ZeroOrOne,
         };
 
-        var toOption = new Option<string>("--to")
+        // Not Required: --file is the other way to name a package, and demanding --to alongside
+        // it would mean repeating a version that is already inside the nupkg.
+        var toOption = new Option<string?>("--to")
         {
-            Description = "The version being considered.",
-            Required = true,
+            Description = "The version being considered. Required unless --file is given.",
+        };
+
+        var fileOption = new Option<string?>("--file")
+        {
+            Description =
+                "Inspect a .nupkg on disk instead of downloading one. Identity is read from the " +
+                "nuspec inside. Use this to check a package before publishing it.",
         };
 
         var fromOption = new Option<string?>("--from")
@@ -42,12 +53,26 @@ public static class InspectCommand
             toOption,
             fromOption,
             sourceOption,
+            fileOption,
         };
 
         command.SetAction(async (parseResult, cancellationToken) =>
         {
-            var id = parseResult.GetRequiredValue(packageArgument);
-            var to = parseResult.GetRequiredValue(toOption);
+            var file = parseResult.GetValue(fileOption);
+            if (file is not null)
+            {
+                return RunFile(file);
+            }
+
+            var id = parseResult.GetValue(packageArgument);
+            var to = parseResult.GetValue(toOption);
+            if (string.IsNullOrWhiteSpace(id) || string.IsNullOrWhiteSpace(to))
+            {
+                Console.Error.WriteLine(
+                    "error: give a package and --to, or --file <path.nupkg>.");
+                return 2;
+            }
+
             var from = parseResult.GetValue(fromOption);
             var source = parseResult.GetRequiredValue(sourceOption);
 
@@ -56,6 +81,23 @@ public static class InspectCommand
         });
 
         return command;
+    }
+
+    /// <summary>
+    /// Checks a package already on disk. Only the rules that need one version can run: an
+    /// upgrade comparison has nothing to compare against here.
+    /// </summary>
+    internal static int RunFile(string path)
+    {
+        if (!File.Exists(path))
+        {
+            Console.Error.WriteLine($"error: no such file: {path}");
+            return 2;
+        }
+
+        using var package = PackageArchive.OpenFile(path);
+        var findings = new DanglingAssetRule().Inspect(package).ToList();
+        return Report.Write(findings, package.Moniker);
     }
 
     internal static async Task<int> RunAsync(

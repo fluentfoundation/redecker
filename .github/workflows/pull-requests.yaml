@@ -133,6 +133,23 @@ jobs:
         fi
         echo "Tool correctly reported the known-bad package."
 
+    # Redecker's own packages, checked by Redecker. RDK0001 exists because packages ship MSBuild
+    # logic pointing at files they do not contain, and Redecker.MSBuild ships exactly that kind
+    # of logic -- so shipping this bug ourselves would be the worst possible advertisement.
+    - name: Check our own packages with our own rules
+      shell: bash
+      run: |
+        set -euo pipefail
+        export PATH="$PATH:$HOME/.dotnet/tools"
+        for pkg in artifacts/packages/*.nupkg; do
+          echo "--- $pkg"
+          redecker inspect --file "$pkg"
+        done
+
+    # The repository's own declared versions, checked by the rules it ships.
+    - name: Check our own manifest
+      run: dotnet run --project src/dotnet-redecker -c ${{ env.buildConfiguration }} --no-build -- check .
+
     - name: Upload test results
       uses: actions/upload-artifact@v7
       if: '!cancelled()'

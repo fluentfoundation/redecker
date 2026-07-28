@@ -2,69 +2,67 @@
 
 # Redecker
 
-An update tool for .NET dependencies that reads packages, not just their version graph — and
-treats *the reason a pin exists* as machine-readable data with an expiry check.
+**Green build. Broken package.**
 
-Named after the German brush and broom makers, because the job is sweeping stale dependencies out
-of a repository — and knowing which dust is load-bearing.
+`restore` only checks the maths. It never opens the box. Redecker does — and catches the upgrades
+that pass every check you run and fail anyway.
 
 [![dotnet-redecker](https://img.shields.io/nuget/v/dotnet-redecker?label=dotnet-redecker)](https://www.nuget.org/packages/dotnet-redecker)
 [![Redecker.MSBuild](https://img.shields.io/nuget/v/Redecker.MSBuild?label=Redecker.MSBuild)](https://www.nuget.org/packages/Redecker.MSBuild)
 
-> **Status:** early. Four rules and three commands work end to end, covered by tests that run
-> against the real packages and the real GitHub API. The roadmap below is honest about what is
-> not built yet.
-
-## Packages
-
-| Package | What it is |
-| --- | --- |
-| [`dotnet-redecker`](https://www.nuget.org/packages/dotnet-redecker) | The global tool: `redecker inspect`, `check`, `hints` |
-| [`Redecker.MSBuild`](https://www.nuget.org/packages/Redecker.MSBuild) | Build-time checks, so a split package family fails the build |
-
 ```console
-dotnet tool install --global dotnet-redecker
-dotnet add package Redecker.MSBuild
+dotnet tool install --global dotnet-redecker   # investigate an upgrade
+dotnet add package Redecker.MSBuild            # fail the build instead
 ```
 
-Full documentation lives in [docs-website](docs-website).
+📖 **[Full documentation](https://fluentfoundation.github.io/redecker/)** · named after the German
+broom makers, because the job is sweeping stale dependencies out — and knowing which dust is
+load-bearing.
 
-## The problems
+> **Status:** early. Four rules and three commands work end to end, tested against real packages
+> and the real GitHub API. [Not built yet](#not-built-yet) is honest.
 
-Every dependency tool in .NET answers one question: *does it restore?* These six failures all
-restore perfectly.
+## Thirty seconds
 
-| Problem | You find out when | Redecker |
-| --- | --- | --- |
-| **A package ships build logic pointing at files it no longer contains.** Restore, resolution and most target frameworks are fine. | One target framework fails at build time, often only on one OS | [RDK0001](#rules) |
-| **An upgrade quietly stops shipping a platform** you rely on — a `lib/` framework, or a runtime identifier. | Compilation silently binds a different asset, or it fails on the device | [RDK0002](#rules) |
-| **A family that must move together gets split.** Automated updaters *cause* this: they bump whichever members have newer releases. | Run time, as a missing type or a provider that does not match its core package | [RDK0003](#lockstep-families) |
-| **A package tied to a runtime generation gets dragged past it** — a 9.0 extension in a `net8.0` app. | Never loudly. It ships unoptimised app-local assets, or a serialization contract quietly differs | [Framework bands](#the-framework-band-problem) |
-| **A transitive dependency gets promoted to an explicit `PackageVersion`** to float a floor, and then stays forever because nothing records why. | Never. Nobody can tell whether deleting it reintroduces an advisory | [RDK0004](#rdk0004-undocumented-transitive-pins) |
-| **A pin outlives its reason.** The comment explaining it is not machine-readable, so nobody dares remove it. | Never. It becomes folklore | [Pin hints](#pin-hints) |
-| **A security advisory has no clean upgrade.** The fix needs a major of a *different* package, or the advisory lists no patched version at all. | When you try to clear the warning and the graph will not resolve | [Pin hints](#pin-hints) |
+Your tooling asks one question: **does it restore?** Restore is a constraint solver. It reads
+version numbers, checks the arithmetic, reports success. It never opens a package.
 
-The common thread is that **restore succeeding proves almost nothing.** Reading the package, and
-reading what the repository declares, proves considerably more.
+So this passes:
 
-### One example, briefly
+```console
+$ dotnet restore
+Restored in 3.2s.
+```
 
-`SQLitePCLRaw.bundle_e_sqlite3` 2.1.11 → 2.1.12 clears a security advisory. It restores, resolves,
-and builds on every target except `net48` on Windows, where it dies with `MSB3030`: the new version
-stopped shipping `runtimes/win-arm/native/e_sqlite3.dll` while its `buildTransitive/net461` targets
-still copies it.
+And this was actually in the box:
 
 ```console
 $ redecker inspect SQLitePCLRaw.lib.e_sqlite3 --from 2.1.11 --to 2.1.12
-error RDK0001: buildTransitive/net461/SQLitePCLRaw.lib.e_sqlite3.targets references
+error RDK0001: buildTransitive/net461/…targets references
     runtimes/win-arm/native/e_sqlite3.dll, which the package does not contain
-warning RDK0002: 2.1.11 to 2.1.12 drops 5 runtime identifiers:
-    win-arm, win10-arm, win10-arm64, win10-x64, win10-x86
+warning RDK0002: drops 5 runtime identifiers: win-arm, win10-arm, win10-arm64, win10-x64, win10-x86
 ```
 
-That is one CI round, one red pull request and one revert commit, found in about a second from
-package metadata. It is also the least interesting problem on the list — it is a single upstream
-mistake. The rest are structural, and recur.
+That upgrade clears a CVE, builds on every target except `net48` on Windows, and cost a CI round,
+a red pull request and a revert commit. Found here in about a second, from metadata.
+
+## Seven problems, all of which restore perfectly
+
+| # | Problem | Bites you | |
+| --- | --- | --- | --- |
+| 1 | Package points at files it no longer ships | Build time — one TFM, often one OS | [RDK0001](#rules) |
+| 2 | An upgrade drops a platform you rely on | On the device, not in CI | [RDK0002](#rules) |
+| 3 | A family that must move together gets split | Run time, as a missing type | [RDK0003](#lockstep-families) |
+| 4 | A promoted transitive pin nobody dares delete | **Never** — that *is* the problem | [RDK0004](#rdk0004-undocumented-transitive-pins) |
+| 5 | A package dragged past its runtime generation | Never, loudly | [Bands](#the-framework-band-problem) |
+| 6 | A pin outlives its reason and becomes folklore | Never | [Hints](#pin-hints) |
+| 7 | An advisory with no clean upgrade path | When the graph will not resolve | [Hints](#pin-hints) |
+
+**Four of the seven are never reported by anything.** Not because they are rare — because nothing
+is looking.
+
+Problem 1 is the least interesting one on the list: a single upstream mistake, fixable by hand.
+The other six are structural, and recur.
 
 ### RDK0004: undocumented transitive pins
 
