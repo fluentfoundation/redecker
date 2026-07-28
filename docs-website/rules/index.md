@@ -6,6 +6,22 @@
 | [RDK0002](./rdk0002) | warning | An upgrade drops a `lib/` framework or a `runtimes/` RID | `inspect --from` |
 | [RDK0003](./rdk0003) | error | A lockstep family is split across versions | `check`, MSBuild |
 | [RDK0004](./rdk0004) | warning | A declared version no project references, carrying no hint | `check` |
+| [RDK0005](./rdk0005) | error | A .NET tool package that cannot be installed or run | `inspect` |
+| [RDK0006](./rdk0006) | error | Build folder whose files NuGet will never import | `inspect` |
+
+## Publishing your own package?
+
+Three of these are about packages you *ship*, not packages you consume. Run them on the output of
+`dotnet pack`, before it reaches nuget.org and becomes permanent:
+
+```console
+dotnet pack -c Release
+redecker inspect --file ./artifacts/packages/*.nupkg
+```
+
+[RDK0001](./rdk0001), [RDK0005](./rdk0005) and [RDK0006](./rdk0006) all describe defects that
+survive build, pack, restore *and* publish — and are only discovered by the people who install
+what you published.
 
 ## What they have in common
 

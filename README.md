@@ -19,7 +19,7 @@ dotnet add package Redecker.MSBuild            # fail the build instead
 broom makers, because the job is sweeping stale dependencies out — and knowing which dust is
 load-bearing.
 
-> **Status:** early. Four rules and three commands work end to end, tested against real packages
+> **Status:** early. Six rules and three commands work end to end, tested against real packages
 > and the real GitHub API. [Not built yet](#not-built-yet) is honest.
 
 ## Thirty seconds
@@ -264,6 +264,24 @@ nor banding can express. Tracked in [#1](https://github.com/fluentfoundation/red
 | `RDK0002` | warning | An upgrade drops a `lib/` framework or a `runtimes/` RID |
 | `RDK0003` | error | A lockstep family is split across versions |
 | `RDK0004` | warning | A declared version that no project references, carrying no hint |
+| `RDK0005` | error | A .NET tool package that cannot be installed or run |
+| `RDK0006` | error | A build folder whose files NuGet will never import |
+
+### Shipping a package? Check it before it is permanent
+
+`RDK0001`, `RDK0005` and `RDK0006` describe defects that survive build, pack, restore **and**
+publish — discovered only by whoever installs what you shipped, on a version nuget.org will let you
+unlist but never delete.
+
+```console
+dotnet pack -c Release
+redecker inspect --file ./artifacts/packages/*.nupkg
+```
+
+`RDK0005` came out of searching GitHub for real reports: `DotnetToolSettings.xml` missing from a
+published tool package turns up in repository after repository, dotnet/runtime included. `RDK0006`
+is the quieter sibling — ship `build/Common.targets` in a package called `Contoso.Widgets` and
+NuGet never imports it, with no diagnostic anywhere.
 
 `RDK0001` only reports paths it can resolve with certainty — references holding an unexpanded
 property, item metadata, or a wildcard are skipped. That keeps it usable as a gate: a finding

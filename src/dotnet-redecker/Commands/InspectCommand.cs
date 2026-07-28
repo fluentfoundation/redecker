@@ -96,8 +96,20 @@ public static class InspectCommand
         }
 
         using var package = PackageArchive.OpenFile(path);
-        var findings = new DanglingAssetRule().Inspect(package).ToList();
-        return Report.Write(findings, package.Moniker);
+        return Report.Write(SinglePackageRules(package), package.Moniker);
+    }
+
+    /// <summary>Every rule that needs only one version of a package.</summary>
+    internal static List<Finding> SinglePackageRules(PackageArchive package)
+    {
+        IPackageRule[] rules =
+        [
+            new DanglingAssetRule(),
+            new ToolPackageRule(),
+            new UnimportableBuildFolderRule(),
+        ];
+
+        return rules.SelectMany(r => r.Inspect(package)).ToList();
     }
 
     internal static async Task<int> RunAsync(
@@ -114,8 +126,7 @@ public static class InspectCommand
             return 2;
         }
 
-        var findings = new List<Finding>();
-        findings.AddRange(new DanglingAssetRule().Inspect(candidate));
+        var findings = SinglePackageRules(candidate);
 
         if (from is not null)
         {

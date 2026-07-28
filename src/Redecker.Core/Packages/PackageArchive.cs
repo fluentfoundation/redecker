@@ -107,6 +107,22 @@ public sealed class PackageArchive : IDisposable
              e.EndsWith(".targets", StringComparison.OrdinalIgnoreCase)))
         .OrderBy(e => e, StringComparer.Ordinal);
 
+    /// <summary>The package's nuspec as text, or <see langword="null"/> if it has none.</summary>
+    public string? Nuspec()
+    {
+        var path = _entries.FirstOrDefault(
+            e => e.EndsWith(".nuspec", StringComparison.OrdinalIgnoreCase) && !e.Contains('/'));
+        return path is null ? null : ReadText(path);
+    }
+
+    /// <summary>
+    /// Whether the package declares itself a .NET CLI tool, which brings structural requirements
+    /// nothing else has.
+    /// </summary>
+    public bool IsDotnetTool() =>
+        Nuspec() is { } nuspec &&
+        Regex.IsMatch(nuspec, @"<packageType[^>]*\bname\s*=\s*""DotnetTool""", RegexOptions.IgnoreCase);
+
     /// <summary>
     /// The source repository the package declares in its nuspec, or <see langword="null"/>.
     /// </summary>
