@@ -1,12 +1,23 @@
 # The problems
 
-Every dependency tool in .NET answers one question: **does it restore?**
+**All seven of these restore perfectly.** That is the entire point.
 
-Restore is a constraint solver over declared version ranges. It is very good at that, and that is
-all it does. It never opens a package, never compares one version's contents to another's, and has
-no opinion about whether the set of versions you declared makes sense together.
+Restore is a constraint solver over declared version ranges. It is excellent at that and does
+nothing else — it never opens a package, never compares one version's contents against another's,
+and has no opinion on whether the versions you declared make sense together.
 
-All seven of the following restore perfectly.
+| # | Problem | Bites you |
+| --- | --- | --- |
+| [1](#_1-a-package-points-at-files-it-does-not-ship) | Package points at files it does not ship | Build time, one TFM, often one OS |
+| [2](#_2-an-upgrade-drops-a-platform) | An upgrade drops a platform | On the device |
+| [3](#_3-a-package-family-gets-split) | A package family gets split | Run time, as a missing type |
+| [4](#_4-a-transitive-dependency-gets-promoted-and-stays) | A promoted transitive pin nobody can delete | Never — that is the problem |
+| [5](#_5-a-package-is-dragged-past-its-runtime-generation) | A package dragged past its runtime generation | Never, loudly |
+| [6](#_6-a-pin-outlives-its-reason) | A pin outlives its reason | Never |
+| [7](#_7-an-advisory-has-no-clean-upgrade) | An advisory with no clean upgrade | When the graph will not resolve |
+
+Four of the seven are never reported by anything. That is not because they are rare — it is
+because nothing is looking.
 
 ## 1. A package points at files it does not ship
 
