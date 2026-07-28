@@ -117,5 +117,5 @@ rather than a gap in the roadmap.
 
 Problem 5 in particular is now partly handled inside the SDK: .NET 10's package pruning removes
 platform-supplied packages from the graph automatically, and where it applies you should use it
-rather than anything here. See [alternatives](/alternatives) for exactly where that boundary
-falls, and for how Snitch overlaps with problem 4.
+rather than anything here. See the [comparison](/comparison) for exactly where that boundary
+falls, how Snitch overlaps with problem 4, and what every one of these tools has in common.

@@ -284,6 +284,12 @@ means a file really is missing.
 - **Matrix build verification** — the tier that would have caught the SQLite break even without a
   package rule, by building every TFM × OS rather than only restoring.
 - **GitHub Action packaging.**
+- **A shared hint registry** — the largest idea here, and the least worked out. Hints are already
+  a machine-readable format for *why a dependency looks the way it does*; today they live in one
+  repository's `Directory.Packages.props`. Published and queryable, they become the data layer that
+  the new generation of AI upgrade agents has to guess at — and the one plausible route to making
+  [epochs](#not-supported-epochs) tractable, by describing a migration rather than trying to encode
+  it in a version ordering. Needs a trust model before it needs code.
 
 ## Alternatives
 
@@ -367,6 +373,11 @@ Two things are wrong with that, and neither is xUnit's fault:
   accurate one, and NuGet has no way to express it.
 - **The alternate range is `*`.** There is no way to say "2.9.3 corresponds to 3.x". The
   correspondence between the old line and the new one is simply not representable.
+
+NuGet's `alternatePackage` is a real escape hatch — the closest thing it has to an epoch, recording
+that the line continues under a different identity. What it cannot carry is the version
+correspondence, or whether the move is a rename or a rewrite of your test host. That second part is
+the only bit you actually needed.
 
 SemVer has no concept of an epoch, and no mainstream package manager for .NET, npm or NuGet
 supports one. Two ecosystems do:
