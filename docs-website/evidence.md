@@ -157,8 +157,43 @@ interpretation beside the number rather than the number alone.
 ### Running it
 
 ```console
-dotnet run --project tools/Redecker.Corpus -c Release -- 500
+dotnet run --project tools/Redecker.Corpus -c Release -- 500 results
 ```
+
+Results are written to [`results/`](https://github.com/fluentfoundation/redecker/tree/main/results)
+and committed, so a later run is a diff rather than a comparison against memory.
+
+## Rules we decided not to write
+
+Knowing why something was rejected is worth as much as knowing why something shipped.
+
+### Analyzers in the wrong folder
+
+The idea: a Roslyn analyzer only loads from `analyzers/dotnet/<lang>/`, so one packed anywhere
+else is silently inert — the same shape as [RDK0006](/rules/rdk0006), and an appealing rule.
+
+The corpus said no. Surveying every `analyzers/` path across the top 500, all of these are in use
+and all of them work:
+
+| Layout | Example |
+| --- | --- |
+| `analyzers/dotnet/cs` | the common case |
+| `analyzers/cs`, `analyzers/vb` | `Microsoft.VisualStudio.Threading.Analyzers` |
+| `analyzers/dotnet` | `System.Reactive`, language-agnostic |
+| `analyzers/dotnet/roslyn4.8/cs` | `Refit`, Roslyn-version-specific |
+| `analyzers/dotnet/cs/de`, `/ja`, `/zh-Hans` | `System.Text.Json`, localised resources |
+| `analyzers/dotnet/roslyn4.4/cs/pt-BR` | versioned *and* localised |
+
+The proposed check would have accused `System.Text.Json`, `System.Reactive` and `StyleCop.Analyzers`
+of a defect none of them has. And **zero** packages in the top 500 had a genuinely broken layout —
+the failure being guarded against does not appear in practice.
+
+It could be salvaged by encoding every valid shape plus a locale list, but a rule that is 90%
+allowlist restates the convention rather than checking it. Closed as
+[#2](https://github.com/fluentfoundation/redecker/issues/2).
+
+The premise came from reasoning by analogy with RDK0006 rather than from anything observed.
+Plausible, and wrong — which is the useful kind of wrong to find before writing the code.
 
 It needs no Azure subscription and no credentials. The nuget.org search endpoint ranks all
 471,406 packages by download count and pages with skip/take, and the flat container serves every
