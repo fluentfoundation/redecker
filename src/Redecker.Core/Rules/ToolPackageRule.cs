@@ -28,6 +28,15 @@ public sealed partial class ToolPackageRule : IPackageRule
     [GeneratedRegex(@"<Command\b[^>]*\bName\s*=\s*""([^""]+)""", RegexOptions.IgnoreCase)]
     private static partial Regex CommandNamePattern();
 
+    // Deliberately narrow. "slngen" must not read as a framework, which rules out matching a
+    // bare "net" prefix or anything as loose as "starts with a known moniker family".
+    [GeneratedRegex(@"^(net\d|netstandard|netcoreapp|uap\d|monoandroid|xamarin|portable)",
+        RegexOptions.IgnoreCase)]
+    private static partial Regex TargetFrameworkPattern();
+
+    private static bool LooksLikeTargetFramework(string segment) =>
+        TargetFrameworkPattern().IsMatch(segment);
+
     /// <inheritdoc />
     public string Code => "RDK0005";
 
@@ -39,11 +48,15 @@ public sealed partial class ToolPackageRule : IPackageRule
             yield break;
         }
 
-        // tools/<tfm>/<rid>/ is the shape the SDK looks in; a tool with no such folder has
-        // nothing to install whatever else it contains.
+        // tools/<tfm>/<rid>/ is the shape the SDK looks in. The second segment must actually be a
+        // target framework: Microsoft.VisualStudio.SlnGen.Tool ships its tool at tools/net8.0/any/
+        // and unrelated payload at tools/slngen/net472/, and treating the latter as a tool asset
+        // folder accused a correctly built package.
         var toolDirectories = package.Entries
             .Where(e => e.StartsWith("tools/", StringComparison.OrdinalIgnoreCase) && e.Count(c => c == '/') >= 3)
-            .Select(e => string.Join('/', e.Split('/').Take(3)))
+            .Select(e => e.Split('/'))
+            .Where(parts => LooksLikeTargetFramework(parts[1]))
+            .Select(parts => string.Join('/', parts.Take(3)))
             .Distinct(StringComparer.OrdinalIgnoreCase)
             .OrderBy(e => e, StringComparer.Ordinal)
             .ToList();

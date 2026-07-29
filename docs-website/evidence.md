@@ -116,7 +116,6 @@ takes about three seconds.
 | --- | ---: | ---: |
 | RDK0001 | 0 | 0% |
 | RDK0005 | 0 | 0% |
-| RDK0006 | 0 | 0% |
 | RDK0007 | 2 | 0.4% |
 
 That is the state *after* the sweep found and killed three false positives. Before it, the same
@@ -163,6 +162,62 @@ dotnet run --project tools/Redecker.Corpus -c Release -- 500 results
 Results are written to [`results/`](https://github.com/fluentfoundation/redecker/tree/main/results)
 and committed, so a later run is a diff rather than a comparison against memory.
 
+## The Microsoft.* and System.* sweep
+
+A second corpus: every reachable package whose id starts with `Microsoft.` or `System.`, published
+within six years. **2,680 packages examined.**
+
+It found what it was pointed at. `Microsoft.Data.SqlClient.SNI` reports RDK0007 in every version
+checked — 5.2.0, 6.0.1 and 6.0.2 alike — while `Microsoft.Data.SqlClient` itself,
+`Microsoft.Data.SqlClient.SNI.runtime` and legacy `System.Data.SqlClient` are all clean. The defect
+sits in one package of four, and it is long-standing rather than a regression.
+
+RDK0007's 20 findings cluster exactly where the rule's reasoning predicts: packages shipping native
+assets to .NET Framework, which must hand-roll the copy because `net4x` predates automatic runtime
+asset resolution. `Microsoft.CognitiveServices.Speech`, `Microsoft.InformationProtection.*`,
+`Microsoft.WindowsAppSDK.*`, and the Application Insights family.
+
+It also cost a rule.
+
+## Rules we retired
+
+### RDK0006, unimportable build folders
+
+The idea: NuGet imports only `<PackageId>.props` and `.targets` from a build folder, so a package
+shipping `build/Common.targets` and nothing named after itself has build logic that never runs.
+
+It survived two rounds of correction. The first sweep caught it misreading helper folders reached
+from an entry point (`Grpc.Tools`), and the fix was to resolve the import graph rather than judge by
+file name — which also handled the inverse arrangement, a root helper imported from a framework
+folder (`Microsoft.Graphics.Win2D`).
+
+The Microsoft sweep killed it. Flagged packages included `Microsoft.NET.Sdk.Razor`,
+`Microsoft.DotNet.ILCompiler`, `Microsoft.Maui.Controls.Build.Tasks`, `Microsoft.NET.ILLink.Tasks`
+and `Microsoft.Windows.SDK.BuildTools.MSIX` — every one of which works.
+
+**Their MSBuild files are imported from outside the package**: by the .NET SDK, by a workload, by
+another package, or by a consumer writing an explicit `<Import>`. None of that is visible from the
+package contents.
+
+The obvious salvage was to detect SDK-consumed packages and exempt them. The corpus refused that
+too:
+
+| Package | `packageType` | Has `Sdk/` |
+| --- | --- | --- |
+| `Microsoft.NET.Sdk.Razor` | none | yes |
+| `Microsoft.Maui.Core` | `DotnetPlatform` | no |
+| **`Microsoft.DotNet.ILCompiler`** | **none** | **no** |
+
+`Microsoft.DotNet.ILCompiler` is decisive: it carries no marker of any kind, and its
+`Microsoft.NETCore.Native.targets` is unquestionably imported by the SDK's publish pipeline. There
+is no signal that separates "orphaned by mistake" from "consumed by something Redecker cannot see".
+
+So it was retired rather than narrowed. Keeping it would have preserved one real finding —
+`Microsoft.Azure.StreamAnalytics.CICD` genuinely ships a `build/StreamAnalytics.targets` nothing
+auto-imports — at the cost of accusing a dozen working packages.
+
+Six rules is a better number than seven when the seventh cannot be believed.
+
 ## Rules we decided not to write
 
 Knowing why something was rejected is worth as much as knowing why something shipped.
@@ -170,7 +225,7 @@ Knowing why something was rejected is worth as much as knowing why something shi
 ### Analyzers in the wrong folder
 
 The idea: a Roslyn analyzer only loads from `analyzers/dotnet/<lang>/`, so one packed anywhere
-else is silently inert — the same shape as [RDK0006](/rules/rdk0006), and an appealing rule.
+else is silently inert — the same shape as the since-retired RDK0006, and an appealing rule.
 
 The corpus said no. Surveying every `analyzers/` path across the top 500, all of these are in use
 and all of them work:

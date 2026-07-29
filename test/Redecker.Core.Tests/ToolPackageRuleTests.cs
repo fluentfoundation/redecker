@@ -81,6 +81,21 @@ public class ToolPackageRuleTests
     }
 
     [Test]
+    public void Ignores_payload_folders_whose_name_is_not_a_target_framework()
+    {
+        // Microsoft.VisualStudio.SlnGen.Tool ships its tool at tools/net8.0/any/ and unrelated
+        // payload at tools/slngen/<tfm>/. Only the first is a tool asset folder.
+        var findings = Inspect(new SyntheticPackage()
+            .With("dotnet-thing.nuspec", ToolNuspec)
+            .With("tools/net8.0/any/DotnetToolSettings.xml", Settings)
+            .With("tools/net8.0/any/dotnet-thing.dll")
+            .With("tools/payload/net472/Something.dll")
+            .With("tools/payload/net8.0/Something.dll"));
+
+        Assert.That(findings, Is.Empty);
+    }
+
+    [Test]
     public void Reports_a_tool_with_no_tools_folder_at_all()
     {
         var findings = Inspect(new SyntheticPackage()

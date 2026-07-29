@@ -61,25 +61,25 @@ public sealed record SweepResult(
             .Where(x => x.Packages.Count > 0);
 
     /// <summary>Writes the machine-readable baseline and the human summary.</summary>
-    public void Write(string directory)
+    public void Write(string directory, string name)
     {
         Directory.CreateDirectory(directory);
 
-        var stem = Path.Combine(directory, $"top-{Requested}");
+        var stem = Path.Combine(directory, name);
         File.WriteAllText($"{stem}.json", JsonSerializer.Serialize(this, Options) + Environment.NewLine);
-        File.WriteAllText($"{stem}.md", Summary());
+        File.WriteAllText($"{stem}.md", Summary(name));
 
         Console.WriteLine($"Wrote {stem}.json and {stem}.md");
     }
 
-    private string Summary()
+    private string Summary(string name)
     {
         var text = new System.Text.StringBuilder();
-        text.AppendLine($"# Corpus sweep: top {Requested}");
+        text.AppendLine($"# Corpus sweep: {name}");
         text.AppendLine();
         text.AppendLine($"Generated {DateTime.UtcNow:yyyy-MM-dd HH:mm} UTC from {Corpus}.");
         text.AppendLine();
-        text.AppendLine($"Examined **{Examined}** packages, skipped {Skipped}.");
+        text.AppendLine($"Examined **{Examined}** of {Requested} selected packages, skipped {Skipped}.");
         text.AppendLine();
         text.AppendLine("| Rule | Packages | Rate | Reading |");
         text.AppendLine("| --- | ---: | ---: | --- |");

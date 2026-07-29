@@ -76,7 +76,6 @@ export default defineConfig({
                         { text: 'RDK0003 Split lockstep family', link: '/rules/rdk0003' },
                         { text: 'RDK0004 Undocumented transitive pin', link: '/rules/rdk0004' },
                         { text: 'RDK0005 Tool package not installable', link: '/rules/rdk0005' },
-                        { text: 'RDK0006 Unimportable build folder', link: '/rules/rdk0006' },
                         { text: 'RDK0007 Untracked output copies', link: '/rules/rdk0007' },
                     ]
                 },

@@ -6,7 +6,6 @@
   "Rules": [
     "RDK0001",
     "RDK0005",
-    "RDK0006",
     "RDK0007"
   ],
   "Packages": [
@@ -1709,7 +1708,7 @@
     },
     {
       "Id": "MySql.Data",
-      "Version": "9.7.0",
+      "Version": "26.7.0",
       "Findings": []
     },
     {
