@@ -35,6 +35,7 @@ public sealed record PackageResult(string Id, string Version, IReadOnlyList<Reco
 /// <param name="Examined">How many were successfully read.</param>
 /// <param name="Skipped">How many could not be read.</param>
 /// <param name="Rules">The rules that ran, so an empty result is interpretable.</param>
+/// <param name="RuleNames">What each rule is, in the same order, so a diff needs no lookup.</param>
 /// <param name="Packages">Every package examined, ordered by id.</param>
 public sealed record SweepResult(
     string Corpus,
@@ -42,6 +43,7 @@ public sealed record SweepResult(
     int Examined,
     int Skipped,
     IReadOnlyList<string> Rules,
+    IReadOnlyList<string> RuleNames,
     IReadOnlyList<PackageResult> Packages)
 {
     private static readonly JsonSerializerOptions Options = new()
@@ -81,20 +83,20 @@ public sealed record SweepResult(
         text.AppendLine();
         text.AppendLine($"Examined **{Examined}** of {Requested} selected packages, skipped {Skipped}.");
         text.AppendLine();
-        text.AppendLine("| Rule | Packages | Rate | Reading |");
-        text.AppendLine("| --- | ---: | ---: | --- |");
+        text.AppendLine("| Rule | What it checks | Packages | Rate | Reading |");
+        text.AppendLine("| --- | --- | ---: | ---: | --- |");
 
-        foreach (var code in Rules)
+        foreach (var (code, ruleName) in Rules.Zip(RuleNames))
         {
             var hits = Packages.Count(p => p.Findings.Any(f => f.Code == code));
             var rate = Examined == 0 ? 0 : 100.0 * hits / Examined;
-            text.AppendLine($"| {code} | {hits} | {rate:F1}% | {Reading(rate)} |");
+            text.AppendLine($"| {code} | {ruleName} | {hits} | {rate:F1}% | {Reading(rate)} |");
         }
 
         foreach (var (code, packages) in ByRule())
         {
             text.AppendLine();
-            text.AppendLine($"## {code}");
+            text.AppendLine($"## {code} — {RuleNames[Rules.ToList().IndexOf(code)]}");
             text.AppendLine();
             foreach (var package in packages)
             {

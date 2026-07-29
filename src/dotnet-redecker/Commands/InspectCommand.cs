@@ -106,6 +106,7 @@ public static class InspectCommand
         [
             new DanglingAssetRule(),
             new ToolPackageRule(),
+            new UnimportableBuildFolderRule(),
             new UntrackedOutputCopyRule(),
         ];
 

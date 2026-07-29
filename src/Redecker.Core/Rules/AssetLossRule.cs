@@ -21,6 +21,9 @@ public sealed class AssetLossRule : IUpgradeRule
     public string Code => "RDK0002";
 
     /// <inheritdoc />
+    public string Name => "asset loss";
+
+    /// <inheritdoc />
     public IEnumerable<Finding> Compare(PackageArchive from, PackageArchive to)
     {
         foreach (var finding in Compare(

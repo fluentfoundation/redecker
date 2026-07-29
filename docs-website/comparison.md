@@ -109,7 +109,8 @@ The two are orthogonal. Package validation asks whether your package's **APIs** 
 across the assets it ships. Redecker asks whether the package is **structurally** capable of doing
 its job at all: whether its MSBuild logic points at files that exist
 ([RDK0001](/rules/rdk0001)), and whether a tool package can actually be installed
-([RDK0005](/rules/rdk0005)).
+([RDK0005](/rules/rdk0005)), and whether its build logic is
+reachable at all ([RDK0006](/rules/rdk0006)).
 
 A package can pass every API validator and still be uninstallable.
 

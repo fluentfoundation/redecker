@@ -30,6 +30,9 @@ public sealed class LockstepFamilyRule(BandPolicy? policy = null)
     /// <summary>The stable code this rule raises findings under.</summary>
     public string Code => "RDK0003";
 
+    /// <inheritdoc />
+    public string Name => "split lockstep family";
+
     /// <summary>Checks the declared versions of every lockstep family.</summary>
     public IEnumerable<Finding> Inspect(IEnumerable<PackagePin> pins)
     {

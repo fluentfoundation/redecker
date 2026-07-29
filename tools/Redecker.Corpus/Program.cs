@@ -117,7 +117,8 @@ public static class Program
             candidates.Count,
             recorded.Count,
             skipped,
-            rules.Select(r => r.Code).OrderBy(c => c, StringComparer.Ordinal).ToList(),
+            rules.OrderBy(r => r.Code, StringComparer.Ordinal).Select(r => r.Code).ToList(),
+            rules.OrderBy(r => r.Code, StringComparer.Ordinal).Select(r => r.Name).ToList(),
             recorded.OrderBy(p => p.Id, StringComparer.OrdinalIgnoreCase).ToList());
 
         Report(result, stopwatch.Elapsed);
@@ -129,6 +130,7 @@ public static class Program
     [
         new DanglingAssetRule(),
         new ToolPackageRule(),
+        new UnimportableBuildFolderRule(),
         new UntrackedOutputCopyRule(),
     ];
 
@@ -166,15 +168,15 @@ public static class Program
         Console.WriteLine($"Examined {result.Examined} packages in {elapsed.TotalSeconds:F0}s ({result.Skipped} skipped)");
         Console.WriteLine(new string('=', 78));
         Console.WriteLine();
-        Console.WriteLine($"{"Rule",-12} {"Packages",-10} {"Rate",-8} Reading");
-        Console.WriteLine(new string('-', 78));
+        Console.WriteLine($"{"Rule",-9} {"Name",-32} {"Pkgs",-6} {"Rate",-8} Reading");
+        Console.WriteLine(new string('-', 92));
 
-        foreach (var code in result.Rules)
+        foreach (var (code, name) in result.Rules.Zip(result.RuleNames))
         {
             var hits = result.Packages.Count(p => p.Findings.Any(f => f.Code == code));
             var rate = result.Examined == 0 ? 0 : 100.0 * hits / result.Examined;
             var reading = SweepResult.Reading(rate).Replace("**", "", StringComparison.Ordinal);
-            Console.WriteLine($"{code,-12} {hits,-10} {rate,6:F1}%  {reading}");
+            Console.WriteLine($"{code,-9} {name,-32} {hits,-6} {rate,6:F1}%  {reading}");
         }
 
         Console.WriteLine();

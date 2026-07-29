@@ -41,6 +41,9 @@ public sealed partial class ToolPackageRule : IPackageRule
     public string Code => "RDK0005";
 
     /// <inheritdoc />
+    public string Name => "tool package not installable";
+
+    /// <inheritdoc />
     public IEnumerable<Finding> Inspect(PackageArchive package)
     {
         if (!package.IsDotnetTool())

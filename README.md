@@ -19,7 +19,7 @@ dotnet add package Redecker.MSBuild            # fail the build instead
 broom makers, because the job is sweeping stale dependencies out — and knowing which dust is
 load-bearing.
 
-> **Status:** early. Six rules and three commands work end to end, tested against real packages
+> **Status:** early. Seven rules and three commands work end to end, tested against real packages
 > and the real GitHub API. [Not built yet](#not-built-yet) is honest.
 
 ## Thirty seconds
@@ -265,11 +265,12 @@ nor banding can express. Tracked in [#1](https://github.com/fluentfoundation/red
 | `RDK0003` | error | A lockstep family is split across versions |
 | `RDK0004` | warning | A declared version that no project references, carrying no hint |
 | `RDK0005` | error | A .NET tool package that cannot be installed or run |
+| `RDK0006` | warning | A build file nothing inside the package imports |
 | `RDK0007` | warning | Output copies MSBuild does not track in `FileWrites` |
 
 ### Shipping a package? Check it before it is permanent
 
-`RDK0001` and `RDK0005` describe defects that survive build, pack, restore **and**
+`RDK0001`, `RDK0005` and `RDK0006` describe problems that survive build, pack, restore **and**
 publish — discovered only by whoever installs what you shipped, on a version nuget.org will let you
 unlist but never delete.
 

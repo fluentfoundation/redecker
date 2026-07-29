@@ -6,7 +6,14 @@
   "Rules": [
     "RDK0001",
     "RDK0005",
+    "RDK0006",
     "RDK0007"
+  ],
+  "RuleNames": [
+    "dangling asset reference",
+    "tool package not installable",
+    "unimportable build file",
+    "untracked output copy"
   ],
   "Packages": [
     {
@@ -1147,7 +1154,7 @@
     },
     {
       "Id": "Microsoft.Extensions.Configuration.AzureAppConfiguration",
-      "Version": "8.5.0",
+      "Version": "8.6.0",
       "Findings": []
     },
     {
@@ -1363,7 +1370,18 @@
     {
       "Id": "Microsoft.NET.ILLink.Tasks",
       "Version": "10.0.10",
-      "Findings": []
+      "Findings": [
+        {
+          "Code": "RDK0006",
+          "Severity": "Warning",
+          "Title": "build/Microsoft.NET.ILLink.Analyzers.props is not imported by anything inside the package"
+        },
+        {
+          "Code": "RDK0006",
+          "Severity": "Warning",
+          "Title": "build/Microsoft.NET.ILLink.targets is not imported by anything inside the package"
+        }
+      ]
     },
     {
       "Id": "Microsoft.NET.Sdk.Android.Manifest-8.0.100",

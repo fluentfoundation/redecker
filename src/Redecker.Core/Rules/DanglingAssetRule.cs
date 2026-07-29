@@ -29,6 +29,9 @@ public sealed class DanglingAssetRule : IPackageRule
     public string Code => "RDK0001";
 
     /// <inheritdoc />
+    public string Name => "dangling asset reference";
+
+    /// <inheritdoc />
     public IEnumerable<Finding> Inspect(PackageArchive package)
     {
         foreach (var file in package.MsBuildFiles())

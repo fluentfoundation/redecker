@@ -1,16 +1,17 @@
 # Corpus sweep: prefix-microsoft-system
 
-Generated 2026-07-29 15:36 UTC from nuget.org, ids starting with Microsoft. or System., published within 6 years.
+Generated 2026-07-29 18:32 UTC from nuget.org, ids starting with Microsoft. or System., published within 6 years.
 
 Examined **2681** of 2681 selected packages, skipped 0.
 
-| Rule | Packages | Rate | Reading |
-| --- | ---: | ---: | --- |
-| RDK0001 | 23 | 0.9% | plausible |
-| RDK0005 | 0 | 0.0% | no findings |
-| RDK0007 | 20 | 0.7% | plausible |
+| Rule | What it checks | Packages | Rate | Reading |
+| --- | --- | ---: | ---: | --- |
+| RDK0001 | dangling asset reference | 23 | 0.9% | plausible |
+| RDK0005 | tool package not installable | 0 | 0.0% | no findings |
+| RDK0006 | unimportable build file | 20 | 0.7% | plausible |
+| RDK0007 | untracked output copy | 20 | 0.7% | plausible |
 
-## RDK0001
+## RDK0001 — dangling asset reference
 
 - `Microsoft.BotFramework.Orchestrator@4.14.3` — build/native/Microsoft.BotFramework.Orchestrator.props references runtimes/win-x64/native/oc_abi.lib, which the package does not contain
 - `Microsoft.BotFramework.Orchestrator@4.14.3` — build/native/Microsoft.BotFramework.Orchestrator.props references runtimes/win-x86/native/oc_abi.lib, which the package does not contain
@@ -123,7 +124,123 @@ Examined **2681** of 2681 selected packages, skipped 0.
 - `Microsoft.WindowsAppSDK.WinUI@2.3.2` — build/Microsoft.WinUI.References.targets references lib/uap10.0, which the package does not contain
 - `Microsoft.WindowsAppSDK.WinUI@2.3.2` — buildTransitive/Microsoft.WinUI.References.targets references lib/uap10.0, which the package does not contain
 
-## RDK0007
+## RDK0006 — unimportable build file
+
+- `Microsoft.AspNetCore.Razor.Design@2.3.0` — build/netstandard2.0/Microsoft.AspNetCore.Razor.Design.CodeGeneration.targets is not imported by anything inside the package
+- `Microsoft.Azure.DataLake.USQL.SDK@1.4.211011` — build/ ships MSBuild files with no entry point named after the package
+- `Microsoft.Azure.DataLake.USQL.SDK@1.4.211011` — build/runtime/ ships MSBuild files with no entry point named after the package
+- `Microsoft.Azure.StreamAnalytics.CICD@3.0.0` — build/ ships MSBuild files with no entry point named after the package
+- `Microsoft.DotNet.ILCompiler@10.0.10` — build/Microsoft.DotNet.ILCompiler.SingleEntry.targets is not imported by anything inside the package
+- `Microsoft.DotNet.ILCompiler@10.0.10` — build/Microsoft.NETCore.Native.Publish.targets is not imported by anything inside the package
+- `Microsoft.DotNet.ILCompiler@10.0.10` — build/Microsoft.NETCore.Native.Unix.targets is not imported by anything inside the package
+- `Microsoft.DotNet.ILCompiler@10.0.10` — build/Microsoft.NETCore.Native.Windows.targets is not imported by anything inside the package
+- `Microsoft.DotNet.ILCompiler@10.0.10` — build/Microsoft.NETCore.Native.targets is not imported by anything inside the package
+- `Microsoft.Maui.Controls.Build.Tasks@10.0.90` — buildTransitive/net6.0-ios10.0/Microsoft.Maui.Controls.iOS.targets is not imported by anything inside the package
+- `Microsoft.Maui.Controls.Build.Tasks@10.0.90` — buildTransitive/net6.0-maccatalyst13.1/Microsoft.Maui.Controls.MacCatalyst.targets is not imported by anything inside the package
+- `Microsoft.Maui.Controls.Build.Tasks@10.0.90` — buildTransitive/net6.0-windows10.0.17763.0/Microsoft.Maui.Sdk.Windows.targets is not imported by anything inside the package
+- `Microsoft.Maui.Controls.Build.Tasks@10.0.90` — buildTransitive/netstandard2.0/Microsoft.Maui.Controls.Build.Tasks.After.targets is not imported by anything inside the package
+- `Microsoft.Maui.Controls.Build.Tasks@10.0.90` — buildTransitive/netstandard2.0/Microsoft.Maui.Controls.DefaultItems.targets is not imported by anything inside the package
+- `Microsoft.Maui.Controls.Build.Tasks@10.0.90` — buildTransitive/netstandard2.0/Microsoft.Maui.Controls.SingleProject.targets is not imported by anything inside the package
+- `Microsoft.Maui.Controls.Build.Tasks@10.0.90` — buildTransitive/netstandard2.0/Microsoft.Maui.Controls.targets is not imported by anything inside the package
+- `Microsoft.Maui.Core@10.0.90` — buildTransitive/Microsoft.Maui.Core.After.targets is not imported by anything inside the package
+- `Microsoft.Maui.Core@10.0.90` — buildTransitive/Microsoft.Maui.Core.BundledVersions.targets is not imported by anything inside the package
+- `Microsoft.Maui.Core@10.0.90` — buildTransitive/WinUI.targets is not imported by anything inside the package
+- `Microsoft.Maui.Resizetizer@10.0.90` — buildTransitive/Microsoft.Maui.Resizetizer.After.targets is not imported by anything inside the package
+- `Microsoft.NET.ILLink.Tasks@10.0.10` — build/Microsoft.NET.ILLink.Analyzers.props is not imported by anything inside the package
+- `Microsoft.NET.ILLink.Tasks@10.0.10` — build/Microsoft.NET.ILLink.targets is not imported by anything inside the package
+- `Microsoft.NET.Sdk.Razor@3.1.32` — build/netstandard2.0/Microsoft.NET.Sdk.Razor.CodeGeneration.targets is not imported by anything inside the package
+- `Microsoft.NET.Sdk.Razor@3.1.32` — build/netstandard2.0/Microsoft.NET.Sdk.Razor.Compilation.targets is not imported by anything inside the package
+- `Microsoft.NET.Sdk.Razor@3.1.32` — build/netstandard2.0/Microsoft.NET.Sdk.Razor.Component.targets is not imported by anything inside the package
+- `Microsoft.NET.Sdk.Razor@3.1.32` — build/netstandard2.0/Microsoft.NET.Sdk.Razor.Configuration.targets is not imported by anything inside the package
+- `Microsoft.NET.Sdk.Razor@3.1.32` — build/netstandard2.0/Microsoft.NET.Sdk.Razor.DesignTime.targets is not imported by anything inside the package
+- `Microsoft.NET.Sdk.Razor@3.1.32` — build/netstandard2.0/Microsoft.NET.Sdk.Razor.GenerateAssemblyInfo.targets is not imported by anything inside the package
+- `Microsoft.NET.Sdk.Razor@3.1.32` — build/netstandard2.0/Microsoft.NET.Sdk.Razor.MvcApplicationPartsDiscovery.targets is not imported by anything inside the package
+- `Microsoft.NET.Sdk.Razor@3.1.32` — build/netstandard2.0/Microsoft.NET.Sdk.Razor.StaticWebAssets.targets is not imported by anything inside the package
+- `Microsoft.NET.Sdk.Razor@3.1.32` — build/netstandard2.0/Sdk.Razor.CurrentVersion.props is not imported by anything inside the package
+- `Microsoft.NET.Sdk.Razor@3.1.32` — build/netstandard2.0/Sdk.Razor.CurrentVersion.targets is not imported by anything inside the package
+- `Microsoft.NET.Sdk.Razor@3.1.32` — buildMultiTargeting/Sdk.Razor.CurrentVersion.MultiTargeting.targets is not imported by anything inside the package
+- `Microsoft.NET.Sdk.WebAssembly.Pack@10.0.10` — build/Microsoft.NET.Sdk.WebAssembly.Browser.props is not imported by anything inside the package
+- `Microsoft.NET.Sdk.WebAssembly.Pack@10.0.10` — build/Microsoft.NET.Sdk.WebAssembly.Browser.targets is not imported by anything inside the package
+- `Microsoft.ProjectReunion@0.8.12` — build/Microsoft.ProjectReunion.Metapackage.props is not imported by anything inside the package
+- `Microsoft.ProjectReunion.InteractiveExperiences@0.8.12` — build/native/Microsoft.ProjectReunion.InteractiveExperiences.TransportPackage.targets is not imported by anything inside the package
+- `Microsoft.ProjectReunion.InteractiveExperiences@0.8.12` — build/net5.0-windows10.0.17763.0/Microsoft.ProjectReunion.InteractiveExperiences.TransportPackage.targets is not imported by anything inside the package
+- `Microsoft.ProjectReunion.WinUI@0.8.12` — build/Microsoft.Build.Msix.Common.props is not imported by anything inside the package
+- `Microsoft.ProjectReunion.WinUI@0.8.12` — build/Microsoft.Build.Msix.Cpp.props is not imported by anything inside the package
+- `Microsoft.ProjectReunion.WinUI@0.8.12` — build/Microsoft.Build.Msix.Cpp.targets is not imported by anything inside the package
+- `Microsoft.ProjectReunion.WinUI@0.8.12` — build/Microsoft.Build.Msix.DesignTime.targets is not imported by anything inside the package
+- `Microsoft.ProjectReunion.WinUI@0.8.12` — build/Microsoft.Build.Msix.Packaging.targets is not imported by anything inside the package
+- `Microsoft.ProjectReunion.WinUI@0.8.12` — build/Microsoft.Build.Msix.Pri.targets is not imported by anything inside the package
+- `Microsoft.ProjectReunion.WinUI@0.8.12` — build/Microsoft.Build.Msix.ReunionManifest.targets is not imported by anything inside the package
+- `Microsoft.ProjectReunion.WinUI@0.8.12` — build/Microsoft.Build.Msix.targets is not imported by anything inside the package
+- `Microsoft.ProjectReunion.WinUI@0.8.12` — build/Microsoft.ProjectReunion.Foundation.targets is not imported by anything inside the package
+- `Microsoft.ProjectReunion.WinUI@0.8.12` — build/Microsoft.ProjectReunion.WinUI.TransportPackage.props is not imported by anything inside the package
+- `Microsoft.ProjectReunion.WinUI@0.8.12` — build/Microsoft.ProjectReunion.WinUI.TransportPackage.targets is not imported by anything inside the package
+- `Microsoft.ProjectReunion.WinUI@0.8.12` — build/Microsoft.UI.Xaml.Markup.Compiler.interop.targets is not imported by anything inside the package
+- `Microsoft.ProjectReunion.WinUI@0.8.12` — build/Microsoft.UI.Xaml.Markup.Compiler.props is not imported by anything inside the package
+- `Microsoft.ProjectReunion.WinUI@0.8.12` — build/Microsoft.UI.Xaml.Markup.Compiler.targets is not imported by anything inside the package
+- `Microsoft.ProjectReunion.WinUI@0.8.12` — build/Microsoft.WinUI.AppX.targets is not imported by anything inside the package
+- `Microsoft.ProjectReunion.WinUI@0.8.12` — build/Microsoft.WinUI.NET.Markup.Compiler.targets is not imported by anything inside the package
+- `Microsoft.ProjectReunion.WinUI@0.8.12` — build/Microsoft.WinUI.References.targets is not imported by anything inside the package
+- `Microsoft.ProjectReunion.WinUI@0.8.12` — build/native/Microsoft.ProjectReunion.WinUI.TransportPackage.props is not imported by anything inside the package
+- `Microsoft.ProjectReunion.WinUI@0.8.12` — build/native/Microsoft.ProjectReunion.WinUI.TransportPackage.targets is not imported by anything inside the package
+- `Microsoft.ProjectReunion.WinUI@0.8.12` — buildTransitive/Microsoft.Build.Msix.Common.props is not imported by anything inside the package
+- `Microsoft.ProjectReunion.WinUI@0.8.12` — buildTransitive/Microsoft.Build.Msix.Cpp.props is not imported by anything inside the package
+- `Microsoft.ProjectReunion.WinUI@0.8.12` — buildTransitive/Microsoft.Build.Msix.Cpp.targets is not imported by anything inside the package
+- `Microsoft.ProjectReunion.WinUI@0.8.12` — buildTransitive/Microsoft.Build.Msix.DesignTime.targets is not imported by anything inside the package
+- `Microsoft.ProjectReunion.WinUI@0.8.12` — buildTransitive/Microsoft.Build.Msix.Packaging.targets is not imported by anything inside the package
+- `Microsoft.ProjectReunion.WinUI@0.8.12` — buildTransitive/Microsoft.Build.Msix.Pri.targets is not imported by anything inside the package
+- `Microsoft.ProjectReunion.WinUI@0.8.12` — buildTransitive/Microsoft.Build.Msix.ReunionManifest.targets is not imported by anything inside the package
+- `Microsoft.ProjectReunion.WinUI@0.8.12` — buildTransitive/Microsoft.Build.Msix.targets is not imported by anything inside the package
+- `Microsoft.ProjectReunion.WinUI@0.8.12` — buildTransitive/Microsoft.ProjectReunion.Foundation.targets is not imported by anything inside the package
+- `Microsoft.ProjectReunion.WinUI@0.8.12` — buildTransitive/Microsoft.ProjectReunion.WinUI.TransportPackage.props is not imported by anything inside the package
+- `Microsoft.ProjectReunion.WinUI@0.8.12` — buildTransitive/Microsoft.ProjectReunion.WinUI.TransportPackage.targets is not imported by anything inside the package
+- `Microsoft.ProjectReunion.WinUI@0.8.12` — buildTransitive/Microsoft.UI.Xaml.Markup.Compiler.interop.targets is not imported by anything inside the package
+- `Microsoft.ProjectReunion.WinUI@0.8.12` — buildTransitive/Microsoft.UI.Xaml.Markup.Compiler.props is not imported by anything inside the package
+- `Microsoft.ProjectReunion.WinUI@0.8.12` — buildTransitive/Microsoft.UI.Xaml.Markup.Compiler.targets is not imported by anything inside the package
+- `Microsoft.ProjectReunion.WinUI@0.8.12` — buildTransitive/Microsoft.WinUI.AppX.targets is not imported by anything inside the package
+- `Microsoft.ProjectReunion.WinUI@0.8.12` — buildTransitive/Microsoft.WinUI.NET.Markup.Compiler.targets is not imported by anything inside the package
+- `Microsoft.ProjectReunion.WinUI@0.8.12` — buildTransitive/Microsoft.WinUI.References.targets is not imported by anything inside the package
+- `Microsoft.ProjectReunion.WinUI@0.8.12` — buildTransitive/native/Microsoft.ProjectReunion.WinUI.TransportPackage.props is not imported by anything inside the package
+- `Microsoft.ProjectReunion.WinUI@0.8.12` — buildTransitive/native/Microsoft.ProjectReunion.WinUI.TransportPackage.targets is not imported by anything inside the package
+- `Microsoft.ReactNative.Debug@0.78.15` — build/native/ ships MSBuild files with no entry point named after the package
+- `Microsoft.VisualStudio.Azure.Fabric.MSBuild@1.7.9` — build/ ships MSBuild files with no entry point named after the package
+- `Microsoft.Web.WebView2@1.0.4078.44` — build/Common.targets is not imported by anything inside the package
+- `Microsoft.Web.WebView2@1.0.4078.44` — build/wv2winrt.targets is not imported by anything inside the package
+- `Microsoft.Windows.CsWinRT@2.3.1` — build/Microsoft.Windows.CsWinRT.Authoring.Transitive.targets is not imported by anything inside the package
+- `Microsoft.Windows.CsWinRT@2.3.1` — build/Microsoft.Windows.CsWinRT.BeforeMicrosoftNetSdk.targets is not imported by anything inside the package
+- `Microsoft.Windows.SDK.BuildTools.MSIX@1.7.260610101` — build/Microsoft.Windows.SDK.BuildTools.MSIX.BeforeCommon.props is not imported by anything inside the package
+- `Microsoft.Windows.SDK.BuildTools.MSIX@1.7.260610101` — build/Microsoft.Windows.SDK.BuildTools.MSIX.Common.props is not imported by anything inside the package
+- `Microsoft.Windows.SDK.BuildTools.MSIX@1.7.260610101` — build/Microsoft.Windows.SDK.BuildTools.MSIX.Common.targets is not imported by anything inside the package
+- `Microsoft.Windows.SDK.BuildTools.MSIX@1.7.260610101` — build/Microsoft.Windows.SDK.BuildTools.MSIX.Cpp.props is not imported by anything inside the package
+- `Microsoft.Windows.SDK.BuildTools.MSIX@1.7.260610101` — build/Microsoft.Windows.SDK.BuildTools.MSIX.Cpp.targets is not imported by anything inside the package
+- `Microsoft.Windows.SDK.BuildTools.MSIX@1.7.260610101` — build/Microsoft.Windows.SDK.BuildTools.MSIX.Cs.targets is not imported by anything inside the package
+- `Microsoft.Windows.SDK.BuildTools.MSIX@1.7.260610101` — build/Microsoft.Windows.SDK.BuildTools.MSIX.DesignTime.targets is not imported by anything inside the package
+- `Microsoft.Windows.SDK.BuildTools.MSIX@1.7.260610101` — build/Microsoft.Windows.SDK.BuildTools.MSIX.MrtCore.PriExpansion.targets is not imported by anything inside the package
+- `Microsoft.Windows.SDK.BuildTools.MSIX@1.7.260610101` — build/Microsoft.Windows.SDK.BuildTools.MSIX.MrtCore.PriGen.targets is not imported by anything inside the package
+- `Microsoft.Windows.SDK.BuildTools.MSIX@1.7.260610101` — build/Microsoft.Windows.SDK.BuildTools.MSIX.MrtCore.Tasks.targets is not imported by anything inside the package
+- `Microsoft.Windows.SDK.BuildTools.MSIX@1.7.260610101` — build/Microsoft.Windows.SDK.BuildTools.MSIX.MrtCore.targets is not imported by anything inside the package
+- `Microsoft.Windows.SDK.BuildTools.MSIX@1.7.260610101` — build/Microsoft.Windows.SDK.BuildTools.MSIX.Packaging.targets is not imported by anything inside the package
+- `Microsoft.Windows.SDK.BuildTools.MSIX@1.7.260610101` — build/Microsoft.Windows.SDK.BuildTools.MSIX.Pri.targets is not imported by anything inside the package
+- `Microsoft.Windows.SDK.CPP@10.0.28000.2526` — build/ExpandTargetPlatform.targets is not imported by anything inside the package
+- `Microsoft.Windows.SDK.CPP@10.0.28000.2526` — build/Override.15.0.targets is not imported by anything inside the package
+- `Microsoft.Windows.SDK.CPP@10.0.28000.2526` — build/Override.15.1.targets is not imported by anything inside the package
+- `Microsoft.Windows.SDK.CPP@10.0.28000.2526` — build/Override.Current.targets is not imported by anything inside the package
+- `Microsoft.WindowsAppSDK.WinUI@2.3.2` — build/Microsoft.UI.Xaml.Markup.Compiler.BeforeCommon.targets is not imported by anything inside the package
+- `Microsoft.WindowsAppSDK.WinUI@2.3.2` — build/Microsoft.UI.Xaml.Markup.Compiler.interop.targets is not imported by anything inside the package
+- `Microsoft.WindowsAppSDK.WinUI@2.3.2` — build/Microsoft.UI.Xaml.Markup.Compiler.props is not imported by anything inside the package
+- `Microsoft.WindowsAppSDK.WinUI@2.3.2` — build/Microsoft.UI.Xaml.Markup.Compiler.targets is not imported by anything inside the package
+- `Microsoft.WindowsAppSDK.WinUI@2.3.2` — build/Microsoft.WinUI.AppX.targets is not imported by anything inside the package
+- `Microsoft.WindowsAppSDK.WinUI@2.3.2` — build/Microsoft.WinUI.NET.Markup.Compiler.targets is not imported by anything inside the package
+- `Microsoft.WindowsAppSDK.WinUI@2.3.2` — build/Microsoft.WinUI.References.targets is not imported by anything inside the package
+- `Microsoft.WindowsAppSDK.WinUI@2.3.2` — buildTransitive/Microsoft.UI.Xaml.Markup.Compiler.BeforeCommon.targets is not imported by anything inside the package
+- `Microsoft.WindowsAppSDK.WinUI@2.3.2` — buildTransitive/Microsoft.UI.Xaml.Markup.Compiler.interop.targets is not imported by anything inside the package
+- `Microsoft.WindowsAppSDK.WinUI@2.3.2` — buildTransitive/Microsoft.UI.Xaml.Markup.Compiler.props is not imported by anything inside the package
+- `Microsoft.WindowsAppSDK.WinUI@2.3.2` — buildTransitive/Microsoft.UI.Xaml.Markup.Compiler.targets is not imported by anything inside the package
+- `Microsoft.WindowsAppSDK.WinUI@2.3.2` — buildTransitive/Microsoft.WinUI.AppX.targets is not imported by anything inside the package
+- `Microsoft.WindowsAppSDK.WinUI@2.3.2` — buildTransitive/Microsoft.WinUI.NET.Markup.Compiler.targets is not imported by anything inside the package
+- `Microsoft.WindowsAppSDK.WinUI@2.3.2` — buildTransitive/Microsoft.WinUI.References.targets is not imported by anything inside the package
+
+## RDK0007 — untracked output copy
 
 - `Microsoft.ApplicationInsights.DependencyCollector@2.23.0` — build/Microsoft.ApplicationInsights.DependencyCollector.targets copies 1 time(s) into the output directory without recording FileWrites
 - `Microsoft.ApplicationInsights.PerfCounterCollector@2.23.0` — build/Microsoft.ApplicationInsights.PerfCounterCollector.targets copies 1 time(s) into the output directory without recording FileWrites

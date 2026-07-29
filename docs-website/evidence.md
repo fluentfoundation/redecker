@@ -116,6 +116,7 @@ takes about three seconds.
 | --- | ---: | ---: |
 | RDK0001 | 0 | 0% |
 | RDK0005 | 0 | 0% |
+| RDK0006 | 1 | 0.2% |
 | RDK0007 | 2 | 0.4% |
 
 That is the state *after* the sweep found and killed three false positives. Before it, the same
@@ -179,44 +180,37 @@ asset resolution. `Microsoft.CognitiveServices.Speech`, `Microsoft.InformationPr
 
 It also cost a rule.
 
-## Rules we retired
+## RDK0006 and the limits of a corpus
 
-### RDK0006, unimportable build folders
+The Microsoft sweep flagged `Microsoft.NET.Sdk.Razor`, `Microsoft.DotNet.ILCompiler`,
+`Microsoft.Maui.Controls.Build.Tasks`, `Microsoft.NET.ILLink.Tasks` and
+`Microsoft.Windows.SDK.BuildTools.MSIX` — all of which work.
 
-The idea: NuGet imports only `<PackageId>.props` and `.targets` from a build folder, so a package
-shipping `build/Common.targets` and nothing named after itself has build logic that never runs.
-
-It survived two rounds of correction. The first sweep caught it misreading helper folders reached
-from an entry point (`Grpc.Tools`), and the fix was to resolve the import graph rather than judge by
-file name — which also handled the inverse arrangement, a root helper imported from a framework
-folder (`Microsoft.Graphics.Win2D`).
-
-The Microsoft sweep killed it. Flagged packages included `Microsoft.NET.Sdk.Razor`,
-`Microsoft.DotNet.ILCompiler`, `Microsoft.Maui.Controls.Build.Tasks`, `Microsoft.NET.ILLink.Tasks`
-and `Microsoft.Windows.SDK.BuildTools.MSIX` — every one of which works.
-
-**Their MSBuild files are imported from outside the package**: by the .NET SDK, by a workload, by
+Their MSBuild files are imported **from outside the package**: by the .NET SDK, by a workload, by
 another package, or by a consumer writing an explicit `<Import>`. None of that is visible from the
-package contents.
+package contents. There is no reliable marker separating them either — `Microsoft.DotNet.ILCompiler`
+carries no `packageType` and no `Sdk/` folder, yet its `Microsoft.NETCore.Native.targets` is
+imported by the SDK's publish pipeline.
 
-The obvious salvage was to detect SDK-consumed packages and exempt them. The corpus refused that
-too:
+The first instinct was to retire the rule. That was wrong, and worth recording why.
 
-| Package | `packageType` | Has `Sdk/` |
-| --- | --- | --- |
-| `Microsoft.NET.Sdk.Razor` | none | yes |
-| `Microsoft.Maui.Core` | `DotnetPlatform` | no |
-| **`Microsoft.DotNet.ILCompiler`** | **none** | **no** |
+**A corpus shows the presence of false positives, not the absence of usefulness.** Twenty findings
+across 2,680 packages says the rule is imprecise in one identifiable situation; it does not say the
+underlying problem is not real. `Microsoft.Azure.StreamAnalytics.CICD` genuinely ships a
+`build/StreamAnalytics.targets` that nothing auto-imports, and that is exactly the defect the rule
+exists to find.
 
-`Microsoft.DotNet.ILCompiler` is decisive: it carries no marker of any kind, and its
-`Microsoft.NETCore.Native.targets` is unquestionably imported by the SDK's publish pipeline. There
-is no signal that separates "orphaned by mistake" from "consumed by something Redecker cannot see".
+What the evidence actually justified was **scoping, not deletion**:
 
-So it was retired rather than narrowed. Keeping it would have preserved one real finding —
-`Microsoft.Azure.StreamAnalytics.CICD` genuinely ships a `build/StreamAnalytics.targets` nothing
-auto-imports — at the cost of accusing a dozen working packages.
+- The severity is a **warning**, because the rule cannot see every consumer and should not pretend
+  otherwise.
+- The finding text **names the benign explanation**, so a reader knows what to check rather than
+  being told they have a bug.
+- The documentation is explicit that this rule earns its place on **your own package before you
+  publish** — where you know whether the SDK imports your targets by path — and needs the caveat
+  when run across other people's.
 
-Six rules is a better number than seven when the seventh cannot be believed.
+Losing a real defect to avoid an explainable warning is the worse trade.
 
 ## Rules we decided not to write
 
@@ -225,7 +219,7 @@ Knowing why something was rejected is worth as much as knowing why something shi
 ### Analyzers in the wrong folder
 
 The idea: a Roslyn analyzer only loads from `analyzers/dotnet/<lang>/`, so one packed anywhere
-else is silently inert — the same shape as the since-retired RDK0006, and an appealing rule.
+else is silently inert — the same shape as [RDK0006](/rules/rdk0006), and an appealing rule.
 
 The corpus said no. Surveying every `analyzers/` path across the top 500, all of these are in use
 and all of them work:

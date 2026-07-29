@@ -40,6 +40,9 @@ public sealed class UntrackedOutputCopyRule : IPackageRule
     public string Code => "RDK0007";
 
     /// <inheritdoc />
+    public string Name => "untracked output copy";
+
+    /// <inheritdoc />
     public IEnumerable<Finding> Inspect(PackageArchive package)
     {
         foreach (var file in package.MsBuildFiles())

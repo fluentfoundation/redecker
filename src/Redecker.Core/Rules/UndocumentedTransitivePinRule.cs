@@ -30,6 +30,9 @@ public sealed class UndocumentedTransitivePinRule
     /// <summary>The stable code this rule raises findings under.</summary>
     public string Code => "RDK0004";
 
+    /// <inheritdoc />
+    public string Name => "undocumented transitive pin";
+
     /// <summary>
     /// Checks declared versions against direct references.
     /// </summary>
