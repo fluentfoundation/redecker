@@ -1,0 +1,2526 @@
+{
+  "Corpus": "nuget.org, ranked by total downloads",
+  "Requested": 500,
+  "Examined": 500,
+  "Skipped": 0,
+  "Rules": [
+    "RDK0001",
+    "RDK0005",
+    "RDK0006",
+    "RDK0007"
+  ],
+  "Packages": [
+    {
+      "Id": "Amazon.Lambda.Core",
+      "Version": "3.2.0",
+      "Findings": []
+    },
+    {
+      "Id": "AngleSharp",
+      "Version": "1.6.0",
+      "Findings": []
+    },
+    {
+      "Id": "AngleSharp.Css",
+      "Version": "1.0.0",
+      "Findings": []
+    },
+    {
+      "Id": "Antlr",
+      "Version": "3.5.0.2",
+      "Findings": []
+    },
+    {
+      "Id": "Asp.Versioning.Abstractions",
+      "Version": "10.0.0",
+      "Findings": []
+    },
+    {
+      "Id": "Asp.Versioning.Http",
+      "Version": "10.0.0",
+      "Findings": []
+    },
+    {
+      "Id": "Asp.Versioning.Mvc",
+      "Version": "10.0.0",
+      "Findings": []
+    },
+    {
+      "Id": "AspNetCore.HealthChecks.SqlServer",
+      "Version": "9.0.0",
+      "Findings": []
+    },
+    {
+      "Id": "AspNetCore.HealthChecks.UI.Client",
+      "Version": "9.0.0",
+      "Findings": []
+    },
+    {
+      "Id": "AspNetCore.HealthChecks.UI.Core",
+      "Version": "9.0.0",
+      "Findings": []
+    },
+    {
+      "Id": "Autofac",
+      "Version": "9.3.1",
+      "Findings": []
+    },
+    {
+      "Id": "Autofac.Extensions.DependencyInjection",
+      "Version": "11.0.2",
+      "Findings": []
+    },
+    {
+      "Id": "AutoFixture",
+      "Version": "4.18.1",
+      "Findings": []
+    },
+    {
+      "Id": "AutoMapper",
+      "Version": "16.2.0",
+      "Findings": []
+    },
+    {
+      "Id": "AutoMapper.Extensions.Microsoft.DependencyInjection",
+      "Version": "12.0.1",
+      "Findings": []
+    },
+    {
+      "Id": "AWSSDK.CloudWatchLogs",
+      "Version": "4.0.101.5",
+      "Findings": []
+    },
+    {
+      "Id": "AWSSDK.Core",
+      "Version": "4.0.100.9",
+      "Findings": []
+    },
+    {
+      "Id": "AWSSDK.DynamoDBv2",
+      "Version": "4.0.102.1",
+      "Findings": []
+    },
+    {
+      "Id": "AWSSDK.Extensions.NETCore.Setup",
+      "Version": "4.0.100.7",
+      "Findings": []
+    },
+    {
+      "Id": "AWSSDK.Lambda",
+      "Version": "4.0.104.3",
+      "Findings": []
+    },
+    {
+      "Id": "AWSSDK.Polly",
+      "Version": "4.0.100.7",
+      "Findings": []
+    },
+    {
+      "Id": "AWSSDK.S3",
+      "Version": "4.0.101.5",
+      "Findings": []
+    },
+    {
+      "Id": "AWSSDK.SecretsManager",
+      "Version": "4.0.100.7",
+      "Findings": []
+    },
+    {
+      "Id": "AWSSDK.SecurityToken",
+      "Version": "4.0.100.7",
+      "Findings": []
+    },
+    {
+      "Id": "AWSSDK.SimpleNotificationService",
+      "Version": "4.0.100.7",
+      "Findings": []
+    },
+    {
+      "Id": "AWSSDK.SimpleSystemsManagement",
+      "Version": "4.0.103.2",
+      "Findings": []
+    },
+    {
+      "Id": "AWSSDK.SQS",
+      "Version": "4.0.100.7",
+      "Findings": []
+    },
+    {
+      "Id": "Azure.Core",
+      "Version": "1.60.0",
+      "Findings": []
+    },
+    {
+      "Id": "Azure.Core.Amqp",
+      "Version": "1.3.1",
+      "Findings": []
+    },
+    {
+      "Id": "Azure.Data.AppConfiguration",
+      "Version": "1.11.0",
+      "Findings": []
+    },
+    {
+      "Id": "Azure.Data.Tables",
+      "Version": "12.11.0",
+      "Findings": []
+    },
+    {
+      "Id": "Azure.Extensions.AspNetCore.Configuration.Secrets",
+      "Version": "1.5.1",
+      "Findings": []
+    },
+    {
+      "Id": "Azure.Identity",
+      "Version": "1.21.0",
+      "Findings": []
+    },
+    {
+      "Id": "Azure.Messaging.EventGrid",
+      "Version": "5.0.0",
+      "Findings": []
+    },
+    {
+      "Id": "Azure.Messaging.EventHubs",
+      "Version": "5.12.2",
+      "Findings": []
+    },
+    {
+      "Id": "Azure.Messaging.ServiceBus",
+      "Version": "7.20.2",
+      "Findings": []
+    },
+    {
+      "Id": "Azure.Search.Documents",
+      "Version": "12.0.0",
+      "Findings": []
+    },
+    {
+      "Id": "Azure.Security.KeyVault.Certificates",
+      "Version": "4.9.0",
+      "Findings": []
+    },
+    {
+      "Id": "Azure.Security.KeyVault.Keys",
+      "Version": "4.10.0",
+      "Findings": []
+    },
+    {
+      "Id": "Azure.Security.KeyVault.Secrets",
+      "Version": "4.11.0",
+      "Findings": []
+    },
+    {
+      "Id": "Azure.Storage.Blobs",
+      "Version": "12.29.1",
+      "Findings": []
+    },
+    {
+      "Id": "Azure.Storage.Common",
+      "Version": "12.28.0",
+      "Findings": []
+    },
+    {
+      "Id": "Azure.Storage.Files.Shares",
+      "Version": "12.27.1",
+      "Findings": []
+    },
+    {
+      "Id": "Azure.Storage.Queues",
+      "Version": "12.27.1",
+      "Findings": []
+    },
+    {
+      "Id": "Bogus",
+      "Version": "35.6.5",
+      "Findings": []
+    },
+    {
+      "Id": "bootstrap",
+      "Version": "5.3.8",
+      "Findings": []
+    },
+    {
+      "Id": "BouncyCastle.Cryptography",
+      "Version": "2.6.2",
+      "Findings": []
+    },
+    {
+      "Id": "Cake.Tool",
+      "Version": "6.2.0",
+      "Findings": []
+    },
+    {
+      "Id": "Castle.Core",
+      "Version": "5.2.1",
+      "Findings": []
+    },
+    {
+      "Id": "ClosedXML",
+      "Version": "0.105.1",
+      "Findings": []
+    },
+    {
+      "Id": "CommandLineParser",
+      "Version": "2.9.1",
+      "Findings": []
+    },
+    {
+      "Id": "Confluent.Kafka",
+      "Version": "2.15.0",
+      "Findings": []
+    },
+    {
+      "Id": "coverlet.collector",
+      "Version": "10.0.1",
+      "Findings": []
+    },
+    {
+      "Id": "coverlet.msbuild",
+      "Version": "10.0.1",
+      "Findings": []
+    },
+    {
+      "Id": "CsvHelper",
+      "Version": "33.1.0",
+      "Findings": []
+    },
+    {
+      "Id": "Dapper",
+      "Version": "2.1.79",
+      "Findings": []
+    },
+    {
+      "Id": "DiffEngine",
+      "Version": "19.3.3",
+      "Findings": []
+    },
+    {
+      "Id": "DnsClient",
+      "Version": "1.8.0",
+      "Findings": []
+    },
+    {
+      "Id": "DocumentFormat.OpenXml",
+      "Version": "3.5.1",
+      "Findings": []
+    },
+    {
+      "Id": "DocumentFormat.OpenXml.Framework",
+      "Version": "3.5.1",
+      "Findings": []
+    },
+    {
+      "Id": "dotnet-ef",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Ecng.Collections",
+      "Version": "1.0.298",
+      "Findings": []
+    },
+    {
+      "Id": "Elasticsearch.Net",
+      "Version": "7.17.5",
+      "Findings": []
+    },
+    {
+      "Id": "EmptyFiles",
+      "Version": "8.18.2",
+      "Findings": []
+    },
+    {
+      "Id": "EntityFramework",
+      "Version": "6.5.2",
+      "Findings": []
+    },
+    {
+      "Id": "EO.WebBrowser",
+      "Version": "26.2.42",
+      "Findings": []
+    },
+    {
+      "Id": "EPPlus",
+      "Version": "8.6.3",
+      "Findings": []
+    },
+    {
+      "Id": "ExcelNumberFormat",
+      "Version": "1.1.0",
+      "Findings": []
+    },
+    {
+      "Id": "Fare",
+      "Version": "2.2.2",
+      "Findings": []
+    },
+    {
+      "Id": "FluentAssertions",
+      "Version": "8.10.0",
+      "Findings": []
+    },
+    {
+      "Id": "FluentValidation",
+      "Version": "12.1.1",
+      "Findings": []
+    },
+    {
+      "Id": "FluentValidation.AspNetCore",
+      "Version": "11.3.1",
+      "Findings": []
+    },
+    {
+      "Id": "FluentValidation.DependencyInjectionExtensions",
+      "Version": "12.1.1",
+      "Findings": []
+    },
+    {
+      "Id": "Flurl",
+      "Version": "4.0.0",
+      "Findings": []
+    },
+    {
+      "Id": "Flurl.Http",
+      "Version": "4.0.2",
+      "Findings": []
+    },
+    {
+      "Id": "Fractions",
+      "Version": "8.3.2",
+      "Findings": []
+    },
+    {
+      "Id": "FSharp.Core",
+      "Version": "10.1.302",
+      "Findings": []
+    },
+    {
+      "Id": "GitVersion.Tool",
+      "Version": "6.8.2",
+      "Findings": []
+    },
+    {
+      "Id": "Google.Api.CommonProtos",
+      "Version": "2.17.0",
+      "Findings": []
+    },
+    {
+      "Id": "Google.Api.Gax",
+      "Version": "4.14.0",
+      "Findings": []
+    },
+    {
+      "Id": "Google.Api.Gax.Grpc",
+      "Version": "4.14.0",
+      "Findings": []
+    },
+    {
+      "Id": "Google.Api.Gax.Rest",
+      "Version": "4.14.0",
+      "Findings": []
+    },
+    {
+      "Id": "Google.Apis",
+      "Version": "1.75.0",
+      "Findings": []
+    },
+    {
+      "Id": "Google.Apis.Auth",
+      "Version": "1.75.0",
+      "Findings": []
+    },
+    {
+      "Id": "Google.Apis.Core",
+      "Version": "1.75.0",
+      "Findings": []
+    },
+    {
+      "Id": "Google.Apis.Storage.v1",
+      "Version": "1.75.0.4193",
+      "Findings": []
+    },
+    {
+      "Id": "Google.Protobuf",
+      "Version": "3.35.1",
+      "Findings": []
+    },
+    {
+      "Id": "Grpc.AspNetCore",
+      "Version": "2.80.0",
+      "Findings": []
+    },
+    {
+      "Id": "Grpc.AspNetCore.Server",
+      "Version": "2.80.0",
+      "Findings": []
+    },
+    {
+      "Id": "Grpc.AspNetCore.Server.ClientFactory",
+      "Version": "2.80.0",
+      "Findings": []
+    },
+    {
+      "Id": "Grpc.Auth",
+      "Version": "2.80.0",
+      "Findings": []
+    },
+    {
+      "Id": "Grpc.Core",
+      "Version": "2.46.6",
+      "Findings": []
+    },
+    {
+      "Id": "Grpc.Core.Api",
+      "Version": "2.80.0",
+      "Findings": []
+    },
+    {
+      "Id": "Grpc.Net.Client",
+      "Version": "2.80.0",
+      "Findings": []
+    },
+    {
+      "Id": "Grpc.Net.ClientFactory",
+      "Version": "2.80.0",
+      "Findings": []
+    },
+    {
+      "Id": "Grpc.Net.Common",
+      "Version": "2.80.0",
+      "Findings": []
+    },
+    {
+      "Id": "Grpc.Tools",
+      "Version": "2.83.0",
+      "Findings": []
+    },
+    {
+      "Id": "Hangfire.AspNetCore",
+      "Version": "1.8.24",
+      "Findings": []
+    },
+    {
+      "Id": "Hangfire.Core",
+      "Version": "1.8.24",
+      "Findings": []
+    },
+    {
+      "Id": "Hangfire.SqlServer",
+      "Version": "1.8.24",
+      "Findings": []
+    },
+    {
+      "Id": "HtmlAgilityPack",
+      "Version": "1.12.4",
+      "Findings": []
+    },
+    {
+      "Id": "HtmlSanitizer",
+      "Version": "9.1.973",
+      "Findings": []
+    },
+    {
+      "Id": "Humanizer",
+      "Version": "3.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Humanizer.Core",
+      "Version": "3.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Humanizer.Core.af",
+      "Version": "3.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Humanizer.Core.ar",
+      "Version": "3.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Humanizer.Core.az",
+      "Version": "3.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Humanizer.Core.bg",
+      "Version": "3.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Humanizer.Core.bn-BD",
+      "Version": "2.14.1",
+      "Findings": []
+    },
+    {
+      "Id": "Humanizer.Core.cs",
+      "Version": "3.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Humanizer.Core.da",
+      "Version": "3.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Humanizer.Core.de",
+      "Version": "3.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Humanizer.Core.el",
+      "Version": "3.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Humanizer.Core.es",
+      "Version": "3.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Humanizer.Core.fa",
+      "Version": "3.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Humanizer.Core.fi-FI",
+      "Version": "2.14.1",
+      "Findings": []
+    },
+    {
+      "Id": "Humanizer.Core.fr",
+      "Version": "3.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Humanizer.Core.fr-BE",
+      "Version": "2.14.1",
+      "Findings": []
+    },
+    {
+      "Id": "Humanizer.Core.he",
+      "Version": "3.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Humanizer.Core.hr",
+      "Version": "3.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Humanizer.Core.hu",
+      "Version": "3.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Humanizer.Core.hy",
+      "Version": "3.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Humanizer.Core.id",
+      "Version": "3.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Humanizer.Core.is",
+      "Version": "3.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Humanizer.Core.it",
+      "Version": "3.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Humanizer.Core.ja",
+      "Version": "3.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Humanizer.Core.ko-KR",
+      "Version": "2.14.1",
+      "Findings": []
+    },
+    {
+      "Id": "Humanizer.Core.ku",
+      "Version": "3.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Humanizer.Core.lv",
+      "Version": "3.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Humanizer.Core.ms-MY",
+      "Version": "2.14.1",
+      "Findings": []
+    },
+    {
+      "Id": "Humanizer.Core.mt",
+      "Version": "3.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Humanizer.Core.nb",
+      "Version": "3.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Humanizer.Core.nb-NO",
+      "Version": "2.14.1",
+      "Findings": []
+    },
+    {
+      "Id": "Humanizer.Core.nl",
+      "Version": "3.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Humanizer.Core.pl",
+      "Version": "3.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Humanizer.Core.pt",
+      "Version": "3.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Humanizer.Core.ro",
+      "Version": "3.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Humanizer.Core.ru",
+      "Version": "3.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Humanizer.Core.sk",
+      "Version": "3.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Humanizer.Core.sl",
+      "Version": "3.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Humanizer.Core.sr",
+      "Version": "3.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Humanizer.Core.sr-Latn",
+      "Version": "3.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Humanizer.Core.sv",
+      "Version": "3.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Humanizer.Core.th-TH",
+      "Version": "2.14.1",
+      "Findings": []
+    },
+    {
+      "Id": "Humanizer.Core.tr",
+      "Version": "3.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Humanizer.Core.uk",
+      "Version": "3.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Humanizer.Core.uz-Cyrl-UZ",
+      "Version": "3.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Humanizer.Core.uz-Latn-UZ",
+      "Version": "3.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Humanizer.Core.vi",
+      "Version": "3.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Humanizer.Core.zh-CN",
+      "Version": "3.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Humanizer.Core.zh-Hans",
+      "Version": "3.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Humanizer.Core.zh-Hant",
+      "Version": "3.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "JetBrains.Annotations",
+      "Version": "2026.2.0",
+      "Findings": []
+    },
+    {
+      "Id": "jQuery",
+      "Version": "3.7.1",
+      "Findings": []
+    },
+    {
+      "Id": "jQuery.Validation",
+      "Version": "1.21.0",
+      "Findings": []
+    },
+    {
+      "Id": "JsonSubTypes",
+      "Version": "2.0.1",
+      "Findings": []
+    },
+    {
+      "Id": "K4os.Compression.LZ4",
+      "Version": "1.3.8",
+      "Findings": []
+    },
+    {
+      "Id": "KubernetesClient",
+      "Version": "19.0.2",
+      "Findings": []
+    },
+    {
+      "Id": "librdkafka.redist",
+      "Version": "2.15.0",
+      "Findings": []
+    },
+    {
+      "Id": "log4net",
+      "Version": "3.3.2",
+      "Findings": []
+    },
+    {
+      "Id": "MailKit",
+      "Version": "4.17.0",
+      "Findings": []
+    },
+    {
+      "Id": "MassTransit",
+      "Version": "9.2.0",
+      "Findings": []
+    },
+    {
+      "Id": "MassTransit.Abstractions",
+      "Version": "9.2.0",
+      "Findings": []
+    },
+    {
+      "Id": "MassTransit.RabbitMQ",
+      "Version": "9.2.0",
+      "Findings": []
+    },
+    {
+      "Id": "MediatR",
+      "Version": "14.2.0",
+      "Findings": []
+    },
+    {
+      "Id": "MediatR.Contracts",
+      "Version": "2.0.1",
+      "Findings": []
+    },
+    {
+      "Id": "MediatR.Extensions.Microsoft.DependencyInjection",
+      "Version": "11.1.0",
+      "Findings": []
+    },
+    {
+      "Id": "MessagePack",
+      "Version": "3.1.8",
+      "Findings": []
+    },
+    {
+      "Id": "MessagePack.Annotations",
+      "Version": "3.1.8",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.ApplicationInsights",
+      "Version": "3.1.2",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.ApplicationInsights.EventCounterCollector",
+      "Version": "2.23.0",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.ApplicationInsights.WorkerService",
+      "Version": "3.1.2",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.AspNet.Mvc",
+      "Version": "5.3.0",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.AspNet.WebApi",
+      "Version": "5.3.0",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.AspNetCore.App.Ref",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.AspNetCore.App.Runtime.linux-x64",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.AspNetCore.App.Runtime.win-x64",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.AspNetCore.Components",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.AspNetCore.Components.Analyzers",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.AspNetCore.Components.Forms",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.AspNetCore.Components.Web",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.AspNetCore.HostFiltering",
+      "Version": "2.3.11",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.AspNetCore.Http.Connections.Client",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.AspNetCore.Metadata",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.AspNetCore.Mvc",
+      "Version": "2.3.11",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.AspNetCore.Mvc.NewtonsoftJson",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.AspNetCore.Mvc.Testing",
+      "Version": "10.0.10",
+      "Findings": [
+        {
+          "Code": "RDK0007",
+          "Severity": "Warning",
+          "Title": "build/net10.0/Microsoft.AspNetCore.Mvc.Testing.targets copies 1 time(s) into the output directory without recording FileWrites"
+        }
+      ]
+    },
+    {
+      "Id": "Microsoft.AspNetCore.Mvc.Versioning",
+      "Version": "5.1.0",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer",
+      "Version": "5.1.0",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.AspNetCore.Mvc.WebApiCompatShim",
+      "Version": "2.3.11",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.AspNetCore.OpenApi",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.AspNetCore.SignalR.Client",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.AspNetCore.SignalR.Client.Core",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.AspNetCore.SpaServices.Extensions",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.Azure.Amqp",
+      "Version": "2.7.3",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.Azure.Cosmos",
+      "Version": "3.62.0",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.Azure.Functions.Analyzers",
+      "Version": "1.0.0",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.Azure.Functions.Worker.Core",
+      "Version": "2.52.0",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.Azure.Functions.Worker.ItemTemplates",
+      "Version": "4.0.5590",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.Azure.Functions.Worker.ProjectTemplates",
+      "Version": "4.0.5590",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.Azure.WebJobs",
+      "Version": "3.0.47",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.Azure.WebJobs.Extensions.Http",
+      "Version": "3.3.0",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.Azure.WebJobs.Host.Storage",
+      "Version": "5.0.2",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.Azure.WebJobs.ItemTemplates",
+      "Version": "4.0.5590",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.Azure.WebJobs.ProjectTemplates",
+      "Version": "4.0.5590",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.Azure.WebJobs.Script.ExtensionsMetadataGenerator",
+      "Version": "4.0.1",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.Bcl.AsyncInterfaces",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.Bcl.Cryptography",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.Bcl.HashCode",
+      "Version": "6.0.0",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.Bcl.TimeProvider",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.Build.Locator",
+      "Version": "1.11.2",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.CodeAnalysis.Features",
+      "Version": "5.6.0",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.CodeAnalysis.Scripting.Common",
+      "Version": "5.6.0",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.CodeAnalysis.VisualBasic.Workspaces",
+      "Version": "5.6.0",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.CodeAnalysis.Workspaces.MSBuild",
+      "Version": "5.6.0",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.Data.OData",
+      "Version": "5.8.5",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.Data.SqlClient",
+      "Version": "7.0.2",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.Data.SqlClient.SNI.runtime",
+      "Version": "6.0.2",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.DiaSymReader",
+      "Version": "2.2.10",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.EntityFrameworkCore",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.Extensions.AmbientMetadata.Application",
+      "Version": "10.8.0",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.Extensions.ApiDescription.Server",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.Extensions.Azure",
+      "Version": "1.14.0",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.Extensions.Caching.StackExchangeRedis",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.Extensions.Compliance.Abstractions",
+      "Version": "10.8.0",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.Extensions.Configuration.AzureAppConfiguration",
+      "Version": "8.5.0",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.Extensions.DependencyInjection",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.Extensions.DependencyInjection.AutoActivation",
+      "Version": "10.8.0",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.Extensions.Diagnostics",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.Extensions.Diagnostics.Abstractions",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.Extensions.Diagnostics.ExceptionSummarization",
+      "Version": "10.8.0",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.Extensions.Diagnostics.HealthChecks",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.Extensions.Features",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.Extensions.Hosting",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.Extensions.Http",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.Extensions.Http.Diagnostics",
+      "Version": "10.8.0",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.Extensions.Http.Polly",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.Extensions.Http.Resilience",
+      "Version": "10.8.0",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.Extensions.Logging",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.Extensions.Logging.ApplicationInsights",
+      "Version": "2.23.0",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.Extensions.Logging.EventLog",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.Extensions.Options.DataAnnotations",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.Extensions.Resilience",
+      "Version": "10.8.0",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.Extensions.Telemetry",
+      "Version": "10.8.0",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.Extensions.Telemetry.Abstractions",
+      "Version": "10.8.0",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.FeatureManagement",
+      "Version": "4.6.0",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.Graph",
+      "Version": "6.2.0",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.Graph.Core",
+      "Version": "4.0.1",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.Identity.Abstractions",
+      "Version": "12.6.0",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.Identity.Client",
+      "Version": "4.87.0",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.Identity.Client.Extensions.Msal",
+      "Version": "4.87.0",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.Identity.Web",
+      "Version": "4.14.1",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.Identity.Web.Certificate",
+      "Version": "4.14.1",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.Identity.Web.Certificateless",
+      "Version": "4.14.1",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.Identity.Web.Diagnostics",
+      "Version": "4.14.1",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.Identity.Web.TokenAcquisition",
+      "Version": "4.14.1",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.Identity.Web.TokenCache",
+      "Version": "4.14.1",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.IdentityModel.Abstractions",
+      "Version": "8.22.0",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.IdentityModel.Clients.ActiveDirectory",
+      "Version": "5.3.0",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.IdentityModel.LoggingExtensions",
+      "Version": "8.22.0",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.IdentityModel.Tokens.Saml",
+      "Version": "8.22.0",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.IdentityModel.Validators",
+      "Version": "8.22.0",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.IdentityModel.Xml",
+      "Version": "8.22.0",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.IO.RecyclableMemoryStream",
+      "Version": "3.0.1",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.JSInterop",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.Kiota.Abstractions",
+      "Version": "2.0.0",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.NET.ILLink.Tasks",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.NET.Sdk.Android.Manifest-8.0.100",
+      "Version": "34.0.154",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.NET.Sdk.Android.Manifest-9.0.100",
+      "Version": "35.0.105",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.NET.Sdk.Aspire.Manifest-8.0.100",
+      "Version": "8.2.2",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.NET.Sdk.Aspire.Manifest-8.0.100.Msi.x64",
+      "Version": "8.2.2",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.NET.Sdk.Functions",
+      "Version": "4.6.0",
+      "Findings": [
+        {
+          "Code": "RDK0007",
+          "Severity": "Warning",
+          "Title": "build/Microsoft.NET.Sdk.Functions.Build.targets copies 2 time(s) into the output directory without recording FileWrites"
+        }
+      ]
+    },
+    {
+      "Id": "Microsoft.NET.Sdk.iOS.Manifest-8.0.100",
+      "Version": "18.0.8319",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.NET.Sdk.iOS.Manifest-9.0.100",
+      "Version": "26.5.9004",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.NET.Sdk.MacCatalyst.Manifest-8.0.100",
+      "Version": "18.0.8319",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.NET.Sdk.MacCatalyst.Manifest-9.0.100",
+      "Version": "26.5.9004",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.NET.Sdk.macOS.Manifest-8.0.100",
+      "Version": "15.0.8319",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.NET.Sdk.macOS.Manifest-9.0.100",
+      "Version": "26.5.9004",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.NET.Sdk.Maui.Manifest-8.0.100",
+      "Version": "8.0.100",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.NET.Sdk.Maui.Manifest-9.0.100",
+      "Version": "9.0.120",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.NET.Sdk.tvOS.Manifest-8.0.100",
+      "Version": "18.0.8319",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.NET.Sdk.tvOS.Manifest-9.0.100",
+      "Version": "26.5.9004",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.NET.StringTools",
+      "Version": "18.8.2",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.NET.Workload.Emscripten.Current.Manifest-8.0.100",
+      "Version": "8.0.29",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.NET.Workload.Emscripten.Current.Manifest-9.0.100",
+      "Version": "9.0.18",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.NET.Workload.Emscripten.Manifest-6.0.400",
+      "Version": "6.0.36",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.NET.Workload.Emscripten.net6.Manifest-7.0.100",
+      "Version": "7.0.20",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.NET.Workload.Emscripten.net6.Manifest-8.0.100",
+      "Version": "8.0.29",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.NET.Workload.Emscripten.net6.Manifest-9.0.100",
+      "Version": "9.0.18",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.NET.Workload.Emscripten.net7.Manifest-7.0.100",
+      "Version": "7.0.20",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.NET.Workload.Emscripten.net7.Manifest-8.0.100",
+      "Version": "8.0.29",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.NET.Workload.Emscripten.net7.Manifest-9.0.100",
+      "Version": "9.0.18",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.NET.Workload.Emscripten.net8.Manifest-9.0.100",
+      "Version": "9.0.18",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.NET.Workload.Mono.ToolChain.Current.Manifest-8.0.100",
+      "Version": "8.0.29",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.NET.Workload.Mono.ToolChain.Current.Manifest-9.0.100",
+      "Version": "9.0.18",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.NET.Workload.Mono.ToolChain.Manifest-6.0.400",
+      "Version": "6.0.36",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.NET.Workload.Mono.ToolChain.net6.Manifest-7.0.100",
+      "Version": "7.0.20",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.NET.Workload.Mono.ToolChain.net6.Manifest-8.0.100",
+      "Version": "8.0.29",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.NET.Workload.Mono.ToolChain.net6.Manifest-9.0.100",
+      "Version": "9.0.18",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.NET.Workload.Mono.ToolChain.net7.Manifest-7.0.100",
+      "Version": "7.0.20",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.NET.Workload.Mono.ToolChain.net7.Manifest-8.0.100",
+      "Version": "8.0.29",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.NET.Workload.Mono.ToolChain.net7.Manifest-9.0.100",
+      "Version": "9.0.18",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.NET.Workload.Mono.ToolChain.net8.Manifest-9.0.100",
+      "Version": "9.0.18",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.NET.Workloads.10.0.100",
+      "Version": "10.110.0",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.NETCore.App.Host.linux-x64",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.NETCore.App.Host.win-x64",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.NETCore.App.Ref",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.NETCore.App.Runtime.linux-x64",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.NETCore.App.Runtime.win-x64",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.NETFramework.ReferenceAssemblies",
+      "Version": "1.0.3",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.OData.Core",
+      "Version": "9.0.0",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.OData.Edm",
+      "Version": "9.0.0",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.OpenApi",
+      "Version": "3.9.0",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.Owin.Security.OAuth",
+      "Version": "4.2.3",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.SqlServer.Server",
+      "Version": "1.0.0",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.Testing.Extensions.Telemetry",
+      "Version": "2.3.3",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.Testing.Extensions.TrxReport.Abstractions",
+      "Version": "2.3.3",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.Testing.Extensions.VSTestBridge",
+      "Version": "2.3.3",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.Testing.Platform",
+      "Version": "2.3.3",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.Testing.Platform.MSBuild",
+      "Version": "2.3.3",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.TestPlatform",
+      "Version": "18.8.1",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.VisualStudio.Azure.Containers.Tools.Targets",
+      "Version": "1.23.0",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.VisualStudio.Threading.Analyzers",
+      "Version": "18.7.23",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.Win32.SystemEvents",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.WindowsDesktop.App.Ref",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "MimeKit",
+      "Version": "4.17.0",
+      "Findings": []
+    },
+    {
+      "Id": "Modernizr",
+      "Version": "2.8.3",
+      "Findings": []
+    },
+    {
+      "Id": "MongoDB.Bson",
+      "Version": "3.10.0",
+      "Findings": []
+    },
+    {
+      "Id": "MongoDB.Driver",
+      "Version": "3.10.0",
+      "Findings": []
+    },
+    {
+      "Id": "MongoDB.Driver.Core",
+      "Version": "2.30.0",
+      "Findings": []
+    },
+    {
+      "Id": "MongoDB.Libmongocrypt",
+      "Version": "1.12.0",
+      "Findings": []
+    },
+    {
+      "Id": "Mono.TextTemplating",
+      "Version": "3.0.0",
+      "Findings": []
+    },
+    {
+      "Id": "Moq",
+      "Version": "4.20.72",
+      "Findings": []
+    },
+    {
+      "Id": "morelinq",
+      "Version": "4.4.0",
+      "Findings": []
+    },
+    {
+      "Id": "MySql.Data",
+      "Version": "9.7.0",
+      "Findings": []
+    },
+    {
+      "Id": "MySqlConnector",
+      "Version": "2.6.1",
+      "Findings": []
+    },
+    {
+      "Id": "Namotion.Reflection",
+      "Version": "3.5.1",
+      "Findings": []
+    },
+    {
+      "Id": "NCrontab.Signed",
+      "Version": "3.4.0",
+      "Findings": []
+    },
+    {
+      "Id": "NEST",
+      "Version": "7.17.5",
+      "Findings": []
+    },
+    {
+      "Id": "NetTopologySuite",
+      "Version": "2.6.0",
+      "Findings": []
+    },
+    {
+      "Id": "NewRelic.Agent.Api",
+      "Version": "10.53.0",
+      "Findings": []
+    },
+    {
+      "Id": "Newtonsoft.Json",
+      "Version": "13.0.4",
+      "Findings": []
+    },
+    {
+      "Id": "Newtonsoft.Json.Bson",
+      "Version": "1.0.3",
+      "Findings": []
+    },
+    {
+      "Id": "Nito.AsyncEx.Context",
+      "Version": "5.1.2",
+      "Findings": []
+    },
+    {
+      "Id": "Nito.AsyncEx.Coordination",
+      "Version": "5.1.2",
+      "Findings": []
+    },
+    {
+      "Id": "Nito.AsyncEx.Tasks",
+      "Version": "5.1.2",
+      "Findings": []
+    },
+    {
+      "Id": "Nito.Collections.Deque",
+      "Version": "1.2.1",
+      "Findings": []
+    },
+    {
+      "Id": "Nito.Disposables",
+      "Version": "2.5.0",
+      "Findings": []
+    },
+    {
+      "Id": "NJsonSchema",
+      "Version": "11.6.1",
+      "Findings": []
+    },
+    {
+      "Id": "NJsonSchema.Yaml",
+      "Version": "11.6.1",
+      "Findings": []
+    },
+    {
+      "Id": "NLog",
+      "Version": "6.1.4",
+      "Findings": []
+    },
+    {
+      "Id": "NLog.Extensions.Logging",
+      "Version": "6.1.4",
+      "Findings": []
+    },
+    {
+      "Id": "NLog.Web.AspNetCore",
+      "Version": "6.1.4",
+      "Findings": []
+    },
+    {
+      "Id": "NodaTime",
+      "Version": "3.3.3",
+      "Findings": []
+    },
+    {
+      "Id": "Npgsql",
+      "Version": "10.0.3",
+      "Findings": []
+    },
+    {
+      "Id": "Npgsql.EntityFrameworkCore.PostgreSQL",
+      "Version": "10.0.3",
+      "Findings": []
+    },
+    {
+      "Id": "NSubstitute",
+      "Version": "6.0.0",
+      "Findings": []
+    },
+    {
+      "Id": "NSwag.Annotations",
+      "Version": "14.7.1",
+      "Findings": []
+    },
+    {
+      "Id": "NSwag.AspNetCore",
+      "Version": "14.7.1",
+      "Findings": []
+    },
+    {
+      "Id": "NSwag.Core",
+      "Version": "14.7.1",
+      "Findings": []
+    },
+    {
+      "Id": "NSwag.Generation",
+      "Version": "14.7.1",
+      "Findings": []
+    },
+    {
+      "Id": "NSwag.Generation.AspNetCore",
+      "Version": "14.7.1",
+      "Findings": []
+    },
+    {
+      "Id": "NuGet.Configuration",
+      "Version": "7.6.0",
+      "Findings": []
+    },
+    {
+      "Id": "NuGet.DependencyResolver.Core",
+      "Version": "7.6.0",
+      "Findings": []
+    },
+    {
+      "Id": "NuGet.LibraryModel",
+      "Version": "7.6.0",
+      "Findings": []
+    },
+    {
+      "Id": "NuGet.Packaging",
+      "Version": "7.6.0",
+      "Findings": []
+    },
+    {
+      "Id": "NuGet.ProjectModel",
+      "Version": "7.6.0",
+      "Findings": []
+    },
+    {
+      "Id": "NuGet.Protocol",
+      "Version": "7.6.0",
+      "Findings": []
+    },
+    {
+      "Id": "NuGet.Versioning",
+      "Version": "7.6.0",
+      "Findings": []
+    },
+    {
+      "Id": "NUnit",
+      "Version": "4.6.1",
+      "Findings": []
+    },
+    {
+      "Id": "NUnit.Analyzers",
+      "Version": "4.14.0",
+      "Findings": []
+    },
+    {
+      "Id": "NUnit3TestAdapter",
+      "Version": "6.2.0",
+      "Findings": []
+    },
+    {
+      "Id": "OpenTelemetry",
+      "Version": "1.17.0",
+      "Findings": []
+    },
+    {
+      "Id": "OpenTelemetry.Api",
+      "Version": "1.17.0",
+      "Findings": []
+    },
+    {
+      "Id": "OpenTelemetry.Api.ProviderBuilderExtensions",
+      "Version": "1.17.0",
+      "Findings": []
+    },
+    {
+      "Id": "OpenTelemetry.Exporter.Console",
+      "Version": "1.17.0",
+      "Findings": []
+    },
+    {
+      "Id": "OpenTelemetry.Exporter.OpenTelemetryProtocol",
+      "Version": "1.17.0",
+      "Findings": []
+    },
+    {
+      "Id": "OpenTelemetry.Extensions.Hosting",
+      "Version": "1.17.0",
+      "Findings": []
+    },
+    {
+      "Id": "OpenTelemetry.Instrumentation.AspNetCore",
+      "Version": "1.17.0",
+      "Findings": []
+    },
+    {
+      "Id": "OpenTelemetry.Instrumentation.Http",
+      "Version": "1.17.0",
+      "Findings": []
+    },
+    {
+      "Id": "OpenTelemetry.Instrumentation.Runtime",
+      "Version": "1.17.0",
+      "Findings": []
+    },
+    {
+      "Id": "Oracle.ManagedDataAccess.Core",
+      "Version": "23.26.300",
+      "Findings": []
+    },
+    {
+      "Id": "Pipelines.Sockets.Unofficial",
+      "Version": "2.2.16",
+      "Findings": []
+    },
+    {
+      "Id": "Polly",
+      "Version": "8.7.0",
+      "Findings": []
+    },
+    {
+      "Id": "Polly.Contrib.WaitAndRetry",
+      "Version": "1.1.1",
+      "Findings": []
+    },
+    {
+      "Id": "Polly.Core",
+      "Version": "8.7.0",
+      "Findings": []
+    },
+    {
+      "Id": "Polly.Extensions",
+      "Version": "8.7.0",
+      "Findings": []
+    },
+    {
+      "Id": "Polly.Extensions.Http",
+      "Version": "3.0.0",
+      "Findings": []
+    },
+    {
+      "Id": "Polly.RateLimiting",
+      "Version": "8.7.0",
+      "Findings": []
+    },
+    {
+      "Id": "Pomelo.EntityFrameworkCore.MySql",
+      "Version": "9.0.0",
+      "Findings": []
+    },
+    {
+      "Id": "Portable.BouncyCastle",
+      "Version": "1.9.0",
+      "Findings": []
+    },
+    {
+      "Id": "prometheus-net",
+      "Version": "8.2.1",
+      "Findings": []
+    },
+    {
+      "Id": "prometheus-net.AspNetCore",
+      "Version": "8.2.1",
+      "Findings": []
+    },
+    {
+      "Id": "protobuf-net",
+      "Version": "3.2.56",
+      "Findings": []
+    },
+    {
+      "Id": "protobuf-net.Core",
+      "Version": "3.2.56",
+      "Findings": []
+    },
+    {
+      "Id": "Quartz",
+      "Version": "3.19.1",
+      "Findings": []
+    },
+    {
+      "Id": "RabbitMQ.Client",
+      "Version": "7.2.1",
+      "Findings": []
+    },
+    {
+      "Id": "Refit",
+      "Version": "14.0.1",
+      "Findings": []
+    },
+    {
+      "Id": "Remotion.Linq",
+      "Version": "2.2.0",
+      "Findings": []
+    },
+    {
+      "Id": "RestSharp",
+      "Version": "114.0.0",
+      "Findings": []
+    },
+    {
+      "Id": "runtime.win-arm64.runtime.native.System.Data.SqlClient.sni",
+      "Version": "4.4.0",
+      "Findings": []
+    },
+    {
+      "Id": "runtime.win-x64.runtime.native.System.Data.SqlClient.sni",
+      "Version": "4.4.0",
+      "Findings": []
+    },
+    {
+      "Id": "runtime.win-x86.runtime.native.System.Data.SqlClient.sni",
+      "Version": "4.4.0",
+      "Findings": []
+    },
+    {
+      "Id": "Scrutor",
+      "Version": "7.0.0",
+      "Findings": []
+    },
+    {
+      "Id": "Selenium.Support",
+      "Version": "4.46.0",
+      "Findings": []
+    },
+    {
+      "Id": "Selenium.WebDriver",
+      "Version": "4.46.0",
+      "Findings": []
+    },
+    {
+      "Id": "SendGrid",
+      "Version": "9.29.3",
+      "Findings": []
+    },
+    {
+      "Id": "Sentry",
+      "Version": "6.8.0",
+      "Findings": []
+    },
+    {
+      "Id": "Serilog",
+      "Version": "4.4.0",
+      "Findings": []
+    },
+    {
+      "Id": "Serilog.AspNetCore",
+      "Version": "10.0.0",
+      "Findings": []
+    },
+    {
+      "Id": "Serilog.Enrichers.Environment",
+      "Version": "3.0.1",
+      "Findings": []
+    },
+    {
+      "Id": "Serilog.Enrichers.Thread",
+      "Version": "4.0.0",
+      "Findings": []
+    },
+    {
+      "Id": "Serilog.Exceptions",
+      "Version": "5.4.0",
+      "Findings": []
+    },
+    {
+      "Id": "Serilog.Expressions",
+      "Version": "5.0.0",
+      "Findings": []
+    },
+    {
+      "Id": "Serilog.Extensions.Hosting",
+      "Version": "10.0.0",
+      "Findings": []
+    },
+    {
+      "Id": "Serilog.Extensions.Logging",
+      "Version": "10.0.0",
+      "Findings": []
+    },
+    {
+      "Id": "Serilog.Formatting.Compact",
+      "Version": "3.0.0",
+      "Findings": []
+    },
+    {
+      "Id": "Serilog.Formatting.Elasticsearch",
+      "Version": "10.0.0",
+      "Findings": []
+    },
+    {
+      "Id": "Serilog.Settings.Configuration",
+      "Version": "10.0.1",
+      "Findings": []
+    },
+    {
+      "Id": "Serilog.Sinks.ApplicationInsights",
+      "Version": "5.0.1",
+      "Findings": []
+    },
+    {
+      "Id": "Serilog.Sinks.Async",
+      "Version": "2.1.0",
+      "Findings": []
+    },
+    {
+      "Id": "Serilog.Sinks.Console",
+      "Version": "6.1.1",
+      "Findings": []
+    },
+    {
+      "Id": "Serilog.Sinks.Debug",
+      "Version": "3.0.0",
+      "Findings": []
+    },
+    {
+      "Id": "Serilog.Sinks.Elasticsearch",
+      "Version": "10.0.0",
+      "Findings": []
+    },
+    {
+      "Id": "Serilog.Sinks.File",
+      "Version": "7.0.0",
+      "Findings": []
+    },
+    {
+      "Id": "Serilog.Sinks.PeriodicBatching",
+      "Version": "5.0.0",
+      "Findings": []
+    },
+    {
+      "Id": "Serilog.Sinks.RollingFile",
+      "Version": "3.3.0",
+      "Findings": []
+    },
+    {
+      "Id": "Serilog.Sinks.Seq",
+      "Version": "9.1.0",
+      "Findings": []
+    },
+    {
+      "Id": "SharpCompress",
+      "Version": "0.50.1",
+      "Findings": []
+    },
+    {
+      "Id": "SharpZipLib",
+      "Version": "1.4.2",
+      "Findings": []
+    },
+    {
+      "Id": "Shouldly",
+      "Version": "4.3.0",
+      "Findings": []
+    },
+    {
+      "Id": "SixLabors.Fonts",
+      "Version": "3.0.0",
+      "Findings": []
+    },
+    {
+      "Id": "SixLabors.ImageSharp",
+      "Version": "4.0.0",
+      "Findings": []
+    },
+    {
+      "Id": "SkiaSharp",
+      "Version": "4.150.1",
+      "Findings": []
+    },
+    {
+      "Id": "SkiaSharp.NativeAssets.macOS",
+      "Version": "4.150.1",
+      "Findings": []
+    },
+    {
+      "Id": "SkiaSharp.NativeAssets.Win32",
+      "Version": "4.150.1",
+      "Findings": []
+    },
+    {
+      "Id": "Snappier",
+      "Version": "1.3.1",
+      "Findings": []
+    },
+    {
+      "Id": "SpecFlow",
+      "Version": "3.9.74",
+      "Findings": []
+    },
+    {
+      "Id": "SQLitePCLRaw.bundle_e_sqlite3",
+      "Version": "3.0.5",
+      "Findings": []
+    },
+    {
+      "Id": "SQLitePCLRaw.core",
+      "Version": "3.0.5",
+      "Findings": []
+    },
+    {
+      "Id": "SQLitePCLRaw.lib.e_sqlite3",
+      "Version": "3.53.3",
+      "Findings": []
+    },
+    {
+      "Id": "SQLitePCLRaw.provider.e_sqlite3",
+      "Version": "3.0.5",
+      "Findings": []
+    },
+    {
+      "Id": "SSH.NET",
+      "Version": "2025.1.0",
+      "Findings": []
+    },
+    {
+      "Id": "SshNet.Security.Cryptography",
+      "Version": "1.3.0",
+      "Findings": []
+    },
+    {
+      "Id": "StackExchange.Redis",
+      "Version": "3.0.17",
+      "Findings": []
+    },
+    {
+      "Id": "starkbank-ecdsa",
+      "Version": "1.3.3",
+      "Findings": []
+    },
+    {
+      "Id": "StyleCop.Analyzers",
+      "Version": "1.1.118",
+      "Findings": []
+    },
+    {
+      "Id": "Swashbuckle.AspNetCore",
+      "Version": "10.2.3",
+      "Findings": []
+    },
+    {
+      "Id": "Swashbuckle.AspNetCore.Annotations",
+      "Version": "10.2.3",
+      "Findings": []
+    },
+    {
+      "Id": "Swashbuckle.AspNetCore.Newtonsoft",
+      "Version": "10.2.3",
+      "Findings": []
+    },
+    {
+      "Id": "Swashbuckle.AspNetCore.Swagger",
+      "Version": "10.2.3",
+      "Findings": []
+    },
+    {
+      "Id": "Swashbuckle.AspNetCore.SwaggerGen",
+      "Version": "10.2.3",
+      "Findings": []
+    },
+    {
+      "Id": "Swashbuckle.AspNetCore.SwaggerUI",
+      "Version": "10.2.3",
+      "Findings": []
+    },
+    {
+      "Id": "System.ClientModel",
+      "Version": "1.14.0",
+      "Findings": []
+    },
+    {
+      "Id": "System.CodeDom",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "System.ComponentModel.Composition",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "System.Data.DataSetExtensions",
+      "Version": "4.5.0",
+      "Findings": []
+    },
+    {
+      "Id": "System.Data.Odbc",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "System.Data.OleDb",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "System.Diagnostics.EventLog",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "System.Diagnostics.PerformanceCounter",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "System.DirectoryServices",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "System.DirectoryServices.AccountManagement",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "System.DirectoryServices.Protocols",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "System.Drawing.Common",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "System.Formats.Asn1",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "System.Interactive.Async",
+      "Version": "7.0.1",
+      "Findings": []
+    },
+    {
+      "Id": "System.IO.Abstractions",
+      "Version": "22.2.0",
+      "Findings": []
+    },
+    {
+      "Id": "System.IO.Hashing",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "System.IO.Packaging",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "System.IO.Ports",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "System.Linq.Async",
+      "Version": "7.0.1",
+      "Findings": []
+    },
+    {
+      "Id": "System.Linq.Dynamic.Core",
+      "Version": "1.7.3",
+      "Findings": []
+    },
+    {
+      "Id": "System.Management",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "System.Memory.Data",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "System.Net.Http.Json",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "System.Net.WebSockets.WebSocketProtocol",
+      "Version": "5.1.3",
+      "Findings": []
+    },
+    {
+      "Id": "System.Reactive",
+      "Version": "7.0.0",
+      "Findings": []
+    },
+    {
+      "Id": "System.Reactive.Linq",
+      "Version": "6.1.0",
+      "Findings": []
+    },
+    {
+      "Id": "System.Reflection.MetadataLoadContext",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "System.Resources.Extensions",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "System.Runtime.Caching",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "System.Security.Cryptography.Pkcs",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "System.ServiceProcess.ServiceController",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "System.Text.Json",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "System.Threading.AccessControl",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "System.Threading.Channels",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "System.Threading.RateLimiting",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "System.Windows.Extensions",
+      "Version": "10.0.10",
+      "Findings": []
+    },
+    {
+      "Id": "TimeZoneConverter",
+      "Version": "7.2.0",
+      "Findings": []
+    },
+    {
+      "Id": "Twilio",
+      "Version": "7.14.9",
+      "Findings": []
+    },
+    {
+      "Id": "Unity",
+      "Version": "5.11.10",
+      "Findings": []
+    },
+    {
+      "Id": "WebActivatorEx",
+      "Version": "2.2.0",
+      "Findings": []
+    },
+    {
+      "Id": "WebGrease",
+      "Version": "1.6.0",
+      "Findings": []
+    },
+    {
+      "Id": "xunit",
+      "Version": "2.9.3",
+      "Findings": []
+    },
+    {
+      "Id": "YamlDotNet",
+      "Version": "18.1.0",
+      "Findings": []
+    },
+    {
+      "Id": "ZstdSharp.Port",
+      "Version": "0.8.8",
+      "Findings": []
+    }
+  ]
+}

@@ -1,33 +1,40 @@
 using System.Diagnostics;
 using System.Text.Json;
-using Redecker.Findings;
 using Redecker.Packages;
 using Redecker.Rules;
 
 namespace Redecker.Corpus;
 
 /// <summary>
-/// Runs every single-package rule across the most-downloaded packages on nuget.org, and reports
-/// how often each fires.
+/// Runs every single-package rule across the most-downloaded packages on nuget.org, and records
+/// what each one produced.
 /// </summary>
 /// <remarks>
 /// <para>
 /// This exists to answer a question ten hand-picked control packages cannot: is a rule safe? A
 /// rule firing on 4% of widely-used packages is either finding something important or is wrong,
-/// and knowing which before release is worth more than another unit test.
+/// and knowing which before release is worth more than another unit test. On its first run it
+/// found three false positives that had already shipped.
 /// </para>
 /// <para>
-/// It is deliberately not part of the shipped tool. `redecker inspect` should stay something you
+/// Results are written to <c>results/</c> and committed, so a later run diffs against them. That
+/// is the part that makes this worth keeping rather than a thing someone ran once.
+/// </para>
+/// <para>
+/// Deliberately not part of the shipped tool. <c>redecker inspect</c> should stay something you
 /// point at one package.
 /// </para>
 /// </remarks>
 public static class Program
 {
     private const string SearchUrl = "https://azuresearch-usnc.nuget.org/query";
+    private const string Corpus = "nuget.org, ranked by total downloads";
 
     public static async Task<int> Main(string[] args)
     {
         var take = args.Length > 0 && int.TryParse(args[0], out var n) ? n : 100;
+        var results = args.Length > 1 ? args[1] : "results";
+
         var cache = Path.Combine(
             Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), ".redecker-corpus");
         Directory.CreateDirectory(cache);
@@ -36,15 +43,16 @@ public static class Program
         http.DefaultRequestHeaders.UserAgent.ParseAdd("redecker-corpus (rule validation sweep)");
 
         Console.WriteLine($"Sweeping the top {take} packages by download count.");
-        Console.WriteLine($"Cache: {cache}");
+        Console.WriteLine($"Cache:   {cache}");
+        Console.WriteLine($"Results: {Path.GetFullPath(results)}");
         Console.WriteLine();
 
         var packages = await TopPackagesAsync(http, take).ConfigureAwait(false);
         Console.WriteLine($"Resolved {packages.Count} package versions.\n");
 
-        var findingsByRule = new Dictionary<string, List<string>>(StringComparer.Ordinal);
-        var examined = 0;
-        var failed = 0;
+        var rules = AllRules().ToList();
+        var recorded = new List<PackageResult>();
+        var skipped = 0;
         var stopwatch = Stopwatch.StartNew();
 
         foreach (var (id, version) in packages)
@@ -56,31 +64,38 @@ public static class Program
             }
             catch (Exception ex)
             {
-                failed++;
+                skipped++;
                 Console.Error.WriteLine($"  skip {id}@{version}: {ex.GetType().Name}");
                 continue;
             }
 
-            examined++;
             using var package = PackageArchive.Open(id, version, new MemoryStream(bytes, writable: false));
 
-            foreach (var finding in AllRules().SelectMany(r => r.Inspect(package)))
-            {
-                if (!findingsByRule.TryGetValue(finding.Code, out var hits))
-                {
-                    findingsByRule[finding.Code] = hits = [];
-                }
+            var findings = rules
+                .SelectMany(r => r.Inspect(package))
+                .Select(f => new RecordedFinding(f.Code, f.Severity.ToString(), f.Title))
+                .ToList();
 
-                hits.Add($"{id}@{version}  {finding.Title}");
-            }
+            recorded.Add(new PackageResult(id, version, findings));
 
-            if (examined % 25 == 0)
+            if (recorded.Count % 50 == 0)
             {
-                Console.WriteLine($"  {examined}/{packages.Count} examined ({stopwatch.Elapsed.TotalSeconds:F0}s)");
+                Console.WriteLine($"  {recorded.Count}/{packages.Count} examined ({stopwatch.Elapsed.TotalSeconds:F0}s)");
             }
         }
 
-        Report(examined, failed, findingsByRule, stopwatch.Elapsed);
+        var result = new SweepResult(
+            Corpus,
+            take,
+            recorded.Count,
+            skipped,
+            // Recorded so an empty result is interpretable: "nothing fired" means something only
+            // when you know what was looking.
+            rules.Select(r => r.Code).OrderBy(c => c, StringComparer.Ordinal).ToList(),
+            recorded.OrderBy(p => p.Id, StringComparer.OrdinalIgnoreCase).ToList());
+
+        Report(result, stopwatch.Elapsed);
+        result.Write(results);
         return 0;
     }
 
@@ -97,7 +112,7 @@ public static class Program
     {
         var results = new List<(string, string)>();
 
-        // The search service caps a page at 1000, so page with skip for larger sweeps.
+        // The search service caps a page at 1000; page with skip for larger sweeps.
         for (var skip = 0; skip < take; skip += 100)
         {
             var page = Math.Min(100, take - skip);
@@ -147,53 +162,39 @@ public static class Program
         await File.WriteAllBytesAsync(temp, bytes).ConfigureAwait(false);
         File.Move(temp, file, overwrite: true);
 
-        // Only pause on a real fetch. A cached sweep runs at full speed.
+        // Only pause on a real fetch; a cached sweep runs at full speed.
         await Task.Delay(120).ConfigureAwait(false);
         return bytes;
     }
 
-    private static void Report(
-        int examined, int failed, Dictionary<string, List<string>> findings, TimeSpan elapsed)
+    private static void Report(SweepResult result, TimeSpan elapsed)
     {
         Console.WriteLine();
         Console.WriteLine(new string('=', 78));
-        Console.WriteLine($"Examined {examined} packages in {elapsed.TotalSeconds:F0}s ({failed} skipped)");
+        Console.WriteLine($"Examined {result.Examined} packages in {elapsed.TotalSeconds:F0}s ({result.Skipped} skipped)");
         Console.WriteLine(new string('=', 78));
         Console.WriteLine();
-
-        if (findings.Count == 0)
-        {
-            Console.WriteLine("No rule fired on any package.");
-            return;
-        }
-
-        Console.WriteLine($"{"Rule",-12} {"Packages",-10} {"Rate",-8} Interpretation");
+        Console.WriteLine($"{"Rule",-12} {"Packages",-10} {"Rate",-8} Reading");
         Console.WriteLine(new string('-', 78));
 
-        foreach (var (code, hits) in findings.OrderBy(f => f.Key, StringComparer.Ordinal))
+        foreach (var code in result.Rules)
         {
-            var distinct = hits.Select(h => h.Split("  ")[0]).Distinct(StringComparer.OrdinalIgnoreCase).Count();
-            var rate = examined == 0 ? 0 : 100.0 * distinct / examined;
-
-            // A high rate on widely-used packages is far likelier to mean the rule is wrong than
-            // that the ecosystem is broken. Say so rather than presenting a number.
-            var reading = rate switch
-            {
-                > 20 => "SUSPECT - too common to be a real defect",
-                > 5 => "review - unusually common",
-                _ => "plausible",
-            };
-
-            Console.WriteLine($"{code,-12} {distinct,-10} {rate,6:F1}%  {reading}");
+            var hits = result.Packages.Count(p => p.Findings.Any(f => f.Code == code));
+            var rate = result.Examined == 0 ? 0 : 100.0 * hits / result.Examined;
+            var reading = SweepResult.Reading(rate).Replace("**", "", StringComparison.Ordinal);
+            Console.WriteLine($"{code,-12} {hits,-10} {rate,6:F1}%  {reading}");
         }
 
         Console.WriteLine();
-        foreach (var (code, hits) in findings.OrderBy(f => f.Key, StringComparer.Ordinal))
+        foreach (var (code, packages) in result.ByRule())
         {
-            Console.WriteLine($"--- {code}, first 10 of {hits.Count}");
-            foreach (var hit in hits.Take(10))
+            Console.WriteLine($"--- {code}");
+            foreach (var package in packages.Take(10))
             {
-                Console.WriteLine($"    {hit}");
+                foreach (var finding in package.Findings.Where(f => f.Code == code))
+                {
+                    Console.WriteLine($"    {package.Id}@{package.Version}  {finding.Title}");
+                }
             }
 
             Console.WriteLine();
