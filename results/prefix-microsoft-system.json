@@ -1,21 +1,23 @@
 {
   "Corpus": "nuget.org, ids starting with Microsoft. or System., published within 6 years",
-  "Requested": 2681,
-  "Examined": 2681,
+  "Requested": 2682,
+  "Examined": 2682,
   "Skipped": 0,
   "Rules": [
     "RDK0001",
     "RDK0005",
     "RDK0006",
     "RDK0007",
-    "RDK0008"
+    "RDK0008",
+    "RDK0010"
   ],
   "RuleNames": [
     "dangling asset reference",
     "tool package not installable",
     "unimportable build file",
     "untracked output copy",
-    "analyzer under a framework folder"
+    "analyzer under a framework folder",
+    "assembly does not match its framework folder"
   ],
   "Packages": [
     {
@@ -851,7 +853,13 @@
     {
       "Id": "Microsoft.AspNet.OData",
       "Version": "7.8.0",
-      "Findings": []
+      "Findings": [
+        {
+          "Code": "RDK0010",
+          "Severity": "Warning",
+          "Title": "lib/net45/ contains an assembly built for .NETFramework,Version=v4.5.2"
+        }
+      ]
     },
     {
       "Id": "Microsoft.AspNet.OData.Versioning",
@@ -1295,11 +1303,6 @@
     },
     {
       "Id": "Microsoft.AspNet.WebApi.Owin.ja",
-      "Version": "5.3.0",
-      "Findings": []
-    },
-    {
-      "Id": "Microsoft.AspNet.WebApi.Owin.zh-Hans",
       "Version": "5.3.0",
       "Findings": []
     },
@@ -2452,7 +2455,18 @@
     {
       "Id": "Microsoft.Azure.CosmosDB.BulkExecutor",
       "Version": "1.8.9",
-      "Findings": []
+      "Findings": [
+        {
+          "Code": "RDK0010",
+          "Severity": "Warning",
+          "Title": "lib/net45/ contains an assembly built for .NETFramework,Version=v4.6.1"
+        },
+        {
+          "Code": "RDK0010",
+          "Severity": "Warning",
+          "Title": "lib/net451/ contains an assembly built for .NETFramework,Version=v4.6.1"
+        }
+      ]
     },
     {
       "Id": "Microsoft.Azure.Data.SchemaRegistry.ApacheAvro",
@@ -2482,6 +2496,11 @@
           "Code": "RDK0006",
           "Severity": "Warning",
           "Title": "build/runtime/ ships MSBuild files with no entry point named after the package"
+        },
+        {
+          "Code": "RDK0010",
+          "Severity": "Warning",
+          "Title": "lib/net45/ contains an assembly built for .NETFramework,Version=v4.7.2"
         }
       ]
     },
@@ -2687,7 +2706,7 @@
     },
     {
       "Id": "Microsoft.Azure.Functions.Worker.Extensions.Mcp",
-      "Version": "1.5.1",
+      "Version": "1.6.0",
       "Findings": []
     },
     {
@@ -3310,7 +3329,13 @@
     {
       "Id": "Microsoft.Azure.Workflows.WebJobs.Extension",
       "Version": "1.44.16",
-      "Findings": []
+      "Findings": [
+        {
+          "Code": "RDK0010",
+          "Severity": "Warning",
+          "Title": "lib/netcoreapp3.1/ contains an assembly built for .NETFramework,Version=v4.0"
+        }
+      ]
     },
     {
       "Id": "Microsoft.Azure.Workflows.WebJobs.Sdk",
@@ -3971,7 +3996,13 @@
     {
       "Id": "Microsoft.CodeCoverage",
       "Version": "18.8.1",
-      "Findings": []
+      "Findings": [
+        {
+          "Code": "RDK0010",
+          "Severity": "Warning",
+          "Title": "lib/net8.0/ contains an assembly built for .NETFramework,Version=v4.0"
+        }
+      ]
     },
     {
       "Id": "Microsoft.CodeDom.Providers.DotNetCompilerPlatform",
@@ -6118,17 +6149,17 @@
       "Findings": []
     },
     {
+      "Id": "Microsoft.iOS.Ref.net10.0_26.5.Msi.x64",
+      "Version": "26.5.10301",
+      "Findings": []
+    },
+    {
       "Id": "Microsoft.iOS.Ref.net8.0_17.5",
       "Version": "17.5.8030",
       "Findings": []
     },
     {
       "Id": "Microsoft.iOS.Ref.net8.0_18.0",
-      "Version": "18.0.8324",
-      "Findings": []
-    },
-    {
-      "Id": "Microsoft.iOS.Ref.net8.0_18.0.Msi.x64",
       "Version": "18.0.8324",
       "Findings": []
     },
@@ -6204,6 +6235,11 @@
     },
     {
       "Id": "Microsoft.iOS.Runtime.ios-arm64.net10.0_26.5",
+      "Version": "26.5.10301",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.iOS.Runtime.ios-arm64.net10.0_26.5.Msi.x64",
       "Version": "26.5.10301",
       "Findings": []
     },
@@ -6288,6 +6324,11 @@
       "Findings": []
     },
     {
+      "Id": "Microsoft.iOS.Runtime.ios.net10.0_26.5.Msi.x64",
+      "Version": "26.5.10301",
+      "Findings": []
+    },
+    {
       "Id": "Microsoft.iOS.Runtime.iossimulator-arm64.Msi.x64",
       "Version": "17.2.8078",
       "Findings": []
@@ -6309,6 +6350,11 @@
     },
     {
       "Id": "Microsoft.iOS.Runtime.iossimulator-arm64.net10.0_26.5",
+      "Version": "26.5.10301",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.iOS.Runtime.iossimulator-arm64.net10.0_26.5.Msi.x64",
       "Version": "26.5.10301",
       "Findings": []
     },
@@ -6389,6 +6435,11 @@
     },
     {
       "Id": "Microsoft.iOS.Runtime.iossimulator-x64.net10.0_26.5",
+      "Version": "26.5.10301",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.iOS.Runtime.iossimulator-x64.net10.0_26.5.Msi.x64",
       "Version": "26.5.10301",
       "Findings": []
     },
@@ -6798,6 +6849,11 @@
       "Findings": []
     },
     {
+      "Id": "Microsoft.MacCatalyst.Ref.net10.0_26.5.Msi.x64",
+      "Version": "26.5.10301",
+      "Findings": []
+    },
+    {
       "Id": "Microsoft.MacCatalyst.Ref.net8.0_17.5",
       "Version": "17.5.8030",
       "Findings": []
@@ -6864,6 +6920,11 @@
     },
     {
       "Id": "Microsoft.MacCatalyst.Runtime.maccatalyst-arm64.net10.0_26.5",
+      "Version": "26.5.10301",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.MacCatalyst.Runtime.maccatalyst-arm64.net10.0_26.5.Msi.x64",
       "Version": "26.5.10301",
       "Findings": []
     },
@@ -6938,6 +6999,11 @@
       "Findings": []
     },
     {
+      "Id": "Microsoft.MacCatalyst.Runtime.maccatalyst-x64.net10.0_26.5.Msi.x64",
+      "Version": "26.5.10301",
+      "Findings": []
+    },
+    {
       "Id": "Microsoft.MacCatalyst.Runtime.maccatalyst-x64.net8.0_17.5",
       "Version": "17.5.8030",
       "Findings": []
@@ -6999,6 +7065,11 @@
     },
     {
       "Id": "Microsoft.MacCatalyst.Runtime.maccatalyst.net10.0_26.5",
+      "Version": "26.5.10301",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.MacCatalyst.Runtime.maccatalyst.net10.0_26.5.Msi.x64",
       "Version": "26.5.10301",
       "Findings": []
     },
@@ -7476,11 +7547,6 @@
     },
     {
       "Id": "Microsoft.Maui.Graphics.Skia",
-      "Version": "10.0.90",
-      "Findings": []
-    },
-    {
-      "Id": "Microsoft.Maui.Graphics.Text.Markdig",
       "Version": "10.0.90",
       "Findings": []
     },
@@ -11525,12 +11591,24 @@
     {
       "Id": "Microsoft.ReportingServices.ReportViewerControl.WebForms",
       "Version": "150.1652.0",
-      "Findings": []
+      "Findings": [
+        {
+          "Code": "RDK0010",
+          "Severity": "Warning",
+          "Title": "lib/net40/ contains an assembly built for .NETFramework,Version=v4.6"
+        }
+      ]
     },
     {
       "Id": "Microsoft.ReportingServices.ReportViewerControl.Winforms",
       "Version": "150.1652.0",
-      "Findings": []
+      "Findings": [
+        {
+          "Code": "RDK0010",
+          "Severity": "Warning",
+          "Title": "lib/net40/ contains an assembly built for .NETFramework,Version=v4.6"
+        }
+      ]
     },
     {
       "Id": "Microsoft.Restier.Core",
@@ -11745,7 +11823,13 @@
     {
       "Id": "Microsoft.SharePointOnline.CSOM",
       "Version": "16.1.27424.12000",
-      "Findings": []
+      "Findings": [
+        {
+          "Code": "RDK0010",
+          "Severity": "Warning",
+          "Title": "lib/net40-full/ contains an assembly built for .NETFramework,Version=v4.5"
+        }
+      ]
     },
     {
       "Id": "Microsoft.SourceLink.AzureDevOpsServer.Git",
@@ -11848,11 +11932,6 @@
       "Findings": []
     },
     {
-      "Id": "Microsoft.SqlServer.Dacpacs.Msdb",
-      "Version": "170.0.3",
-      "Findings": []
-    },
-    {
       "Id": "Microsoft.SqlServer.Management.AlwaysEncrypted.AzureKeyVaultProvider",
       "Version": "2.4.0",
       "Findings": []
@@ -11930,11 +12009,6 @@
     },
     {
       "Id": "Microsoft.TemplateEngine.Abstractions",
-      "Version": "10.0.302",
-      "Findings": []
-    },
-    {
-      "Id": "Microsoft.TemplateEngine.Authoring.TemplateVerifier",
       "Version": "10.0.302",
       "Findings": []
     },
@@ -12129,16 +12203,6 @@
       "Findings": []
     },
     {
-      "Id": "Microsoft.tvOS.Runtime.tvossimulator-arm64.Msi.x64",
-      "Version": "17.2.8078",
-      "Findings": []
-    },
-    {
-      "Id": "Microsoft.tvOS.Runtime.tvossimulator-x64.Msi.x64",
-      "Version": "17.2.8078",
-      "Findings": []
-    },
-    {
       "Id": "Microsoft.tvOS.Sdk.net9.0_18.0",
       "Version": "18.0.9617",
       "Findings": []
@@ -12241,11 +12305,6 @@
       "Findings": []
     },
     {
-      "Id": "Microsoft.VisualStudio.Data",
-      "Version": "17.10.40170",
-      "Findings": []
-    },
-    {
       "Id": "Microsoft.VisualStudio.Data.Core",
       "Version": "17.10.40152",
       "Findings": []
@@ -12318,7 +12377,18 @@
     {
       "Id": "Microsoft.VisualStudio.DesignTools.Extensibility",
       "Version": "17.10.34916.79",
-      "Findings": []
+      "Findings": [
+        {
+          "Code": "RDK0010",
+          "Severity": "Warning",
+          "Title": "lib/net45/ contains an assembly built for .NETFramework,Version=v4.7.2"
+        },
+        {
+          "Code": "RDK0010",
+          "Severity": "Warning",
+          "Title": "lib/net45/ contains an assembly built for .NETStandard,Version=v2.0"
+        }
+      ]
     },
     {
       "Id": "Microsoft.VisualStudio.DiagnosticsHub.BenchmarkDotNetDiagnosers",
@@ -12328,7 +12398,13 @@
     {
       "Id": "Microsoft.VisualStudio.DpiAwareness",
       "Version": "7.10.34910",
-      "Findings": []
+      "Findings": [
+        {
+          "Code": "RDK0010",
+          "Severity": "Warning",
+          "Title": "lib/net46/ contains an assembly built for .NETFramework,Version=v4.7.2"
+        }
+      ]
     },
     {
       "Id": "Microsoft.VisualStudio.Editor",
@@ -12813,7 +12889,13 @@
     {
       "Id": "Microsoft.VisualStudio.TextTemplating.15.0",
       "Version": "16.10.31320.204",
-      "Findings": []
+      "Findings": [
+        {
+          "Code": "RDK0010",
+          "Severity": "Warning",
+          "Title": "lib/net45/ contains an assembly built for .NETFramework,Version=v4.7.2"
+        }
+      ]
     },
     {
       "Id": "Microsoft.VisualStudio.TextTemplating.Interfaces",
@@ -12823,17 +12905,35 @@
     {
       "Id": "Microsoft.VisualStudio.TextTemplating.Interfaces.10.0",
       "Version": "17.0.32112.339",
-      "Findings": []
+      "Findings": [
+        {
+          "Code": "RDK0010",
+          "Severity": "Warning",
+          "Title": "lib/netstandard2.0/ contains an assembly built for .NETFramework,Version=v4.0"
+        }
+      ]
     },
     {
       "Id": "Microsoft.VisualStudio.TextTemplating.Interfaces.11.0",
       "Version": "17.0.32112.339",
-      "Findings": []
+      "Findings": [
+        {
+          "Code": "RDK0010",
+          "Severity": "Warning",
+          "Title": "lib/netstandard2.0/ contains an assembly built for .NETFramework,Version=v4.5"
+        }
+      ]
     },
     {
       "Id": "Microsoft.VisualStudio.TextTemplating.Interfaces.15.0",
       "Version": "16.10.31320.204",
-      "Findings": []
+      "Findings": [
+        {
+          "Code": "RDK0010",
+          "Severity": "Warning",
+          "Title": "lib/net45/ contains an assembly built for .NETFramework,Version=v4.7.2"
+        }
+      ]
     },
     {
       "Id": "Microsoft.VisualStudio.TextTemplating.VSHost",
@@ -12843,7 +12943,13 @@
     {
       "Id": "Microsoft.VisualStudio.TextTemplating.VSHost.15.0",
       "Version": "16.10.31321.278",
-      "Findings": []
+      "Findings": [
+        {
+          "Code": "RDK0010",
+          "Severity": "Warning",
+          "Title": "lib/net45/ contains an assembly built for .NETFramework,Version=v4.7.2"
+        }
+      ]
     },
     {
       "Id": "Microsoft.VisualStudio.Threading",
@@ -14046,7 +14152,13 @@
     {
       "Id": "System.Security.Cryptography.OpenSsl",
       "Version": "5.0.0",
-      "Findings": []
+      "Findings": [
+        {
+          "Code": "RDK0010",
+          "Severity": "Warning",
+          "Title": "lib/net461/ contains an assembly built for .NETFramework,Version=v4.7"
+        }
+      ]
     },
     {
       "Id": "System.Security.Cryptography.Pkcs",

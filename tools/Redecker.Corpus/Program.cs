@@ -140,6 +140,7 @@ public static class Program
         new UnimportableBuildFolderRule(),
         new UntrackedOutputCopyRule(),
         new AnalyzerPlacementRule(),
+        new FrameworkFolderMismatchRule(),
     ];
 
     /// <summary>

@@ -80,6 +80,7 @@ export default defineConfig({
                         { text: 'RDK0007 Untracked output copies', link: '/rules/rdk0007' },
                         { text: 'RDK0008 Analyzer placement', link: '/rules/rdk0008' },
                         { text: 'RDK0009 Incomplete symbol package', link: '/rules/rdk0009' },
+                        { text: 'RDK0010 Framework folder mismatch', link: '/rules/rdk0010' },
                     ]
                 },
                 {

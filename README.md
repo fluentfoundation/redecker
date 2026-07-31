@@ -19,7 +19,7 @@ dotnet add package Redecker.MSBuild            # fail the build instead
 broom makers, because the job is sweeping stale dependencies out — and knowing which dust is
 load-bearing.
 
-> **Status:** early. Nine rules and three commands work end to end, tested against real packages
+> **Status:** early. Ten rules and three commands work end to end, tested against real packages
 > and the real GitHub API. [Not built yet](#not-built-yet) is honest.
 
 ## Thirty seconds
@@ -269,6 +269,7 @@ nor banding can express. Tracked in [#1](https://github.com/fluentfoundation/red
 | `RDK0007` | warning | Output copies MSBuild does not track in `FileWrites` |
 | `RDK0008` | warning | Analyzer assemblies under a target framework folder |
 | `RDK0009` | warning | Symbol package that does not cover every shipped assembly |
+| `RDK0010` | warning | Assembly under a `lib/<framework>/` folder it does not satisfy |
 
 ### Shipping a package? Check it before it is permanent
 

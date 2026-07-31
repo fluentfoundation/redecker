@@ -10,9 +10,16 @@ namespace Redecker.Tests;
 /// </summary>
 internal sealed class SyntheticPackage
 {
-    private readonly Dictionary<string, string> _entries = new(StringComparer.OrdinalIgnoreCase);
+    private readonly Dictionary<string, byte[]> _entries = new(StringComparer.OrdinalIgnoreCase);
 
     public SyntheticPackage With(string path, string content = "")
+    {
+        _entries[path] = Encoding.UTF8.GetBytes(content);
+        return this;
+    }
+
+    /// <summary>Adds an entry with raw bytes, for rules that read a real assembly image.</summary>
+    public SyntheticPackage With(string path, byte[] content)
     {
         _entries[path] = content;
         return this;
@@ -49,8 +56,7 @@ internal sealed class SyntheticPackage
             {
                 var entry = zip.CreateEntry(path);
                 using var stream = entry.Open();
-                var bytes = Encoding.UTF8.GetBytes(content);
-                stream.Write(bytes, 0, bytes.Length);
+                stream.Write(content, 0, content.Length);
             }
         }
 

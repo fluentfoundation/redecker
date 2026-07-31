@@ -8,14 +8,16 @@
     "RDK0005",
     "RDK0006",
     "RDK0007",
-    "RDK0008"
+    "RDK0008",
+    "RDK0010"
   ],
   "RuleNames": [
     "dangling asset reference",
     "tool package not installable",
     "unimportable build file",
     "untracked output copy",
-    "analyzer under a framework folder"
+    "analyzer under a framework folder",
+    "assembly does not match its framework folder"
   ],
   "Packages": [
     {
@@ -70,12 +72,12 @@
     },
     {
       "Id": "Amazon.CDK.CXAPI",
-      "Version": "2.262.2",
+      "Version": "2.263.0",
       "Findings": []
     },
     {
       "Id": "Amazon.CDK.Lib",
-      "Version": "2.262.2",
+      "Version": "2.263.0",
       "Findings": []
     },
     {
@@ -165,7 +167,7 @@
     },
     {
       "Id": "AngleSharp.Css",
-      "Version": "1.0.0",
+      "Version": "1.0.1",
       "Findings": []
     },
     {
@@ -660,12 +662,12 @@
     },
     {
       "Id": "AWSSDK.BedrockRuntime",
-      "Version": "4.0.100.7",
+      "Version": "4.0.101",
       "Findings": []
     },
     {
       "Id": "AWSSDK.CloudFormation",
-      "Version": "4.0.101.7",
+      "Version": "4.0.102",
       "Findings": []
     },
     {
@@ -685,7 +687,7 @@
     },
     {
       "Id": "AWSSDK.CloudWatchLogs",
-      "Version": "4.0.101.5",
+      "Version": "4.0.102",
       "Findings": []
     },
     {
@@ -785,7 +787,7 @@
     },
     {
       "Id": "AWSSDK.RDS",
-      "Version": "4.0.103.2",
+      "Version": "4.0.104",
       "Findings": []
     },
     {
@@ -1862,7 +1864,13 @@
     {
       "Id": "EcoCore",
       "Version": "7.2.0.17464",
-      "Findings": []
+      "Findings": [
+        {
+          "Code": "RDK0010",
+          "Severity": "Warning",
+          "Title": "lib/net40/ contains an assembly built for .NETFramework,Version=v4.8"
+        }
+      ]
     },
     {
       "Id": "EFCore.BulkExtensions",
@@ -2722,7 +2730,13 @@
     {
       "Id": "Hangfire.MemoryStorage",
       "Version": "1.8.1.2",
-      "Findings": []
+      "Findings": [
+        {
+          "Code": "RDK0010",
+          "Severity": "Warning",
+          "Title": "lib/net40/ contains an assembly built for .NETFramework,Version=v4.5"
+        }
+      ]
     },
     {
       "Id": "Hangfire.NetCore",
@@ -3287,7 +3301,7 @@
     },
     {
       "Id": "IronSoftware.System.Drawing",
-      "Version": "2026.7.2",
+      "Version": "2026.8.2",
       "Findings": []
     },
     {
@@ -3352,7 +3366,7 @@
     },
     {
       "Id": "JasperFx",
-      "Version": "2.36.3",
+      "Version": "2.37.0",
       "Findings": []
     },
     {
@@ -3667,7 +3681,7 @@
     },
     {
       "Id": "Marten",
-      "Version": "9.22.0",
+      "Version": "9.22.1",
       "Findings": []
     },
     {
@@ -3873,7 +3887,13 @@
     {
       "Id": "Microsoft.AspNet.OData",
       "Version": "7.8.0",
-      "Findings": []
+      "Findings": [
+        {
+          "Code": "RDK0010",
+          "Severity": "Warning",
+          "Title": "lib/net45/ contains an assembly built for .NETFramework,Version=v4.5.2"
+        }
+      ]
     },
     {
       "Id": "Microsoft.AspNet.SignalR",
@@ -6210,7 +6230,13 @@
     {
       "Id": "Microsoft.SharePointOnline.CSOM",
       "Version": "16.1.27424.12000",
-      "Findings": []
+      "Findings": [
+        {
+          "Code": "RDK0010",
+          "Severity": "Warning",
+          "Title": "lib/net40-full/ contains an assembly built for .NETFramework,Version=v4.5"
+        }
+      ]
     },
     {
       "Id": "Microsoft.SourceLink.AzureRepos.Git",
@@ -6417,7 +6443,13 @@
     {
       "Id": "Microsoft.Web.Administration",
       "Version": "11.1.0",
-      "Findings": []
+      "Findings": [
+        {
+          "Code": "RDK0010",
+          "Severity": "Warning",
+          "Title": "lib/netstandard1.5/ contains an assembly built for .NETFramework,Version=v4.5"
+        }
+      ]
     },
     {
       "Id": "Microsoft.Web.RedisSessionStateProvider",
@@ -7265,11 +7297,6 @@
       "Findings": []
     },
     {
-      "Id": "Octopus.Server.MessageContracts.Base",
-      "Version": "2025.3.1755",
-      "Findings": []
-    },
-    {
       "Id": "OneOf",
       "Version": "3.0.271",
       "Findings": []
@@ -8050,6 +8077,11 @@
       "Findings": []
     },
     {
+      "Id": "Serilog.Enrichers.AssemblyName",
+      "Version": "2.0.0",
+      "Findings": []
+    },
+    {
       "Id": "Serilog.Enrichers.ClientInfo",
       "Version": "2.9.0",
       "Findings": []
@@ -8311,7 +8343,7 @@
     },
     {
       "Id": "SharpCompress",
-      "Version": "0.50.1",
+      "Version": "0.50.2",
       "Findings": []
     },
     {
@@ -8391,32 +8423,32 @@
     },
     {
       "Id": "SkiaSharp",
-      "Version": "4.150.1",
+      "Version": "4.151.0",
       "Findings": []
     },
     {
       "Id": "SkiaSharp.HarfBuzz",
-      "Version": "4.150.1",
+      "Version": "4.151.0",
       "Findings": []
     },
     {
       "Id": "SkiaSharp.NativeAssets.Linux",
-      "Version": "4.150.1",
+      "Version": "4.151.0",
       "Findings": []
     },
     {
       "Id": "SkiaSharp.NativeAssets.Linux.NoDependencies",
-      "Version": "4.150.1",
+      "Version": "4.151.0",
       "Findings": []
     },
     {
       "Id": "SkiaSharp.NativeAssets.macOS",
-      "Version": "4.150.1",
+      "Version": "4.151.0",
       "Findings": []
     },
     {
       "Id": "SkiaSharp.NativeAssets.WebAssembly",
-      "Version": "4.150.1",
+      "Version": "4.151.0",
       "Findings": [
         {
           "Code": "RDK0001",
@@ -8427,7 +8459,7 @@
     },
     {
       "Id": "SkiaSharp.NativeAssets.Win32",
-      "Version": "4.150.1",
+      "Version": "4.151.0",
       "Findings": []
     },
     {
@@ -8567,7 +8599,7 @@
     },
     {
       "Id": "StackExchange.Redis",
-      "Version": "3.0.25",
+      "Version": "3.1.0",
       "Findings": []
     },
     {
@@ -9462,7 +9494,7 @@
     },
     {
       "Id": "Weasel.Core",
-      "Version": "9.21.0",
+      "Version": "9.21.1",
       "Findings": []
     },
     {
@@ -9928,17 +9960,35 @@
     {
       "Id": "Xamarin.FFImageLoading",
       "Version": "2.4.11.982",
-      "Findings": []
+      "Findings": [
+        {
+          "Code": "RDK0010",
+          "Severity": "Warning",
+          "Title": "lib/netstandard1.0/ contains an assembly built for .NETStandard,Version=v1.1"
+        }
+      ]
     },
     {
       "Id": "Xamarin.FFImageLoading.Forms",
       "Version": "2.4.11.982",
-      "Findings": []
+      "Findings": [
+        {
+          "Code": "RDK0010",
+          "Severity": "Warning",
+          "Title": "lib/netstandard1.0/ contains an assembly built for .NETStandard,Version=v1.1"
+        }
+      ]
     },
     {
       "Id": "Xamarin.FFImageLoading.Transformations",
       "Version": "2.4.11.982",
-      "Findings": []
+      "Findings": [
+        {
+          "Code": "RDK0010",
+          "Severity": "Warning",
+          "Title": "lib/netstandard1.0/ contains an assembly built for .NETStandard,Version=v1.1"
+        }
+      ]
     },
     {
       "Id": "Xamarin.Firebase.Common",

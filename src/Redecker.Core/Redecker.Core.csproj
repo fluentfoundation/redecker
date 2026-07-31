@@ -11,6 +11,11 @@
 
   <ItemGroup>
     <PackageReference Include="NuGet.Versioning" />
+    <!-- Framework folder names are a small language with a long tail, and their compatibility
+         rules are not derivable from the names: netstandard has a fallback chain, PCL profiles
+         are set intersections, and uap10.0 means .NETCore,Version=v5.0. Restore already knows all
+         of it, so RDK0010 asks NuGet the same question restore asks rather than re-deriving it. -->
+    <PackageReference Include="NuGet.Frameworks" />
   </ItemGroup>
 
   <ItemGroup>

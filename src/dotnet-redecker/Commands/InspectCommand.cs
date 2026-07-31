@@ -119,6 +119,7 @@ public static class InspectCommand
             new UnimportableBuildFolderRule(),
             new UntrackedOutputCopyRule(),
             new AnalyzerPlacementRule(),
+            new FrameworkFolderMismatchRule(),
         ];
 
         return rules.SelectMany(r => r.Inspect(package)).ToList();

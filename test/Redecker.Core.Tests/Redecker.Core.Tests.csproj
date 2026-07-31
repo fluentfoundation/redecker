@@ -10,6 +10,10 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <!-- RDK0010 reads PE metadata, so its tests need real assemblies rather than a fake. Compiling
+         one per case is the only way to cover pairings no package on nuget.org happens to ship,
+         and a checked-in binary fixture would be a file nobody could review. -->
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" />
     <PackageReference Include="NUnit" />
     <PackageReference Include="NUnit3TestAdapter" />
     <PackageReference Include="NUnit.Analyzers">

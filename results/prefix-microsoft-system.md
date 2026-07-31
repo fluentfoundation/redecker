@@ -1,8 +1,8 @@
 # Corpus sweep: prefix-microsoft-system
 
-Generated 2026-07-31 02:17 UTC from nuget.org, ids starting with Microsoft. or System., published within 6 years.
+Generated 2026-07-31 20:45 UTC from nuget.org, ids starting with Microsoft. or System., published within 6 years.
 
-Examined **2681** of 2681 selected packages, skipped 0.
+Examined **2682** of 2682 selected packages, skipped 0.
 
 | Rule | What it checks | Packages | Rate | Reading |
 | --- | --- | ---: | ---: | --- |
@@ -11,6 +11,7 @@ Examined **2681** of 2681 selected packages, skipped 0.
 | RDK0006 | unimportable build file | 9 | 0.3% | plausible |
 | RDK0007 | untracked output copy | 20 | 0.7% | plausible |
 | RDK0008 | analyzer under a framework folder | 0 | 0.0% | no findings |
+| RDK0010 | assembly does not match its framework folder | 16 | 0.6% | plausible |
 
 ## RDK0001 — dangling asset reference
 
@@ -172,3 +173,24 @@ Examined **2681** of 2681 selected packages, skipped 0.
 - `Microsoft.WindowsAppSDK.WinUI@2.3.2` — buildTransitive/Microsoft.UI.Xaml.Markup.Compiler.interop.targets copies 1 time(s) into the output directory without recording FileWrites
 - `Microsoft.XmlSerializer.Generator@10.0.10` — build/Microsoft.XmlSerializer.Generator.targets copies 2 time(s) into the output directory without recording FileWrites
 - `System.Data.SQLite.Core.FTS5@1.0.114.1` — build/net45/System.Data.SQLite.Core.FTS5.targets copies 1 time(s) into the output directory without recording FileWrites
+
+## RDK0010 — assembly does not match its framework folder
+
+- `Microsoft.AspNet.OData@7.8.0` — lib/net45/ contains an assembly built for .NETFramework,Version=v4.5.2
+- `Microsoft.Azure.CosmosDB.BulkExecutor@1.8.9` — lib/net45/ contains an assembly built for .NETFramework,Version=v4.6.1
+- `Microsoft.Azure.CosmosDB.BulkExecutor@1.8.9` — lib/net451/ contains an assembly built for .NETFramework,Version=v4.6.1
+- `Microsoft.Azure.DataLake.USQL.SDK@1.4.211011` — lib/net45/ contains an assembly built for .NETFramework,Version=v4.7.2
+- `Microsoft.Azure.Workflows.WebJobs.Extension@1.44.16` — lib/netcoreapp3.1/ contains an assembly built for .NETFramework,Version=v4.0
+- `Microsoft.CodeCoverage@18.8.1` — lib/net8.0/ contains an assembly built for .NETFramework,Version=v4.0
+- `Microsoft.ReportingServices.ReportViewerControl.WebForms@150.1652.0` — lib/net40/ contains an assembly built for .NETFramework,Version=v4.6
+- `Microsoft.ReportingServices.ReportViewerControl.Winforms@150.1652.0` — lib/net40/ contains an assembly built for .NETFramework,Version=v4.6
+- `Microsoft.SharePointOnline.CSOM@16.1.27424.12000` — lib/net40-full/ contains an assembly built for .NETFramework,Version=v4.5
+- `Microsoft.VisualStudio.DesignTools.Extensibility@17.10.34916.79` — lib/net45/ contains an assembly built for .NETFramework,Version=v4.7.2
+- `Microsoft.VisualStudio.DesignTools.Extensibility@17.10.34916.79` — lib/net45/ contains an assembly built for .NETStandard,Version=v2.0
+- `Microsoft.VisualStudio.DpiAwareness@7.10.34910` — lib/net46/ contains an assembly built for .NETFramework,Version=v4.7.2
+- `Microsoft.VisualStudio.TextTemplating.15.0@16.10.31320.204` — lib/net45/ contains an assembly built for .NETFramework,Version=v4.7.2
+- `Microsoft.VisualStudio.TextTemplating.Interfaces.10.0@17.0.32112.339` — lib/netstandard2.0/ contains an assembly built for .NETFramework,Version=v4.0
+- `Microsoft.VisualStudio.TextTemplating.Interfaces.11.0@17.0.32112.339` — lib/netstandard2.0/ contains an assembly built for .NETFramework,Version=v4.5
+- `Microsoft.VisualStudio.TextTemplating.Interfaces.15.0@16.10.31320.204` — lib/net45/ contains an assembly built for .NETFramework,Version=v4.7.2
+- `Microsoft.VisualStudio.TextTemplating.VSHost.15.0@16.10.31321.278` — lib/net45/ contains an assembly built for .NETFramework,Version=v4.7.2
+- `System.Security.Cryptography.OpenSsl@5.0.0` — lib/net461/ contains an assembly built for .NETFramework,Version=v4.7

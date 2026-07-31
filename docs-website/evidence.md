@@ -247,6 +247,43 @@ rounds of correction later it is at 0.2%, and the defect it was written to catch
 Deleting it after round two would have thrown away a working rule and the two false-positive classes
 it went on to teach us about.
 
+## The rule that was almost unusable
+
+[RDK0010](/rules/rdk0010) checks that an assembly under `lib/<framework>/` can actually be loaded
+by a project targeting that framework. The obvious implementation compares the folder name against
+the assembly's `TargetFrameworkAttribute` and reports any difference. Run over 4,205 packages, that
+version produced 285 findings — and most of them were wrong.
+
+A `netstandard2.0` assembly in `lib/net8.0/` is not a mistake; it is the ordinary way to win
+nearest-framework matching. A `net45` build in `lib/net452/` is a build reused rather than
+repeated. Both differ. Both work.
+
+The fix was to stop asking whether two strings match and start asking the question restore asks:
+**can a project targeting this folder consume this assembly?** NuGet already answers that, and
+handing the question to `NuGet.Frameworks` deleted the version arithmetic along with the false
+positives. 285 findings became 87.
+
+Then half of those 87 turned out to be in dead platforms — PCL profiles, Silverlight, Windows
+Phone, Windows Store, MonoAndroid, Xamarin, UAP, Tizen — where `MonoAndroid403` is an OS version
+and `uap10.0` means `.NETCore,Version=v5.0`. Those comparisons are not wrong, they are
+unactionable: the tooling that would republish those packages no longer exists. Scoping the rule to
+`.NETFramework`, `.NETCoreApp` and `.NETStandard` left 22 packages in 4,205.
+
+| Version of the rule | Findings | Useful |
+| --- | ---: | --- |
+| Compare the strings | 285 | mostly not |
+| Ask NuGet about compatibility | 87 | yes, plus dead platforms |
+| Scope to living frameworks | 42 | yes |
+
+Two lessons, and the second is the one that keeps paying:
+
+**Where a question has an authoritative implementation, call it.** Framework compatibility is not
+derivable from the folder names — netstandard has a fallback chain, PCL profiles are set
+intersections. Restore already knows all of it.
+
+**A rule nobody can act on is a rule people suppress**, and a suppressed rule takes the findings
+next to it down with it.
+
 ## Symbol coverage, and what 232 packages settled
 
 Before writing [RDK0009](/rules/rdk0009), the question was whether partial symbol coverage happens

@@ -1,6 +1,4 @@
 using System.Collections.Immutable;
-using System.Reflection.Metadata;
-using System.Reflection.PortableExecutable;
 using System.Text.Json;
 using NuGet.Frameworks;
 using Redecker.Packages;
@@ -186,18 +184,8 @@ public static class TargetFrameworkSurvey
             var name = Path.GetFileNameWithoutExtension(entry);
             var primary = string.Equals(name, package.Id, StringComparison.OrdinalIgnoreCase);
 
-            string? declared = null;
-            var unmanaged = false;
-            try
-            {
-                declared = ReadTargetFramework(bytes);
-            }
-            catch (Exception ex) when (ex is BadImageFormatException or InvalidOperationException)
-            {
-                unmanaged = true;
-            }
-
-            var verdict = unmanaged ? Verdict.Unmanaged : Classify(folder, declared);
+            var managed = ManagedAssembly.TryReadTargetFramework(bytes, out var declared);
+            var verdict = managed ? Classify(folder, declared) : Verdict.Unmanaged;
             yield return new Row(
                 package.Moniker, entry, folder, declared, verdict.ToString(),
                 primary, IsLiving(folder, declared));
@@ -274,87 +262,6 @@ public static class TargetFrameworkSurvey
         return DefaultCompatibilityProvider.Instance.IsCompatible(folderFramework, declaredFramework)
             ? Verdict.Compatible
             : Verdict.Incompatible;
-    }
-
-    /// <summary>
-    /// Reads <c>System.Runtime.Versioning.TargetFrameworkAttribute</c> off the assembly, or returns
-    /// <see langword="null"/> when it carries none.
-    /// </summary>
-    /// <remarks>
-    /// The attribute blob is decoded by hand rather than through
-    /// <see cref="CustomAttribute.DecodeValue{T}"/>, which would need a type provider to resolve a
-    /// signature that is known in advance to be a single string. The layout is fixed: a two-byte
-    /// prolog of <c>0x0001</c>, then a length-prefixed UTF-8 string.
-    /// </remarks>
-    public static string? ReadTargetFramework(byte[] assembly)
-    {
-        using var stream = new MemoryStream(assembly, writable: false);
-        using var pe = new PEReader(stream);
-
-        if (!pe.HasMetadata)
-        {
-            throw new BadImageFormatException("no managed metadata");
-        }
-
-        var metadata = pe.GetMetadataReader();
-        if (!metadata.IsAssembly)
-        {
-            // A netmodule, or a manifest-less satellite. Nothing to compare.
-            return null;
-        }
-
-        foreach (var handle in metadata.GetAssemblyDefinition().GetCustomAttributes())
-        {
-            var attribute = metadata.GetCustomAttribute(handle);
-            if (!IsTargetFrameworkAttribute(metadata, attribute))
-            {
-                continue;
-            }
-
-            var blob = metadata.GetBlobReader(attribute.Value);
-            if (blob.Length < 2 || blob.ReadUInt16() != 1)
-            {
-                return null;
-            }
-
-            return blob.ReadSerializedString();
-        }
-
-        return null;
-    }
-
-    private static bool IsTargetFrameworkAttribute(MetadataReader metadata, CustomAttribute attribute)
-    {
-        StringHandle @namespace;
-        StringHandle name;
-
-        switch (attribute.Constructor.Kind)
-        {
-            case HandleKind.MemberReference:
-                var member = metadata.GetMemberReference((MemberReferenceHandle)attribute.Constructor);
-                if (member.Parent.Kind != HandleKind.TypeReference)
-                {
-                    return false;
-                }
-
-                var reference = metadata.GetTypeReference((TypeReferenceHandle)member.Parent);
-                @namespace = reference.Namespace;
-                name = reference.Name;
-                break;
-
-            case HandleKind.MethodDefinition:
-                var method = metadata.GetMethodDefinition((MethodDefinitionHandle)attribute.Constructor);
-                var declaring = metadata.GetTypeDefinition(method.GetDeclaringType());
-                @namespace = declaring.Namespace;
-                name = declaring.Name;
-                break;
-
-            default:
-                return false;
-        }
-
-        return metadata.StringComparer.Equals(name, "TargetFrameworkAttribute") &&
-               metadata.StringComparer.Equals(@namespace, "System.Runtime.Versioning");
     }
 
     private static void Report(List<Row> rows, int examined, int skipped)

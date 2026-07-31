@@ -11,6 +11,7 @@
 | [RDK0007](./rdk0007) | warning | Output copies MSBuild does not track in FileWrites | `inspect` |
 | [RDK0008](./rdk0008) | warning | Analyzer assemblies under a target framework folder | `inspect` |
 | [RDK0009](./rdk0009) | warning | Symbol package that does not cover every shipped assembly | `inspect` |
+| [RDK0010](./rdk0010) | warning | Assembly under a `lib/<framework>/` folder it does not satisfy | `inspect` |
 
 ## Publishing your own package?
 
