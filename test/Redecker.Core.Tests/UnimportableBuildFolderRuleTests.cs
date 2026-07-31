@@ -104,6 +104,34 @@ public class UnimportableBuildFolderRuleTests
     }
 
     [Test]
+    public void Says_nothing_when_an_import_is_held_entirely_in_a_property()
+    {
+        // CommunityToolkit.Mvvm and Nuke.Common both do this. The path is unresolvable here, so
+        // it could reach anything, and nothing may be called unreachable afterwards.
+        var findings = Inspect(new SyntheticPackage()
+            .With("build/Contoso.Widgets.targets",
+                "<Project><Import Project=\"$(_ContosoExtraTargets)\" /></Project>")
+            .With("build/Contoso.Widgets.Extra.targets", Empty));
+
+        Assert.That(findings, Is.Empty);
+    }
+
+    [Test]
+    public void Accepts_a_file_handed_to_msbuild_through_an_extension_point_property()
+    {
+        // Verify sets CustomAfterMicrosoftCommonProps rather than importing directly. Naming the
+        // file in reachable build logic is enough to establish intent.
+        var findings = Inspect(new SyntheticPackage()
+            .With("build/Contoso.Widgets.props",
+                "<Project><PropertyGroup><CustomAfterMicrosoftCommonProps>" +
+                "$(MSBuildThisFileDirectory)Contoso.Widgets.AfterSdk.props" +
+                "</CustomAfterMicrosoftCommonProps></PropertyGroup></Project>")
+            .With("build/Contoso.Widgets.AfterSdk.props", Empty));
+
+        Assert.That(findings, Is.Empty);
+    }
+
+    [Test]
     public void Says_nothing_when_an_import_path_cannot_be_resolved()
     {
         // A computed import could reach anything, so claiming a file is unreachable would be a

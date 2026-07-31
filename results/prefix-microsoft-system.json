@@ -2167,13 +2167,7 @@
     {
       "Id": "Microsoft.AspNetCore.Razor.Design",
       "Version": "2.3.0",
-      "Findings": [
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "build/netstandard2.0/Microsoft.AspNetCore.Razor.Design.CodeGeneration.targets is not imported by anything inside the package"
-        }
-      ]
+      "Findings": []
     },
     {
       "Id": "Microsoft.AspNetCore.Razor.Language",
@@ -4769,11 +4763,6 @@
         {
           "Code": "RDK0006",
           "Severity": "Warning",
-          "Title": "build/Microsoft.DotNet.ILCompiler.SingleEntry.targets is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
           "Title": "build/Microsoft.NETCore.Native.Publish.targets is not imported by anything inside the package"
         },
         {
@@ -7211,41 +7200,6 @@
           "Code": "RDK0001",
           "Severity": "Error",
           "Title": "buildTransitive/netstandard2.0/Microsoft.Maui.Controls.targets references buildTransitive/netstandard2.0/MonoAndroid10/proguard.cfg, which the package does not contain"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "buildTransitive/net6.0-ios10.0/Microsoft.Maui.Controls.iOS.targets is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "buildTransitive/net6.0-maccatalyst13.1/Microsoft.Maui.Controls.MacCatalyst.targets is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "buildTransitive/net6.0-windows10.0.17763.0/Microsoft.Maui.Sdk.Windows.targets is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "buildTransitive/netstandard2.0/Microsoft.Maui.Controls.Build.Tasks.After.targets is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "buildTransitive/netstandard2.0/Microsoft.Maui.Controls.DefaultItems.targets is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "buildTransitive/netstandard2.0/Microsoft.Maui.Controls.SingleProject.targets is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "buildTransitive/netstandard2.0/Microsoft.Maui.Controls.targets is not imported by anything inside the package"
         }
       ]
     },
@@ -7363,11 +7317,6 @@
       "Id": "Microsoft.Maui.Core",
       "Version": "10.0.90",
       "Findings": [
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "buildTransitive/Microsoft.Maui.Core.After.targets is not imported by anything inside the package"
-        },
         {
           "Code": "RDK0006",
           "Severity": "Warning",
@@ -7553,13 +7502,7 @@
     {
       "Id": "Microsoft.Maui.Resizetizer",
       "Version": "10.0.90",
-      "Findings": [
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "buildTransitive/Microsoft.Maui.Resizetizer.After.targets is not imported by anything inside the package"
-        }
-      ]
+      "Findings": []
     },
     {
       "Id": "Microsoft.Maui.Resizetizer.Msi.x64",
@@ -8036,18 +7979,7 @@
     {
       "Id": "Microsoft.NET.ILLink.Tasks",
       "Version": "10.0.10",
-      "Findings": [
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "build/Microsoft.NET.ILLink.Analyzers.props is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "build/Microsoft.NET.ILLink.targets is not imported by anything inside the package"
-        }
-      ]
+      "Findings": []
     },
     {
       "Id": "Microsoft.NET.Runtime.Emscripten.2.0.23.Node.linux-x64",
@@ -8738,21 +8670,6 @@
           "Code": "RDK0006",
           "Severity": "Warning",
           "Title": "build/netstandard2.0/Microsoft.NET.Sdk.Razor.StaticWebAssets.targets is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "build/netstandard2.0/Sdk.Razor.CurrentVersion.props is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "build/netstandard2.0/Sdk.Razor.CurrentVersion.targets is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "buildMultiTargeting/Sdk.Razor.CurrentVersion.MultiTargeting.targets is not imported by anything inside the package"
         }
       ]
     },
@@ -8814,18 +8731,7 @@
     {
       "Id": "Microsoft.NET.Sdk.WebAssembly.Pack",
       "Version": "10.0.10",
-      "Findings": [
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "build/Microsoft.NET.Sdk.WebAssembly.Browser.props is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "build/Microsoft.NET.Sdk.WebAssembly.Browser.targets is not imported by anything inside the package"
-        }
-      ]
+      "Findings": []
     },
     {
       "Id": "Microsoft.NET.Sdk.WebAssembly.Pack.Msi.x64",
@@ -11414,196 +11320,6 @@
           "Title": "buildTransitive/Microsoft.WinUI.targets references buildTransitive/LiftedWinRTClassRegistrationsUnpackaged.xml, which the package does not contain"
         },
         {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "build/Microsoft.Build.Msix.Common.props is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "build/Microsoft.Build.Msix.Cpp.props is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "build/Microsoft.Build.Msix.Cpp.targets is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "build/Microsoft.Build.Msix.DesignTime.targets is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "build/Microsoft.Build.Msix.Packaging.targets is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "build/Microsoft.Build.Msix.Pri.targets is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "build/Microsoft.Build.Msix.ReunionManifest.targets is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "build/Microsoft.Build.Msix.targets is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "build/Microsoft.ProjectReunion.Foundation.targets is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "build/Microsoft.ProjectReunion.WinUI.TransportPackage.props is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "build/Microsoft.ProjectReunion.WinUI.TransportPackage.targets is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "build/Microsoft.UI.Xaml.Markup.Compiler.interop.targets is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "build/Microsoft.UI.Xaml.Markup.Compiler.props is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "build/Microsoft.UI.Xaml.Markup.Compiler.targets is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "build/Microsoft.WinUI.AppX.targets is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "build/Microsoft.WinUI.NET.Markup.Compiler.targets is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "build/Microsoft.WinUI.References.targets is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "build/native/Microsoft.ProjectReunion.WinUI.TransportPackage.props is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "build/native/Microsoft.ProjectReunion.WinUI.TransportPackage.targets is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "buildTransitive/Microsoft.Build.Msix.Common.props is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "buildTransitive/Microsoft.Build.Msix.Cpp.props is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "buildTransitive/Microsoft.Build.Msix.Cpp.targets is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "buildTransitive/Microsoft.Build.Msix.DesignTime.targets is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "buildTransitive/Microsoft.Build.Msix.Packaging.targets is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "buildTransitive/Microsoft.Build.Msix.Pri.targets is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "buildTransitive/Microsoft.Build.Msix.ReunionManifest.targets is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "buildTransitive/Microsoft.Build.Msix.targets is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "buildTransitive/Microsoft.ProjectReunion.Foundation.targets is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "buildTransitive/Microsoft.ProjectReunion.WinUI.TransportPackage.props is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "buildTransitive/Microsoft.ProjectReunion.WinUI.TransportPackage.targets is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "buildTransitive/Microsoft.UI.Xaml.Markup.Compiler.interop.targets is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "buildTransitive/Microsoft.UI.Xaml.Markup.Compiler.props is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "buildTransitive/Microsoft.UI.Xaml.Markup.Compiler.targets is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "buildTransitive/Microsoft.WinUI.AppX.targets is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "buildTransitive/Microsoft.WinUI.NET.Markup.Compiler.targets is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "buildTransitive/Microsoft.WinUI.References.targets is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "buildTransitive/native/Microsoft.ProjectReunion.WinUI.TransportPackage.props is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "buildTransitive/native/Microsoft.ProjectReunion.WinUI.TransportPackage.targets is not imported by anything inside the package"
-        },
-        {
           "Code": "RDK0007",
           "Severity": "Warning",
           "Title": "build/Microsoft.UI.Xaml.Markup.Compiler.interop.targets copies 1 time(s) into the output directory without recording FileWrites"
@@ -13298,18 +13014,7 @@
     {
       "Id": "Microsoft.Web.WebView2",
       "Version": "1.0.4078.44",
-      "Findings": [
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "build/Common.targets is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "build/wv2winrt.targets is not imported by anything inside the package"
-        }
-      ]
+      "Findings": []
     },
     {
       "Id": "Microsoft.Web.WebView2.DevToolsProtocolExtension",
@@ -13375,16 +13080,6 @@
           "Code": "RDK0001",
           "Severity": "Error",
           "Title": "build/Microsoft.Windows.CsWinRT.Authoring.Transitive.targets references build/native/WinRT.Host.runtimeconfig.json, which the package does not contain"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "build/Microsoft.Windows.CsWinRT.Authoring.Transitive.targets is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "build/Microsoft.Windows.CsWinRT.BeforeMicrosoftNetSdk.targets is not imported by anything inside the package"
         },
         {
           "Code": "RDK0007",
@@ -13526,73 +13221,7 @@
     {
       "Id": "Microsoft.Windows.SDK.BuildTools.MSIX",
       "Version": "1.7.260610101",
-      "Findings": [
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "build/Microsoft.Windows.SDK.BuildTools.MSIX.BeforeCommon.props is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "build/Microsoft.Windows.SDK.BuildTools.MSIX.Common.props is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "build/Microsoft.Windows.SDK.BuildTools.MSIX.Common.targets is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "build/Microsoft.Windows.SDK.BuildTools.MSIX.Cpp.props is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "build/Microsoft.Windows.SDK.BuildTools.MSIX.Cpp.targets is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "build/Microsoft.Windows.SDK.BuildTools.MSIX.Cs.targets is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "build/Microsoft.Windows.SDK.BuildTools.MSIX.DesignTime.targets is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "build/Microsoft.Windows.SDK.BuildTools.MSIX.MrtCore.PriExpansion.targets is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "build/Microsoft.Windows.SDK.BuildTools.MSIX.MrtCore.PriGen.targets is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "build/Microsoft.Windows.SDK.BuildTools.MSIX.MrtCore.Tasks.targets is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "build/Microsoft.Windows.SDK.BuildTools.MSIX.MrtCore.targets is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "build/Microsoft.Windows.SDK.BuildTools.MSIX.Packaging.targets is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "build/Microsoft.Windows.SDK.BuildTools.MSIX.Pri.targets is not imported by anything inside the package"
-        }
-      ]
+      "Findings": []
     },
     {
       "Id": "Microsoft.Windows.SDK.Contracts",
@@ -13602,28 +13231,7 @@
     {
       "Id": "Microsoft.Windows.SDK.CPP",
       "Version": "10.0.28000.2526",
-      "Findings": [
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "build/ExpandTargetPlatform.targets is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "build/Override.15.0.targets is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "build/Override.15.1.targets is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "build/Override.Current.targets is not imported by anything inside the package"
-        }
-      ]
+      "Findings": []
     },
     {
       "Id": "Microsoft.Windows.SDK.CPP.arm64",
@@ -13785,76 +13393,6 @@
           "Code": "RDK0001",
           "Severity": "Error",
           "Title": "buildTransitive/Microsoft.WinUI.References.targets references lib/uap10.0, which the package does not contain"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "build/Microsoft.UI.Xaml.Markup.Compiler.BeforeCommon.targets is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "build/Microsoft.UI.Xaml.Markup.Compiler.interop.targets is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "build/Microsoft.UI.Xaml.Markup.Compiler.props is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "build/Microsoft.UI.Xaml.Markup.Compiler.targets is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "build/Microsoft.WinUI.AppX.targets is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "build/Microsoft.WinUI.NET.Markup.Compiler.targets is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "build/Microsoft.WinUI.References.targets is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "buildTransitive/Microsoft.UI.Xaml.Markup.Compiler.BeforeCommon.targets is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "buildTransitive/Microsoft.UI.Xaml.Markup.Compiler.interop.targets is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "buildTransitive/Microsoft.UI.Xaml.Markup.Compiler.props is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "buildTransitive/Microsoft.UI.Xaml.Markup.Compiler.targets is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "buildTransitive/Microsoft.WinUI.AppX.targets is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "buildTransitive/Microsoft.WinUI.NET.Markup.Compiler.targets is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "buildTransitive/Microsoft.WinUI.References.targets is not imported by anything inside the package"
         },
         {
           "Code": "RDK0007",

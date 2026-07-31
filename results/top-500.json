@@ -1372,18 +1372,7 @@
     {
       "Id": "Microsoft.NET.ILLink.Tasks",
       "Version": "10.0.10",
-      "Findings": [
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "build/Microsoft.NET.ILLink.Analyzers.props is not imported by anything inside the package"
-        },
-        {
-          "Code": "RDK0006",
-          "Severity": "Warning",
-          "Title": "build/Microsoft.NET.ILLink.targets is not imported by anything inside the package"
-        }
-      ]
+      "Findings": []
     },
     {
       "Id": "Microsoft.NET.Sdk.Android.Manifest-8.0.100",

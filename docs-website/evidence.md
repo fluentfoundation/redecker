@@ -212,6 +212,41 @@ What the evidence actually justified was **scoping, not deletion**:
 
 Losing a real defect to avoid an explainable warning is the worse trade.
 
+## The top 2,000, and why retiring RDK0006 would have been wrong
+
+Widening the sweep from 500 to 2,000 packages put RDK0006 at 15 packages — and every new one was a
+false positive, on well-formed third-party packages rather than SDK-shipped ones:
+`CommunityToolkit.Mvvm`, `Verify`, `Nuke.Common`, `PostSharp`, `Microsoft.Web.WebView2`.
+
+All of them had correct entry points that **did** reference the flagged files. The walker was not
+following them, for two distinct reasons:
+
+**An import whose path lives entirely in a property.** `CommunityToolkit.Mvvm` and `Nuke.Common`
+both do this:
+
+```xml
+<Import Project="$(_CommunityToolkitMvvmSourceGeneratorsTargets)" />
+<Import Project="$(NukeTasksDirectory)\Nuke.MSBuildTasks.targets" />
+```
+
+The rule already knew it must stay quiet when it could not resolve an import — but the guard only
+fired when the path mentioned `MSBuildThisFileDirectory`, which missed the commonest form entirely.
+Any unresolvable import can reach anything, so any unresolvable import now stops the rule.
+
+**A file handed to MSBuild through an extension point rather than an import.** `Verify` assigns its
+`.AfterMicrosoftNetSdk.props` to `CustomAfterMicrosoftCommonProps`, so there is no `<Import>` to
+follow at all. Naming a file in reachable build logic now counts as reachable.
+
+After both fixes RDK0006 falls from 15 packages to 4 on the top 2,000, the genuine finding against
+`Microsoft.Azure.StreamAnalytics.CICD` survives, and what remains is the documented
+SDK-consumption limitation.
+
+**This is the argument against retiring a rule because a corpus embarrasses it.** The evidence that
+looked like "this rule does not work" was really "this rule has a bug in its import walker". Three
+rounds of correction later it is at 0.2%, and the defect it was written to catch is still caught.
+Deleting it after round two would have thrown away a working rule and the two false-positive classes
+it went on to teach us about.
+
 ## Rules we decided not to write
 
 Knowing why something was rejected is worth as much as knowing why something shipped.

@@ -116,20 +116,36 @@ public sealed class UnimportableBuildFolderRule : IPackageRule
             {
                 if (!TryResolveImport(import!, Folder(current), out var target))
                 {
-                    // A computed import inside the package could reach anything, so claiming
-                    // anything is unreachable would be a guess.
-                    if (LooksInternal(import!))
-                    {
-                        yield break;
-                    }
-
-                    continue;
+                    // Any import this rule cannot evaluate could reach anything in the package,
+                    // so nothing can be called unreachable afterwards. This previously bailed
+                    // only when the path mentioned MSBuildThisFileDirectory, which missed the
+                    // commonest form by far -- a path held entirely in a property, as
+                    // CommunityToolkit.Mvvm and Nuke.Common both use.
+                    yield break;
                 }
 
                 if (files.Contains(target) && reachable.Add(target))
                 {
                     queue.Enqueue(target);
                 }
+            }
+        }
+
+        // A file can also be handed to MSBuild through an extension-point property rather than an
+        // Import — Verify sets its .AfterMicrosoftNetSdk.props that way. Naming the file anywhere
+        // in reachable build logic is enough to establish intent, and treating that as reachable
+        // costs a true positive far less often than accusing a working package costs credibility.
+        var named = reachable
+            .Select(package.ReadText)
+            .Where(text => text is not null)
+            .ToList();
+
+        foreach (var candidate in files.Except(reachable, StringComparer.OrdinalIgnoreCase).ToList())
+        {
+            var leaf = Leaf(candidate);
+            if (named.Any(text => text!.Contains(leaf, StringComparison.OrdinalIgnoreCase)))
+            {
+                reachable.Add(candidate);
             }
         }
 
@@ -162,10 +178,6 @@ public sealed class UnimportableBuildFolderRule : IPackageRule
     }
 
     private static string Leaf(string entry) => entry[(entry.LastIndexOf('/') + 1)..];
-
-    /// <summary>Whether an unresolved import might still point inside the package.</summary>
-    private static bool LooksInternal(string import) =>
-        import.Contains("MSBuildThisFileDirectory", StringComparison.OrdinalIgnoreCase);
 
     /// <summary>Resolves an import to a package entry path, or gives up.</summary>
     internal static bool TryResolveImport(string import, string directory, out string resolved)
