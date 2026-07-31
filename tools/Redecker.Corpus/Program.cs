@@ -23,6 +23,17 @@ public static class Program
 {
     public static async Task<int> Main(string[] args)
     {
+        var cache = Path.Combine(
+            Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), ".redecker-corpus");
+        Directory.CreateDirectory(cache);
+
+        // A survey answers "should this rule exist?" and runs entirely off the cache, so it costs
+        // nuget.org nothing and can be re-run every time a classification turns out to be wrong.
+        if (args.Length > 0 && args[0].Equals("survey-tfm", StringComparison.OrdinalIgnoreCase))
+        {
+            return TargetFrameworkSurvey.Run(cache, args.Length > 1 ? args[1] : "results");
+        }
+
         using var http = new HttpClient { Timeout = TimeSpan.FromMinutes(5) };
         http.DefaultRequestHeaders.UserAgent.ParseAdd("redecker-corpus (rule validation sweep)");
 
@@ -58,10 +69,6 @@ public static class Program
             Console.WriteLine($"Selecting the top {take} packages by download count.");
             candidates = await selector.TopAsync(take).ConfigureAwait(false);
         }
-
-        var cache = Path.Combine(
-            Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), ".redecker-corpus");
-        Directory.CreateDirectory(cache);
 
         Console.WriteLine();
         Console.WriteLine($"{candidates.Count} package versions selected.");

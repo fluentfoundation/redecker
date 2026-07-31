@@ -11,6 +11,10 @@
 
   <ItemGroup>
     <ProjectReference Include="../../src/Redecker.Core/Redecker.Core.csproj" />
+    <!-- Framework folder names are a small language with a long tail — profiles, platform
+         suffixes, MonoAndroid, PCL. NuGet's own parser is the only correct implementation, and
+         a survey that gets the parsing wrong measures its own bugs. -->
+    <PackageReference Include="NuGet.Frameworks" />
   </ItemGroup>
 
 </Project>

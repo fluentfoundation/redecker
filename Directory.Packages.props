@@ -8,6 +8,7 @@
   <ItemGroup>
     <PackageVersion Include="System.CommandLine" Version="2.0.10" />
     <PackageVersion Include="NuGet.Versioning" Version="7.6.0" />
+    <PackageVersion Include="NuGet.Frameworks" Version="7.6.0" />
     <!-- Held deliberately low, and never shipped. A task assembly is loaded into whatever
          MSBuild is hosting it, so it must compile against the oldest MSBuild it claims to
          support; that host then supplies the real assembly at run time.

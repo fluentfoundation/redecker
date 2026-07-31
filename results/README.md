@@ -6,6 +6,17 @@ Output from `tools/Redecker.Corpus`, committed so that later runs diff against i
 | --- | --- |
 | `top-<N>.json` | Every package examined, its exact version, and every finding |
 | `top-<N>.md` | Human summary: rates per rule, and each finding |
+| `survey-*.json` / `.md` | A question asked before a rule was written, and what the corpus answered |
+
+## Sweeps and surveys are different things
+
+A **sweep** runs the shipped rules and asks whether any of them has started lying. A **survey** runs
+a measurement that is not a rule yet, to decide whether it should become one — issue #4 proposes a
+rule and then gates it on evidence, so the survey came first and the rule came second.
+
+Surveys read the download cache rather than the network, which makes them free to re-run. That
+matters more than it sounds: the target-framework survey was re-run twice because its first
+classifier was wrong, and being able to throw away an answer cheaply is what made it easy to admit.
 
 ## Why these are committed
 
@@ -19,6 +30,7 @@ where a diff is readable.
 
 ```console
 dotnet run --project tools/Redecker.Corpus -c Release -- 500 results
+dotnet run --project tools/Redecker.Corpus -c Release -- survey-tfm results
 ```
 
 Downloads are cached in `~/.redecker-corpus`, so a repeat run takes seconds rather than minutes.

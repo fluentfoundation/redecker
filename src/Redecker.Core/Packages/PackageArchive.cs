@@ -93,6 +93,29 @@ public sealed class PackageArchive : IDisposable
         return reader.ReadToEnd();
     }
 
+    /// <summary>Reads an entry as bytes, or returns <see langword="null"/> if it is absent.</summary>
+    /// <remarks>
+    /// Returns an array rather than the entry's stream because a zip entry cannot seek, and
+    /// anything that reads a PE file needs random access.
+    /// </remarks>
+    public byte[]? ReadBytes(string path)
+    {
+        var entry = _archive.Entries.FirstOrDefault(
+            e => string.Equals(Normalize(e.FullName), Normalize(path), StringComparison.OrdinalIgnoreCase));
+        if (entry is null)
+        {
+            return null;
+        }
+
+        using var buffer = new MemoryStream();
+        using (var stream = entry.Open())
+        {
+            stream.CopyTo(buffer);
+        }
+
+        return buffer.ToArray();
+    }
+
     /// <summary>
     /// The MSBuild files a consuming project would import: everything under <c>build</c>,
     /// <c>buildTransitive</c>, and <c>buildMultiTargeting</c>. These are the files whose dangling

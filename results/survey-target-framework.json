@@ -1,0 +1,2598 @@
+{
+  "Examined": 4205,
+  "Skipped": 0,
+  "Assemblies": 9221,
+  "Counts": {
+    "Compatible": {
+      "All": 198,
+      "Own": 99
+    },
+    "Incompatible": {
+      "All": 87,
+      "Own": 35
+    },
+    "Match": {
+      "All": 8557,
+      "Own": 6790
+    },
+    "NoAttribute": {
+      "All": 379,
+      "Own": 235
+    },
+    "Unmanaged": {
+      "All": 0,
+      "Own": 0
+    },
+    "UnreadableFolder": {
+      "All": 0,
+      "Own": 0
+    }
+  },
+  "Mismatches": [
+    {
+      "Package": "Antlr3.Runtime@3.5.1",
+      "Entry": "lib/netstandard1.1/Antlr3.Runtime.dll",
+      "Folder": "netstandard1.1",
+      "Declared": ".NETPortable,Version=v5.0",
+      "Verdict": "Incompatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Antlr3.Runtime@3.5.1",
+      "Entry": "lib/portable-net4%2Bsl5%2Bnetcore45%2Bwpa81%2Bwp8%2BMonoAndroid1%2BMonoTouch1/Antlr3.Runtime.dll",
+      "Folder": "portable-net4%2Bsl5%2Bnetcore45%2Bwpa81%2Bwp8%2BMonoAndroid1%2BMonoTouch1",
+      "Declared": ".NETPortable,Version=v4.0,Profile=Profile328",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Antlr4.Runtime@4.6.6",
+      "Entry": "lib/portable-net4\u002Bsl5\u002Bnetcore45\u002Bwpa81\u002Bwp8\u002BMonoAndroid1\u002BMonoTouch1/Antlr4.Runtime.dll",
+      "Folder": "portable-net4\u002Bsl5\u002Bnetcore45\u002Bwpa81\u002Bwp8\u002BMonoAndroid1\u002BMonoTouch1",
+      "Declared": ".NETPortable,Version=v4.0,Profile=Profile328",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "AWSSDK@2.3.55.2",
+      "Entry": "lib/portable-wpa%2Bnetcore45/AWSSDK.dll",
+      "Folder": "portable-wpa%2Bnetcore45",
+      "Declared": ".NETPortable,Version=v4.6,Profile=Profile157",
+      "Verdict": "Incompatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "AWSSDK@2.3.55.2",
+      "Entry": "lib/windows8/AWSSDK.dll",
+      "Folder": "windows8",
+      "Declared": ".NETCore,Version=v4.5",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Common.Logging.Core@3.4.1",
+      "Entry": "lib/net40/Common.Logging.Core.dll",
+      "Folder": "net40",
+      "Declared": ".NETPortable,Version=v4.0,Profile=Profile328",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Common.Logging.Core@3.4.1",
+      "Entry": "lib/portable-win%2Bnet40%2Bsl40%2Bwp7%2Bwpa81/Common.Logging.Core.dll",
+      "Folder": "portable-win%2Bnet40%2Bsl40%2Bwp7%2Bwpa81",
+      "Declared": ".NETPortable,Version=v4.0,Profile=Profile328",
+      "Verdict": "Incompatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "EcoCore@7.2.0.17464",
+      "Entry": "lib/net40/MDriven.Net.Http.dll",
+      "Folder": "net40",
+      "Declared": ".NETFramework,Version=v4.8",
+      "Verdict": "Incompatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "EnterpriseLibrary.TransientFaultHandling@6.0.1304.0",
+      "Entry": "lib/portable-net45%2Bwin%2Bwp8/Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.dll",
+      "Folder": "portable-net45%2Bwin%2Bwp8",
+      "Declared": ".NETPortable,Version=v4.5,Profile=Profile78",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": false
+    },
+    {
+      "Package": "Hangfire.MemoryStorage@1.8.1.2",
+      "Entry": "lib/net40/Hangfire.MemoryStorage.dll",
+      "Folder": "net40",
+      "Declared": ".NETFramework,Version=v4.5",
+      "Verdict": "Incompatible",
+      "Primary": true,
+      "Living": true
+    },
+    {
+      "Package": "HtmlAgilityPack@1.12.4",
+      "Entry": "lib/NetCore45/HtmlAgilityPack.dll",
+      "Folder": "NetCore45",
+      "Declared": ".NETPortable,Version=v4.5,Profile=Profile111",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "HtmlAgilityPack@1.12.4",
+      "Entry": "lib/portable-net45\u002Bnetcore45\u002Bwp8\u002BMonoAndroid\u002BMonoTouch/HtmlAgilityPack.dll",
+      "Folder": "portable-net45\u002Bnetcore45\u002Bwp8\u002BMonoAndroid\u002BMonoTouch",
+      "Declared": ".NETPortable,Version=v4.5,Profile=Profile111",
+      "Verdict": "Incompatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "HtmlAgilityPack@1.12.4",
+      "Entry": "lib/portable-net45\u002Bnetcore45\u002Bwpa81\u002Bwp8\u002BMonoAndroid\u002BMonoTouch/HtmlAgilityPack.dll",
+      "Folder": "portable-net45\u002Bnetcore45\u002Bwpa81\u002Bwp8\u002BMonoAndroid\u002BMonoTouch",
+      "Declared": ".NETPortable,Version=v4.5,Profile=Profile111",
+      "Verdict": "Incompatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "HtmlAgilityPack@1.12.4",
+      "Entry": "lib/uap10.0/HtmlAgilityPack.dll",
+      "Folder": "uap10.0",
+      "Declared": ".NETCore,Version=v5.0",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "IoC.Container@1.3.8",
+      "Entry": "lib/uap10.0.10240/IoC.dll",
+      "Folder": "uap10.0.10240",
+      "Declared": ".NETCore,Version=v5.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": false
+    },
+    {
+      "Package": "LinqKit.Core@1.2.11",
+      "Entry": "lib/uap10.0.10240/LinqKit.Core.dll",
+      "Folder": "uap10.0.10240",
+      "Declared": ".NETCore,Version=v5.0",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Microsoft.AppCenter.Analytics@5.0.7",
+      "Entry": "lib/uap10.0.16299/Microsoft.AppCenter.Analytics.dll",
+      "Folder": "uap10.0.16299",
+      "Declared": ".NETCore,Version=v5.0",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Microsoft.AppCenter.Crashes@5.0.7",
+      "Entry": "lib/uap10.0.16299/Microsoft.AppCenter.Crashes.dll",
+      "Folder": "uap10.0.16299",
+      "Declared": ".NETCore,Version=v5.0",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Microsoft.AppCenter.Push@3.4.3",
+      "Entry": "lib/MonoAndroid403/Microsoft.AppCenter.Push.Android.Bindings.dll",
+      "Folder": "MonoAndroid403",
+      "Declared": "MonoAndroid,Version=v9.0",
+      "Verdict": "Incompatible",
+      "Primary": false,
+      "Living": false
+    },
+    {
+      "Package": "Microsoft.AppCenter.Push@3.4.3",
+      "Entry": "lib/MonoAndroid403/Microsoft.AppCenter.Push.dll",
+      "Folder": "MonoAndroid403",
+      "Declared": "MonoAndroid,Version=v9.0",
+      "Verdict": "Incompatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Microsoft.AppCenter.Push@3.4.3",
+      "Entry": "lib/uap10.0/Microsoft.AppCenter.Push.dll",
+      "Folder": "uap10.0",
+      "Declared": ".NETCore,Version=v5.0",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Microsoft.AppCenter@5.0.7",
+      "Entry": "lib/uap10.0.16299/Microsoft.AppCenter.dll",
+      "Folder": "uap10.0.16299",
+      "Declared": ".NETCore,Version=v5.0",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Microsoft.ApplicationInsights.Profiler.Core@3.0.2",
+      "Entry": "lib/netstandard2.1/Microsoft.ServiceProfiler.Agent.Exceptions.dll",
+      "Folder": "netstandard2.1",
+      "Declared": ".NETStandard,Version=v2.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.ApplicationInsights.Profiler.Core@3.0.2",
+      "Entry": "lib/netstandard2.1/Microsoft.ServiceProfiler.Agent.FrontendClient.Profiler.dll",
+      "Folder": "netstandard2.1",
+      "Declared": ".NETStandard,Version=v2.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.ApplicationInsights.Profiler.Core@3.0.2",
+      "Entry": "lib/netstandard2.1/Microsoft.ServiceProfiler.Agent.FrontendClient.dll",
+      "Folder": "netstandard2.1",
+      "Declared": ".NETStandard,Version=v2.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.ApplicationInsights.Profiler.Core@3.0.2",
+      "Entry": "lib/netstandard2.1/Microsoft.ServiceProfiler.Common.Utilities.dll",
+      "Folder": "netstandard2.1",
+      "Declared": ".NETStandard,Version=v2.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.ApplicationInsights.Profiler.Core@3.0.2",
+      "Entry": "lib/netstandard2.1/Microsoft.ServiceProfiler.Contract.Agent.Profiler.dll",
+      "Folder": "netstandard2.1",
+      "Declared": ".NETStandard,Version=v2.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.ApplicationInsights.Profiler.Core@3.0.2",
+      "Entry": "lib/netstandard2.1/Microsoft.ServiceProfiler.Contract.Agent.dll",
+      "Folder": "netstandard2.1",
+      "Declared": ".NETStandard,Version=v2.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.ApplicationInsights.Profiler.Core@3.0.2",
+      "Entry": "lib/netstandard2.1/Microsoft.ServiceProfiler.Contract.Http.dll",
+      "Folder": "netstandard2.1",
+      "Declared": ".NETStandard,Version=v2.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.ApplicationInsights.Profiler.Core@3.0.2",
+      "Entry": "lib/netstandard2.1/Microsoft.ServiceProfiler.HttpPipeline.dll",
+      "Folder": "netstandard2.1",
+      "Declared": ".NETStandard,Version=v2.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.ApplicationInsights.Profiler.Core@3.0.2",
+      "Entry": "lib/netstandard2.1/Microsoft.ServiceProfiler.Orchestration.dll",
+      "Folder": "netstandard2.1",
+      "Declared": ".NETStandard,Version=v2.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.ApplicationInsights.Profiler.Core@3.0.2",
+      "Entry": "lib/netstandard2.1/Microsoft.ServiceProfiler.ProcessMonitor.dll",
+      "Folder": "netstandard2.1",
+      "Declared": ".NETStandard,Version=v2.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.ApplicationInsights.Profiler.Core@3.0.2",
+      "Entry": "lib/netstandard2.1/Microsoft.ServiceProfiler.Utilities.dll",
+      "Folder": "netstandard2.1",
+      "Declared": ".NETStandard,Version=v2.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.AspNet.OData@7.8.0",
+      "Entry": "lib/net45/Microsoft.AspNet.OData.dll",
+      "Folder": "net45",
+      "Declared": ".NETFramework,Version=v4.5.2",
+      "Verdict": "Incompatible",
+      "Primary": true,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.Azure.Amqp@2.7.3",
+      "Entry": "lib/monoandroid/Microsoft.Azure.Amqp.dll",
+      "Folder": "monoandroid",
+      "Declared": "MonoAndroid,Version=v11.0",
+      "Verdict": "Incompatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Microsoft.Azure.Amqp@2.7.3",
+      "Entry": "lib/portable-net45\u002Bwp8\u002Bwpa81\u002Bwin8\u002BMonoAndroid10\u002BMonoTouch10\u002BXamarin.iOS10\u002BUAP10/Microsoft.Azure.Amqp.dll",
+      "Folder": "portable-net45\u002Bwp8\u002Bwpa81\u002Bwin8\u002BMonoAndroid10\u002BMonoTouch10\u002BXamarin.iOS10\u002BUAP10",
+      "Declared": ".NETPortable,Version=v4.5,Profile=Profile111",
+      "Verdict": "Incompatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Microsoft.Azure.Amqp@2.7.3",
+      "Entry": "lib/uap10.0/Microsoft.Azure.Amqp.dll",
+      "Folder": "uap10.0",
+      "Declared": ".NETCore,Version=v5.0",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Microsoft.Azure.CosmosDB.BulkExecutor@1.8.9",
+      "Entry": "lib/net45/Microsoft.Azure.Documents.Interop.Common.dll",
+      "Folder": "net45",
+      "Declared": ".NETFramework,Version=v4.6.1",
+      "Verdict": "Incompatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.Azure.CosmosDB.BulkExecutor@1.8.9",
+      "Entry": "lib/net451/Microsoft.Azure.CosmosDB.BulkImport.dll",
+      "Folder": "net451",
+      "Declared": ".NETFramework,Version=v4.6.1",
+      "Verdict": "Incompatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.Azure.DataLake.USQL.SDK@1.4.211011",
+      "Entry": "lib/net45/Microsoft.Analytics.Diagnostics.dll",
+      "Folder": "net45",
+      "Declared": ".NETFramework,Version=v4.7.2",
+      "Verdict": "Incompatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.Azure.DataLake.USQL.SDK@1.4.211011",
+      "Entry": "lib/net45/Microsoft.Analytics.Interfaces.Streaming.dll",
+      "Folder": "net45",
+      "Declared": ".NETFramework,Version=v4.7.2",
+      "Verdict": "Incompatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.Azure.DataLake.USQL.SDK@1.4.211011",
+      "Entry": "lib/net45/Microsoft.Analytics.Interfaces.dll",
+      "Folder": "net45",
+      "Declared": ".NETFramework,Version=v4.7.2",
+      "Verdict": "Incompatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.Azure.DataLake.USQL.SDK@1.4.211011",
+      "Entry": "lib/net45/Microsoft.Analytics.LocalRun.dll",
+      "Folder": "net45",
+      "Declared": ".NETFramework,Version=v4.7.2",
+      "Verdict": "Incompatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.Azure.DataLake.USQL.SDK@1.4.211011",
+      "Entry": "lib/net45/Microsoft.Analytics.Types.dll",
+      "Folder": "net45",
+      "Declared": ".NETFramework,Version=v4.7.2",
+      "Verdict": "Incompatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.Azure.DataLake.USQL.SDK@1.4.211011",
+      "Entry": "lib/net45/Microsoft.Analytics.UnitTest.dll",
+      "Folder": "net45",
+      "Declared": ".NETFramework,Version=v4.7.2",
+      "Verdict": "Incompatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.Azure.DataLake.USQL.SDK@1.4.211011",
+      "Entry": "lib/net45/Microsoft.Cosmos.ClientTools.Shared.dll",
+      "Folder": "net45",
+      "Declared": ".NETFramework,Version=v4.7.2",
+      "Verdict": "Incompatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.Azure.Mobile.Client@4.2.0",
+      "Entry": "lib/uap10.0/Microsoft.Azure.Mobile.Client.dll",
+      "Folder": "uap10.0",
+      "Declared": ".NETCore,Version=v5.0",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Microsoft.Azure.SignalR.AspNet@1.33.1",
+      "Entry": "lib/net462/Microsoft.Extensions.Configuration.Abstractions.dll",
+      "Folder": "net462",
+      "Declared": ".NETStandard,Version=v2.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.Azure.Storage.Blob@11.2.3",
+      "Entry": "lib/net452/Microsoft.Azure.Storage.Blob.dll",
+      "Folder": "net452",
+      "Declared": ".NETFramework,Version=v4.5",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.Azure.Storage.Common@11.2.3",
+      "Entry": "lib/net452/Microsoft.Azure.Storage.Common.dll",
+      "Folder": "net452",
+      "Declared": ".NETFramework,Version=v4.5",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.Azure.Storage.File@11.2.3",
+      "Entry": "lib/net452/Microsoft.Azure.Storage.File.dll",
+      "Folder": "net452",
+      "Declared": ".NETFramework,Version=v4.5",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.Azure.Storage.Queue@11.2.3",
+      "Entry": "lib/net452/Microsoft.Azure.Storage.Queue.dll",
+      "Folder": "net452",
+      "Declared": ".NETFramework,Version=v4.5",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.Azure.Workflows.WebJobs.Extension@1.44.16",
+      "Entry": "lib/netcoreapp3.1/BouncyCastle.Crypto.dll",
+      "Folder": "netcoreapp3.1",
+      "Declared": ".NETStandard,Version=v2.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.Azure.Workflows.WebJobs.Extension@1.44.16",
+      "Entry": "lib/netcoreapp3.1/Microsoft.Azure.Integration.Common.FlatFileParser.dll",
+      "Folder": "netcoreapp3.1",
+      "Declared": ".NETFramework,Version=v4.0",
+      "Verdict": "Incompatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.Azure.Workflows.WebJobs.Extension@1.44.16",
+      "Entry": "lib/netcoreapp3.1/Microsoft.Azure.Integration.Common.LegacyUtilities.dll",
+      "Folder": "netcoreapp3.1",
+      "Declared": ".NETFramework,Version=v4.0",
+      "Verdict": "Incompatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.Azure.Workflows.WebJobs.Extension@1.44.16",
+      "Entry": "lib/netcoreapp3.1/Microsoft.Azure.WebJobs.Extensions.Sql.dll",
+      "Folder": "netcoreapp3.1",
+      "Declared": ".NETStandard,Version=v2.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.Azure.Workflows.WebJobs.Extension@1.44.16",
+      "Entry": "lib/netcoreapp3.1/Microsoft.Azure.Workflows.EventSource.Common.dll",
+      "Folder": "netcoreapp3.1",
+      "Declared": ".NETStandard,Version=v2.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.Azure.Workflows.WebJobs.Extension@1.44.16",
+      "Entry": "lib/netcoreapp3.1/Microsoft.Azure.Workflows.Flow.Common.NetStandard.dll",
+      "Folder": "netcoreapp3.1",
+      "Declared": ".NETStandard,Version=v2.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.Azure.Workflows.WebJobs.Extension@1.44.16",
+      "Entry": "lib/netcoreapp3.1/Microsoft.Azure.Workflows.ServiceProviders.Abstractions.NetStandard.dll",
+      "Folder": "netcoreapp3.1",
+      "Declared": ".NETStandard,Version=v2.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.Azure.Workflows.WebJobs.Extension@1.44.16",
+      "Entry": "lib/netcoreapp3.1/Microsoft.Identity.ServiceEssentials.Authentication.dll",
+      "Folder": "netcoreapp3.1",
+      "Declared": ".NETStandard,Version=v2.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.Azure.Workflows.WebJobs.Extension@1.44.16",
+      "Entry": "lib/netcoreapp3.1/Microsoft.Identity.ServiceEssentials.Core.dll",
+      "Folder": "netcoreapp3.1",
+      "Declared": ".NETStandard,Version=v2.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.Azure.Workflows.WebJobs.Extension@1.44.16",
+      "Entry": "lib/netcoreapp3.1/Microsoft.IdentityModel.Protocols.SignedHttpRequest.dll",
+      "Folder": "netcoreapp3.1",
+      "Declared": ".NETStandard,Version=v2.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.Azure.Workflows.WebJobs.Extension@1.44.16",
+      "Entry": "lib/netcoreapp3.1/Microsoft.IdentityModel.S2S.Tokens.dll",
+      "Folder": "netcoreapp3.1",
+      "Declared": ".NETStandard,Version=v2.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.Azure.Workflows.WebJobs.Extension@1.44.16",
+      "Entry": "lib/netcoreapp3.1/Microsoft.IdentityModel.S2S.dll",
+      "Folder": "netcoreapp3.1",
+      "Declared": ".NETStandard,Version=v2.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.Azure.Workflows.WebJobs.Extension@1.44.16",
+      "Entry": "lib/netcoreapp3.1/Microsoft.Sap.Common.dll",
+      "Folder": "netcoreapp3.1",
+      "Declared": ".NETStandard,Version=v2.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.Azure.Workflows.WebJobs.Extension@1.44.16",
+      "Entry": "lib/netcoreapp3.1/Microsoft.SqlServer.TransactSql.ScriptDom.dll",
+      "Folder": "netcoreapp3.1",
+      "Declared": ".NETStandard,Version=v2.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.Azure.Workflows.WebJobs.Extension@1.44.16",
+      "Entry": "lib/netcoreapp3.1/System.Configuration.ConfigurationManager.dll",
+      "Folder": "netcoreapp3.1",
+      "Declared": ".NETStandard,Version=v2.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.Azure.Workflows.WebJobs.Extension@1.44.16",
+      "Entry": "lib/netcoreapp3.1/System.Security.Principal.Windows.dll",
+      "Folder": "netcoreapp3.1",
+      "Declared": ".NETStandard,Version=v2.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.Azure.Workflows.WebJobs.Sdk@1.3.0",
+      "Entry": "lib/net472/Microsoft.Azure.Functions.Extensions.Workflows.Sdk.dll",
+      "Folder": "net472",
+      "Declared": ".NETStandard,Version=v2.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.ClearScript.Core@7.5.1",
+      "Entry": "lib/uap10.0/ClearScript.Core.dll",
+      "Folder": "uap10.0",
+      "Declared": ".NETCore,Version=v5.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": false
+    },
+    {
+      "Package": "Microsoft.ClearScript.V8@7.5.1",
+      "Entry": "lib/uap10.0/ClearScript.V8.dll",
+      "Folder": "uap10.0",
+      "Declared": ".NETCore,Version=v5.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": false
+    },
+    {
+      "Package": "Microsoft.CodeAnalysis.Workspaces.MSBuild@5.6.0",
+      "Entry": "lib/net472/Microsoft.CodeAnalysis.ExternalAccess.RazorCompiler.dll",
+      "Folder": "net472",
+      "Declared": ".NETStandard,Version=v2.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.CodeCoverage@18.8.1",
+      "Entry": "lib/net8.0/Microsoft.VisualStudio.CodeCoverage.Shim.dll",
+      "Folder": "net8.0",
+      "Declared": ".NETFramework,Version=v4.0",
+      "Verdict": "Incompatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.CodeDom.Providers.DotNetCompilerPlatform@4.1.0",
+      "Entry": "lib/net472/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll",
+      "Folder": "net472",
+      "Declared": ".NETFramework,Version=v4.6.2",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.CognitiveServices.Speech@1.51.1",
+      "Entry": "lib/net8.0-android/Microsoft.CognitiveServices.Speech.csharp.dll",
+      "Folder": "net8.0-android",
+      "Declared": ".NETStandard,Version=v2.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.CognitiveServices.Speech@1.51.1",
+      "Entry": "lib/net8.0-ios/Microsoft.CognitiveServices.Speech.csharp.dll",
+      "Folder": "net8.0-ios",
+      "Declared": ".NETStandard,Version=v2.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.CognitiveServices.Speech@1.51.1",
+      "Entry": "lib/net8.0-maccatalyst/Microsoft.CognitiveServices.Speech.csharp.dll",
+      "Folder": "net8.0-maccatalyst",
+      "Declared": ".NETStandard,Version=v2.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.CognitiveServices.Speech@1.51.1",
+      "Entry": "lib/uap10.0/Microsoft.CognitiveServices.Speech.csharp.dll",
+      "Folder": "uap10.0",
+      "Declared": ".NETStandard,Version=v2.0",
+      "Verdict": "Incompatible",
+      "Primary": false,
+      "Living": false
+    },
+    {
+      "Package": "Microsoft.CrmSdk.XrmTooling.ConfigurationMigration.Wpf@9.1.0.365",
+      "Entry": "lib/net48/Microsoft.Xrm.Tooling.Connector.dll",
+      "Folder": "net48",
+      "Declared": ".NETFramework,Version=v4.6.2",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.CrmSdk.XrmTooling.CoreAssembly@9.1.1.65",
+      "Entry": "lib/net462/Microsoft.Rest.ClientRuntime.dll",
+      "Folder": "net462",
+      "Declared": ".NETFramework,Version=v4.6.1",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.Data.Edm@5.8.5",
+      "Entry": "lib/netstandard1.1/Microsoft.Data.Edm.dll",
+      "Folder": "netstandard1.1",
+      "Declared": ".NETPortable,Version=v4.5,Profile=Profile259",
+      "Verdict": "Incompatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Microsoft.Data.Edm@5.8.5",
+      "Entry": "lib/portable-net40%2Bsl5%2Bwp8%2Bwin8%2Bwpa/Microsoft.Data.Edm.dll",
+      "Folder": "portable-net40%2Bsl5%2Bwp8%2Bwin8%2Bwpa",
+      "Declared": ".NETPortable,Version=v4.0,Profile=Profile328",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Microsoft.Data.Edm@5.8.5",
+      "Entry": "lib/portable-net45%2Bwp8%2Bwin8%2Bwpa/Microsoft.Data.Edm.dll",
+      "Folder": "portable-net45%2Bwp8%2Bwin8%2Bwpa",
+      "Declared": ".NETPortable,Version=v4.5,Profile=Profile259",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Microsoft.Data.OData@5.8.5",
+      "Entry": "lib/netstandard1.1/Microsoft.Data.OData.dll",
+      "Folder": "netstandard1.1",
+      "Declared": ".NETPortable,Version=v4.5,Profile=Profile259",
+      "Verdict": "Incompatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Microsoft.Data.OData@5.8.5",
+      "Entry": "lib/portable-net40%2Bsl5%2Bwp8%2Bwin8%2Bwpa/Microsoft.Data.OData.dll",
+      "Folder": "portable-net40%2Bsl5%2Bwp8%2Bwin8%2Bwpa",
+      "Declared": ".NETPortable,Version=v4.0,Profile=Profile328",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Microsoft.Data.OData@5.8.5",
+      "Entry": "lib/portable-net45%2Bwp8%2Bwin8%2Bwpa/Microsoft.Data.OData.dll",
+      "Folder": "portable-net45%2Bwp8%2Bwin8%2Bwpa",
+      "Declared": ".NETPortable,Version=v4.5,Profile=Profile259",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Microsoft.Data.Services.Client@5.8.5",
+      "Entry": "lib/netstandard1.1/Microsoft.Data.Services.Client.dll",
+      "Folder": "netstandard1.1",
+      "Declared": ".NETPortable,Version=v4.5,Profile=Profile259",
+      "Verdict": "Incompatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Microsoft.Data.Services.Client@5.8.5",
+      "Entry": "lib/portable-net45%2Bwp8%2Bwin8%2Bwpa/Microsoft.Data.Services.Client.dll",
+      "Folder": "portable-net45%2Bwp8%2Bwin8%2Bwpa",
+      "Declared": ".NETPortable,Version=v4.5,Profile=Profile259",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Microsoft.IdentityModel.Clients.ActiveDirectory@5.3.0",
+      "Entry": "lib/uap10.0.17763/Microsoft.IdentityModel.Clients.ActiveDirectory.dll",
+      "Folder": "uap10.0.17763",
+      "Declared": ".NETCore,Version=v5.0",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Microsoft.InformationProtection.File.Ubuntu2004@1.17.154",
+      "Entry": "lib/dotnet/Microsoft.InformationProtection.dll",
+      "Folder": "dotnet",
+      "Declared": ".NETCoreApp,Version=v6.0",
+      "Verdict": "Incompatible",
+      "Primary": false,
+      "Living": false
+    },
+    {
+      "Package": "Microsoft.InformationProtection.File.Ubuntu2204@1.18.124",
+      "Entry": "lib/dotnet/Microsoft.InformationProtection.dll",
+      "Folder": "dotnet",
+      "Declared": ".NETCoreApp,Version=v6.0",
+      "Verdict": "Incompatible",
+      "Primary": false,
+      "Living": false
+    },
+    {
+      "Package": "Microsoft.JavaScript.NodeApi.Generator@0.9.21",
+      "Entry": "lib/net472/Microsoft.Bcl.AsyncInterfaces.dll",
+      "Folder": "net472",
+      "Declared": ".NETFramework,Version=v4.6.2",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.JavaScript.NodeApi.Generator@0.9.21",
+      "Entry": "lib/net472/Microsoft.CodeAnalysis.dll",
+      "Folder": "net472",
+      "Declared": ".NETStandard,Version=v2.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.JavaScript.NodeApi.Generator@0.9.21",
+      "Entry": "lib/net472/System.Collections.Immutable.dll",
+      "Folder": "net472",
+      "Declared": ".NETFramework,Version=v4.6.1",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.JavaScript.NodeApi.Generator@0.9.21",
+      "Entry": "lib/net472/System.Reflection.Metadata.dll",
+      "Folder": "net472",
+      "Declared": ".NETFramework,Version=v4.6.1",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.JavaScript.NodeApi.Generator@0.9.21",
+      "Entry": "lib/net472/System.Reflection.MetadataLoadContext.dll",
+      "Folder": "net472",
+      "Declared": ".NETFramework,Version=v4.6.1",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.JavaScript.NodeApi.Generator@0.9.21",
+      "Entry": "lib/net8.0/Microsoft.CodeAnalysis.dll",
+      "Folder": "net8.0",
+      "Declared": ".NETCoreApp,Version=v3.1",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.JavaScript.NodeApi.Generator@0.9.21",
+      "Entry": "lib/net8.0/System.Reflection.MetadataLoadContext.dll",
+      "Folder": "net8.0",
+      "Declared": ".NETCoreApp,Version=v6.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.ReportingServices.ReportViewerControl.WebForms@150.1652.0",
+      "Entry": "lib/net40/Microsoft.ReportViewer.Common.dll",
+      "Folder": "net40",
+      "Declared": ".NETFramework,Version=v4.6",
+      "Verdict": "Incompatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.ReportingServices.ReportViewerControl.WebForms@150.1652.0",
+      "Entry": "lib/net40/Microsoft.ReportViewer.DataVisualization.dll",
+      "Folder": "net40",
+      "Declared": ".NETFramework,Version=v4.6",
+      "Verdict": "Incompatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.ReportingServices.ReportViewerControl.WebForms@150.1652.0",
+      "Entry": "lib/net40/Microsoft.ReportViewer.Design.dll",
+      "Folder": "net40",
+      "Declared": ".NETFramework,Version=v4.6",
+      "Verdict": "Incompatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.ReportingServices.ReportViewerControl.WebForms@150.1652.0",
+      "Entry": "lib/net40/Microsoft.ReportViewer.ProcessingObjectModel.dll",
+      "Folder": "net40",
+      "Declared": ".NETFramework,Version=v4.6",
+      "Verdict": "Incompatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.ReportingServices.ReportViewerControl.WebForms@150.1652.0",
+      "Entry": "lib/net40/Microsoft.ReportViewer.WebDesign.dll",
+      "Folder": "net40",
+      "Declared": ".NETFramework,Version=v4.6",
+      "Verdict": "Incompatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.ReportingServices.ReportViewerControl.WebForms@150.1652.0",
+      "Entry": "lib/net40/Microsoft.ReportViewer.WebForms.dll",
+      "Folder": "net40",
+      "Declared": ".NETFramework,Version=v4.6",
+      "Verdict": "Incompatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.ReportingServices.ReportViewerControl.WebForms@150.1652.0",
+      "Entry": "lib/net40/Microsoft.ReportViewer.WinForms.dll",
+      "Folder": "net40",
+      "Declared": ".NETFramework,Version=v4.6",
+      "Verdict": "Incompatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.ReportingServices.ReportViewerControl.Winforms@150.1652.0",
+      "Entry": "lib/net40/Microsoft.ReportViewer.Common.dll",
+      "Folder": "net40",
+      "Declared": ".NETFramework,Version=v4.6",
+      "Verdict": "Incompatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.ReportingServices.ReportViewerControl.Winforms@150.1652.0",
+      "Entry": "lib/net40/Microsoft.ReportViewer.DataVisualization.dll",
+      "Folder": "net40",
+      "Declared": ".NETFramework,Version=v4.6",
+      "Verdict": "Incompatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.ReportingServices.ReportViewerControl.Winforms@150.1652.0",
+      "Entry": "lib/net40/Microsoft.ReportViewer.Design.dll",
+      "Folder": "net40",
+      "Declared": ".NETFramework,Version=v4.6",
+      "Verdict": "Incompatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.ReportingServices.ReportViewerControl.Winforms@150.1652.0",
+      "Entry": "lib/net40/Microsoft.ReportViewer.ProcessingObjectModel.dll",
+      "Folder": "net40",
+      "Declared": ".NETFramework,Version=v4.6",
+      "Verdict": "Incompatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.ReportingServices.ReportViewerControl.Winforms@150.1652.0",
+      "Entry": "lib/net40/Microsoft.ReportViewer.WinForms.dll",
+      "Folder": "net40",
+      "Declared": ".NETFramework,Version=v4.6",
+      "Verdict": "Incompatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.ServiceFabric.AspNetCore.WebListener@5.1.388",
+      "Entry": "lib/net46/Microsoft.ServiceFabric.AspNetCore.WebListener.dll",
+      "Folder": "net46",
+      "Declared": ".NETFramework,Version=v4.5.2",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.ServiceFabric.AspNetCore.WebListener@5.1.388",
+      "Entry": "lib/net461/Microsoft.ServiceFabric.AspNetCore.WebListener.dll",
+      "Folder": "net461",
+      "Declared": ".NETFramework,Version=v4.5.2",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.ServiceFabric.AspNetCore.WebListener@5.1.388",
+      "Entry": "lib/net462/Microsoft.ServiceFabric.AspNetCore.WebListener.dll",
+      "Folder": "net462",
+      "Declared": ".NETFramework,Version=v4.5.2",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.ServiceFabric.AspNetCore.WebListener@5.1.388",
+      "Entry": "lib/net47/Microsoft.ServiceFabric.AspNetCore.WebListener.dll",
+      "Folder": "net47",
+      "Declared": ".NETFramework,Version=v4.5.2",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.ServiceFabric.AspNetCore.WebListener@5.1.388",
+      "Entry": "lib/net471/Microsoft.ServiceFabric.AspNetCore.WebListener.dll",
+      "Folder": "net471",
+      "Declared": ".NETFramework,Version=v4.5.2",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.ServiceFabric.AspNetCore.WebListener@5.1.388",
+      "Entry": "lib/net472/Microsoft.ServiceFabric.AspNetCore.WebListener.dll",
+      "Folder": "net472",
+      "Declared": ".NETFramework,Version=v4.5.2",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.SharePointOnline.CSOM@16.1.27424.12000",
+      "Entry": "lib/net40-full/Microsoft.Identity.Client.dll",
+      "Folder": "net40-full",
+      "Declared": ".NETFramework,Version=v4.5",
+      "Verdict": "Incompatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.SqlServer.DacFx.x64@150.5282.3",
+      "Entry": "lib/net46/Microsoft.SqlServer.TransactSql.ScriptDom.dll",
+      "Folder": "net46",
+      "Declared": ".NETFramework,Version=v4.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.SqlServer.DacFx.x86@150.5282.3",
+      "Entry": "lib/net46/Microsoft.SqlServer.TransactSql.ScriptDom.dll",
+      "Folder": "net46",
+      "Declared": ".NETFramework,Version=v4.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.Testing.Extensions.CodeCoverage@18.9.0",
+      "Entry": "lib/net8.0/Microsoft.CodeCoverage.Instrumentation.Core.dll",
+      "Folder": "net8.0",
+      "Declared": ".NETStandard,Version=v2.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.Testing.Extensions.CodeCoverage@18.9.0",
+      "Entry": "lib/net8.0/Mono.Cecil.Mdb.dll",
+      "Folder": "net8.0",
+      "Declared": ".NETStandard,Version=v2.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.Testing.Extensions.CodeCoverage@18.9.0",
+      "Entry": "lib/net8.0/Mono.Cecil.Pdb.dll",
+      "Folder": "net8.0",
+      "Declared": ".NETStandard,Version=v2.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.Testing.Extensions.CodeCoverage@18.9.0",
+      "Entry": "lib/net8.0/Mono.Cecil.Rocks.dll",
+      "Folder": "net8.0",
+      "Declared": ".NETStandard,Version=v2.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.Testing.Extensions.CodeCoverage@18.9.0",
+      "Entry": "lib/net8.0/Mono.Cecil.dll",
+      "Folder": "net8.0",
+      "Declared": ".NETStandard,Version=v2.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.TestPlatform.TestHost@18.8.1",
+      "Entry": "lib/net8.0/Microsoft.TestPlatform.CrossPlatEngine.dll",
+      "Folder": "net8.0",
+      "Declared": ".NETStandard,Version=v2.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.TestPlatform.TestHost@18.8.1",
+      "Entry": "lib/net8.0/Microsoft.TestPlatform.Utilities.dll",
+      "Folder": "net8.0",
+      "Declared": ".NETStandard,Version=v2.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.TestPlatform.TestHost@18.8.1",
+      "Entry": "lib/net8.0/Microsoft.VisualStudio.TestPlatform.Common.dll",
+      "Folder": "net8.0",
+      "Declared": ".NETStandard,Version=v2.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.TestPlatform.TranslationLayer@18.8.1",
+      "Entry": "lib/net8.0/Microsoft.VisualStudio.TestPlatform.Common.dll",
+      "Folder": "net8.0",
+      "Declared": ".NETStandard,Version=v2.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.Toolkit.Uwp.Connectivity@7.1.3",
+      "Entry": "lib/uap10.0.17763/Microsoft.Toolkit.Uwp.Connectivity.dll",
+      "Folder": "uap10.0.17763",
+      "Declared": ".NETCore,Version=v5.0",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Microsoft.Toolkit.Uwp.Notifications@7.1.3",
+      "Entry": "lib/uap10.0.16299/Microsoft.Toolkit.Uwp.Notifications.dll",
+      "Folder": "uap10.0.16299",
+      "Declared": ".NETCore,Version=v5.0",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Microsoft.Toolkit.Uwp.UI.Controls.DataGrid@7.1.3",
+      "Entry": "lib/uap10.0.17763/Microsoft.Toolkit.Uwp.UI.Controls.DataGrid.dll",
+      "Folder": "uap10.0.17763",
+      "Declared": ".NETCore,Version=v5.0",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Microsoft.Toolkit.Uwp.UI.Controls.Markdown@7.1.3",
+      "Entry": "lib/uap10.0.17763/Microsoft.Toolkit.Uwp.UI.Controls.Markdown.dll",
+      "Folder": "uap10.0.17763",
+      "Declared": ".NETCore,Version=v5.0",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Microsoft.VisualStudio.DesignTools.Extensibility@17.10.34916.79",
+      "Entry": "lib/net45/Microsoft.VisualStudio.DesignTools.Extensibility.dll",
+      "Folder": "net45",
+      "Declared": ".NETStandard,Version=v2.0",
+      "Verdict": "Incompatible",
+      "Primary": true,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.VisualStudio.DesignTools.Extensibility@17.10.34916.79",
+      "Entry": "lib/net45/Microsoft.VisualStudio.DesignTools.Interaction.dll",
+      "Folder": "net45",
+      "Declared": ".NETFramework,Version=v4.7.2",
+      "Verdict": "Incompatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.VisualStudio.DpiAwareness@7.10.34910",
+      "Entry": "lib/net46/Microsoft.VisualStudio.DpiAwareness.dll",
+      "Folder": "net46",
+      "Declared": ".NETFramework,Version=v4.7.2",
+      "Verdict": "Incompatible",
+      "Primary": true,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.VisualStudio.Shell.Immutable.10.0@16.10.31321.278",
+      "Entry": "lib/net472/Microsoft.VisualStudio.Shell.Immutable.10.0.dll",
+      "Folder": "net472",
+      "Declared": ".NETFramework,Version=v4.5",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.VisualStudio.Shell.Immutable.11.0@16.10.31321.278",
+      "Entry": "lib/net472/Microsoft.VisualStudio.Shell.Immutable.11.0.dll",
+      "Folder": "net472",
+      "Declared": ".NETFramework,Version=v4.5",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.VisualStudio.TextTemplating.15.0@16.10.31320.204",
+      "Entry": "lib/net45/Microsoft.VisualStudio.TextTemplating.15.0.dll",
+      "Folder": "net45",
+      "Declared": ".NETFramework,Version=v4.7.2",
+      "Verdict": "Incompatible",
+      "Primary": true,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.VisualStudio.TextTemplating.Interfaces.10.0@17.0.32112.339",
+      "Entry": "lib/net472/Microsoft.VisualStudio.TextTemplating.Interfaces.10.0.dll",
+      "Folder": "net472",
+      "Declared": ".NETFramework,Version=v4.0",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.VisualStudio.TextTemplating.Interfaces.10.0@17.0.32112.339",
+      "Entry": "lib/netstandard2.0/Microsoft.VisualStudio.TextTemplating.Interfaces.10.0.dll",
+      "Folder": "netstandard2.0",
+      "Declared": ".NETFramework,Version=v4.0",
+      "Verdict": "Incompatible",
+      "Primary": true,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.VisualStudio.TextTemplating.Interfaces.11.0@17.0.32112.339",
+      "Entry": "lib/net472/Microsoft.VisualStudio.TextTemplating.Interfaces.11.0.dll",
+      "Folder": "net472",
+      "Declared": ".NETFramework,Version=v4.5",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.VisualStudio.TextTemplating.Interfaces.11.0@17.0.32112.339",
+      "Entry": "lib/netstandard2.0/Microsoft.VisualStudio.TextTemplating.Interfaces.11.0.dll",
+      "Folder": "netstandard2.0",
+      "Declared": ".NETFramework,Version=v4.5",
+      "Verdict": "Incompatible",
+      "Primary": true,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.VisualStudio.TextTemplating.Interfaces.15.0@16.10.31320.204",
+      "Entry": "lib/net45/Microsoft.VisualStudio.TextTemplating.Interfaces.15.0.dll",
+      "Folder": "net45",
+      "Declared": ".NETFramework,Version=v4.7.2",
+      "Verdict": "Incompatible",
+      "Primary": true,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.VisualStudio.TextTemplating.VSHost.15.0@16.10.31321.278",
+      "Entry": "lib/net45/Microsoft.VisualStudio.TextTemplating.VSHost.15.0.dll",
+      "Folder": "net45",
+      "Declared": ".NETFramework,Version=v4.7.2",
+      "Verdict": "Incompatible",
+      "Primary": true,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.Web.Administration@11.1.0",
+      "Entry": "lib/netstandard1.5/Microsoft.Web.Administration.dll",
+      "Folder": "netstandard1.5",
+      "Declared": ".NETFramework,Version=v4.5",
+      "Verdict": "Incompatible",
+      "Primary": true,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.Windows.AI.MachineLearning@2.2.12",
+      "Entry": "lib/net8.0-windows10.0.17763.0/Microsoft.Windows.AI.MachineLearning.Projection.dll",
+      "Folder": "net8.0-windows10.0.17763.0",
+      "Declared": ".NETCoreApp,Version=v6.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.Windows.SDK.NET.Ref@10.0.26100.87",
+      "Entry": "lib/net9.0/Microsoft.Windows.UI.Xaml.dll",
+      "Folder": "net9.0",
+      "Declared": ".NETCoreApp,Version=v8.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Microsoft.Xaml.Behaviors.Uwp.Managed@3.0.1",
+      "Entry": "lib/uap10.0/Microsoft.Xaml.Interactivity.dll",
+      "Folder": "uap10.0",
+      "Declared": ".NETCore,Version=v5.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": false
+    },
+    {
+      "Package": "Microsoft.Xml.SgmlReader@1.8.30",
+      "Entry": "lib/uap/SgmlReaderDll.dll",
+      "Folder": "uap",
+      "Declared": ".NETStandard,Version=v2.0",
+      "Verdict": "Incompatible",
+      "Primary": false,
+      "Living": false
+    },
+    {
+      "Package": "Microsoft.Xml.SgmlReader@1.8.30",
+      "Entry": "lib/uap/SgmlReaderUniversal.dll",
+      "Folder": "uap",
+      "Declared": ".NETCore,Version=v5.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": false
+    },
+    {
+      "Package": "Microsoft.Z3@4.12.2",
+      "Entry": "lib/netstandard2.0/Microsoft.Z3.dll",
+      "Folder": "netstandard2.0",
+      "Declared": ".NETStandard,Version=v1.4",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": true
+    },
+    {
+      "Package": "MsgPack.Cli@1.0.1",
+      "Entry": "lib/uap10/MsgPack.dll",
+      "Folder": "uap10",
+      "Declared": ".NETCore,Version=v5.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": false
+    },
+    {
+      "Package": "Plugin.Permissions@6.0.1",
+      "Entry": "lib/uap10.0.16299/Plugin.Permissions.dll",
+      "Folder": "uap10.0.16299",
+      "Declared": ".NETCore,Version=v5.0",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Remotion.Linq.EagerFetching@2.2.0",
+      "Entry": "lib/portable-net45%2Bwin%2Bwpa81%2Bwp80/Remotion.Linq.EagerFetching.dll",
+      "Folder": "portable-net45%2Bwin%2Bwpa81%2Bwp80",
+      "Declared": ".NETPortable,Version=v4.5,Profile=Profile259",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Remotion.Linq@2.2.0",
+      "Entry": "lib/portable-net45%2Bwin%2Bwpa81%2Bwp80/Remotion.Linq.dll",
+      "Folder": "portable-net45%2Bwin%2Bwpa81%2Bwp80",
+      "Declared": ".NETPortable,Version=v4.5,Profile=Profile259",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Rg.Plugins.Popup@2.1.0",
+      "Entry": "lib/net472/Rg.Plugins.Popup.dll",
+      "Folder": "net472",
+      "Declared": ".NETCore,Version=v5.0",
+      "Verdict": "Incompatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Rg.Plugins.Popup@2.1.0",
+      "Entry": "lib/netcoreapp3.1/Rg.Plugins.Popup.dll",
+      "Folder": "netcoreapp3.1",
+      "Declared": ".NETCore,Version=v5.0",
+      "Verdict": "Incompatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Rg.Plugins.Popup@2.1.0",
+      "Entry": "lib/netstandard2.0/Rg.Plugins.Popup.dll",
+      "Folder": "netstandard2.0",
+      "Declared": ".NETCore,Version=v5.0",
+      "Verdict": "Incompatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Rg.Plugins.Popup@2.1.0",
+      "Entry": "lib/tizen80/Rg.Plugins.Popup.dll",
+      "Folder": "tizen80",
+      "Declared": ".NETCore,Version=v5.0",
+      "Verdict": "Incompatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Rg.Plugins.Popup@2.1.0",
+      "Entry": "lib/uap10.0.18362/Rg.Plugins.Popup.dll",
+      "Folder": "uap10.0.18362",
+      "Declared": ".NETCore,Version=v5.0",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Rg.Plugins.Popup@2.1.0",
+      "Entry": "lib/xamarinios10/Rg.Plugins.Popup.dll",
+      "Folder": "xamarinios10",
+      "Declared": ".NETCore,Version=v5.0",
+      "Verdict": "Incompatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Rg.Plugins.Popup@2.1.0",
+      "Entry": "lib/xamarinmac20/Rg.Plugins.Popup.dll",
+      "Folder": "xamarinmac20",
+      "Declared": ".NETCore,Version=v5.0",
+      "Verdict": "Incompatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Rg.Plugins.Popup@2.1.0",
+      "Entry": "lib/xamarintvos10/Rg.Plugins.Popup.dll",
+      "Folder": "xamarintvos10",
+      "Declared": ".NETCore,Version=v5.0",
+      "Verdict": "Incompatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Rg.Plugins.Popup@2.1.0",
+      "Entry": "lib/xamarinwatchos10/Rg.Plugins.Popup.dll",
+      "Folder": "xamarinwatchos10",
+      "Declared": ".NETCore,Version=v5.0",
+      "Verdict": "Incompatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Serilog.Enrichers.CorrelationId@3.0.1",
+      "Entry": "lib/net452/Serilog.dll",
+      "Folder": "net452",
+      "Declared": ".NETFramework,Version=v4.5",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "SharpDX.DXGI@4.2.0",
+      "Entry": "lib/uap10.0/SharpDX.DXGI.dll",
+      "Folder": "uap10.0",
+      "Declared": ".NETCore,Version=v5.0",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "SharpDX@4.2.0",
+      "Entry": "lib/uap10.0/SharpDX.dll",
+      "Folder": "uap10.0",
+      "Declared": ".NETCore,Version=v5.0",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "SpecFlow.Plus.LivingDocPlugin@3.9.57",
+      "Entry": "lib/net461/LivingDoc.Dtos.dll",
+      "Folder": "net461",
+      "Declared": ".NETStandard,Version=v2.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Sprache@2.3.1",
+      "Entry": "lib/sl5/Sprache.dll",
+      "Folder": "sl5",
+      "Declared": ".NETFramework,Version=v4.5",
+      "Verdict": "Incompatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "SQLitePCLRaw.provider.e_sqlite3.netstandard11@1.1.14",
+      "Entry": "lib/netstandard1.1/SQLitePCLRaw.provider.e_sqlite3.dll",
+      "Folder": "netstandard1.1",
+      "Declared": ".NETPortable,Version=v5.0",
+      "Verdict": "Incompatible",
+      "Primary": false,
+      "Living": false
+    },
+    {
+      "Package": "SshNet.Security.Cryptography@1.3.0",
+      "Entry": "lib/portable-net45%2Bwin8%2Bwpa81/SshNet.Security.Cryptography.dll",
+      "Folder": "portable-net45%2Bwin8%2Bwpa81",
+      "Declared": ".NETPortable,Version=v4.5,Profile=Profile111",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "SshNet.Security.Cryptography@1.3.0",
+      "Entry": "lib/uap10.0/SshNet.Security.Cryptography.dll",
+      "Folder": "uap10.0",
+      "Declared": ".NETCore,Version=v5.0",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "SshNet.Security.Cryptography@1.3.0",
+      "Entry": "lib/wp71/SshNet.Security.Cryptography.dll",
+      "Folder": "wp71",
+      "Declared": "Silverlight,Version=v4.0,Profile=WindowsPhone71",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Syncfusion.Licensing@34.1.33",
+      "Entry": "lib/net10.0/Syncfusion.Licensing.dll",
+      "Folder": "net10.0",
+      "Declared": ".NETStandard,Version=v2.0",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": true
+    },
+    {
+      "Package": "Syncfusion.Licensing@34.1.33",
+      "Entry": "lib/net8.0/Syncfusion.Licensing.dll",
+      "Folder": "net8.0",
+      "Declared": ".NETStandard,Version=v2.0",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": true
+    },
+    {
+      "Package": "Syncfusion.Licensing@34.1.33",
+      "Entry": "lib/net9.0/Syncfusion.Licensing.dll",
+      "Folder": "net9.0",
+      "Declared": ".NETStandard,Version=v2.0",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": true
+    },
+    {
+      "Package": "Syncfusion.Licensing@34.1.33",
+      "Entry": "lib/uap10.0/Syncfusion.Licensing.dll",
+      "Folder": "uap10.0",
+      "Declared": ".NETStandard,Version=v2.0",
+      "Verdict": "Incompatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "System.Diagnostics.Tracer@2.0.8",
+      "Entry": "lib/netstandard1.3/System.Diagnostics.Tracer.dll",
+      "Folder": "netstandard1.3",
+      "Declared": ".NETPortable,Version=v5.0",
+      "Verdict": "Incompatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "System.Linq.Dynamic.Core@1.7.3",
+      "Entry": "lib/uap10.0.10240/System.Linq.Dynamic.Core.dll",
+      "Folder": "uap10.0.10240",
+      "Declared": ".NETCore,Version=v5.0",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "System.Reactive.Core@6.1.0",
+      "Entry": "lib/uap10.0.18362/System.Reactive.Core.dll",
+      "Folder": "uap10.0.18362",
+      "Declared": ".NETCore,Version=v5.0",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "System.Reactive.Interfaces@6.1.0",
+      "Entry": "lib/uap10.0.18362/System.Reactive.Interfaces.dll",
+      "Folder": "uap10.0.18362",
+      "Declared": ".NETCore,Version=v5.0",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "System.Reactive.Linq@6.1.0",
+      "Entry": "lib/uap10.0.18362/System.Reactive.Linq.dll",
+      "Folder": "uap10.0.18362",
+      "Declared": ".NETCore,Version=v5.0",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "System.Reactive.PlatformServices@6.1.0",
+      "Entry": "lib/uap10.0.18362/System.Reactive.PlatformServices.dll",
+      "Folder": "uap10.0.18362",
+      "Declared": ".NETCore,Version=v5.0",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "System.Reactive.Providers@6.1.0",
+      "Entry": "lib/uap10.0.18362/System.Reactive.Providers.dll",
+      "Folder": "uap10.0.18362",
+      "Declared": ".NETCore,Version=v5.0",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "System.Reactive.Uwp@7.0.0",
+      "Entry": "lib/uap10.0.18362/System.Reactive.Uwp.dll",
+      "Folder": "uap10.0.18362",
+      "Declared": ".NETCore,Version=v5.0",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "System.Reactive.Windows.Threading@6.1.0",
+      "Entry": "lib/uap10.0.18362/System.Reactive.Windows.Threading.dll",
+      "Folder": "uap10.0.18362",
+      "Declared": ".NETCore,Version=v5.0",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "System.Reactive.WindowsRuntime@7.0.0",
+      "Entry": "lib/uap10.0.18362/System.Reactive.WindowsRuntime.dll",
+      "Folder": "uap10.0.18362",
+      "Declared": ".NETCore,Version=v5.0",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "System.Reactive@7.0.0",
+      "Entry": "lib/uap10.0.18362/System.Reactive.dll",
+      "Folder": "uap10.0.18362",
+      "Declared": ".NETCore,Version=v5.0",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "System.Security.Cryptography.OpenSsl@5.0.0",
+      "Entry": "lib/net461/System.Security.Cryptography.OpenSsl.dll",
+      "Folder": "net461",
+      "Declared": ".NETFramework,Version=v4.7",
+      "Verdict": "Incompatible",
+      "Primary": true,
+      "Living": true
+    },
+    {
+      "Package": "System.ServiceModel.Primitives@10.0.652802",
+      "Entry": "lib/net10.0/System.ServiceModel.dll",
+      "Folder": "net10.0",
+      "Declared": ".NETStandard,Version=v2.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "System.Spatial@5.8.5",
+      "Entry": "lib/netstandard1.1/System.Spatial.dll",
+      "Folder": "netstandard1.1",
+      "Declared": ".NETPortable,Version=v4.5,Profile=Profile259",
+      "Verdict": "Incompatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "System.Spatial@5.8.5",
+      "Entry": "lib/portable-net40%2Bsl5%2Bwp8%2Bwin8%2Bwpa/System.Spatial.dll",
+      "Folder": "portable-net40%2Bsl5%2Bwp8%2Bwin8%2Bwpa",
+      "Declared": ".NETPortable,Version=v4.0,Profile=Profile328",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "System.Spatial@5.8.5",
+      "Entry": "lib/portable-net45%2Bwp8%2Bwin8%2Bwpa/System.Spatial.dll",
+      "Folder": "portable-net45%2Bwp8%2Bwin8%2Bwpa",
+      "Declared": ".NETPortable,Version=v4.5,Profile=Profile259",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Xam.Plugin.Media@6.0.2",
+      "Entry": "lib/uap10.0.17763/Plugin.Media.dll",
+      "Folder": "uap10.0.17763",
+      "Declared": ".NETCore,Version=v5.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.Android.Arch.Core.Common@1.1.1.3",
+      "Entry": "lib/monoandroid81/Xamarin.Android.Arch.Core.Common.dll",
+      "Folder": "monoandroid81",
+      "Declared": "MonoAndroid,Version=v8.0",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.Android.Arch.Lifecycle.Common@1.1.1.3",
+      "Entry": "lib/monoandroid81/Xamarin.Android.Arch.Lifecycle.Common.dll",
+      "Folder": "monoandroid81",
+      "Declared": "MonoAndroid,Version=v8.0",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.Android.Arch.Lifecycle.Runtime@1.1.1.3",
+      "Entry": "lib/monoandroid81/Xamarin.Android.Arch.Lifecycle.Runtime.dll",
+      "Folder": "monoandroid81",
+      "Declared": "MonoAndroid,Version=v8.0",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.Android.Support.Animated.Vector.Drawable@28.0.0.3",
+      "Entry": "lib/monoandroid60/Xamarin.Android.Support.Animated.Vector.Drawable.dll",
+      "Folder": "monoandroid60",
+      "Declared": "MonoAndroid,Version=v4.0.3",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.Android.Support.Animated.Vector.Drawable@28.0.0.3",
+      "Entry": "lib/monoandroid71/Xamarin.Android.Support.Animated.Vector.Drawable.dll",
+      "Folder": "monoandroid71",
+      "Declared": "MonoAndroid,Version=v7.0",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.Android.Support.Animated.Vector.Drawable@28.0.0.3",
+      "Entry": "lib/monoandroid81/Xamarin.Android.Support.Animated.Vector.Drawable.dll",
+      "Folder": "monoandroid81",
+      "Declared": "MonoAndroid,Version=v8.0",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.Android.Support.Annotations@28.0.0.3",
+      "Entry": "lib/monoandroid71/Xamarin.Android.Support.Annotations.dll",
+      "Folder": "monoandroid71",
+      "Declared": "MonoAndroid,Version=v7.0",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.Android.Support.Annotations@28.0.0.3",
+      "Entry": "lib/monoandroid81/Xamarin.Android.Support.Annotations.dll",
+      "Folder": "monoandroid81",
+      "Declared": "MonoAndroid,Version=v8.0",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.Android.Support.Compat@28.0.0.3",
+      "Entry": "lib/monoandroid71/Xamarin.Android.Support.Compat.dll",
+      "Folder": "monoandroid71",
+      "Declared": "MonoAndroid,Version=v7.0",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.Android.Support.Compat@28.0.0.3",
+      "Entry": "lib/monoandroid81/Xamarin.Android.Support.Compat.dll",
+      "Folder": "monoandroid81",
+      "Declared": "MonoAndroid,Version=v8.0",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.Android.Support.Core.UI@28.0.0.3",
+      "Entry": "lib/monoandroid71/Xamarin.Android.Support.Core.UI.dll",
+      "Folder": "monoandroid71",
+      "Declared": "MonoAndroid,Version=v7.0",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.Android.Support.Core.UI@28.0.0.3",
+      "Entry": "lib/monoandroid81/Xamarin.Android.Support.Core.UI.dll",
+      "Folder": "monoandroid81",
+      "Declared": "MonoAndroid,Version=v8.0",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.Android.Support.Core.Utils@28.0.0.3",
+      "Entry": "lib/monoandroid71/Xamarin.Android.Support.Core.Utils.dll",
+      "Folder": "monoandroid71",
+      "Declared": "MonoAndroid,Version=v7.0",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.Android.Support.Core.Utils@28.0.0.3",
+      "Entry": "lib/monoandroid81/Xamarin.Android.Support.Core.Utils.dll",
+      "Folder": "monoandroid81",
+      "Declared": "MonoAndroid,Version=v8.0",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.Android.Support.Design@28.0.0.3",
+      "Entry": "lib/monoandroid60/Xamarin.Android.Support.Design.dll",
+      "Folder": "monoandroid60",
+      "Declared": "MonoAndroid,Version=v4.3",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.Android.Support.Design@28.0.0.3",
+      "Entry": "lib/monoandroid71/Xamarin.Android.Support.Design.dll",
+      "Folder": "monoandroid71",
+      "Declared": "MonoAndroid,Version=v7.0",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.Android.Support.Design@28.0.0.3",
+      "Entry": "lib/monoandroid81/Xamarin.Android.Support.Design.dll",
+      "Folder": "monoandroid81",
+      "Declared": "MonoAndroid,Version=v8.0",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.Android.Support.Fragment@28.0.0.3",
+      "Entry": "lib/monoandroid71/Xamarin.Android.Support.Fragment.dll",
+      "Folder": "monoandroid71",
+      "Declared": "MonoAndroid,Version=v7.0",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.Android.Support.Fragment@28.0.0.3",
+      "Entry": "lib/monoandroid81/Xamarin.Android.Support.Fragment.dll",
+      "Folder": "monoandroid81",
+      "Declared": "MonoAndroid,Version=v8.0",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.Android.Support.Media.Compat@28.0.0.3",
+      "Entry": "lib/monoandroid71/Xamarin.Android.Support.Media.Compat.dll",
+      "Folder": "monoandroid71",
+      "Declared": "MonoAndroid,Version=v7.0",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.Android.Support.Media.Compat@28.0.0.3",
+      "Entry": "lib/monoandroid81/Xamarin.Android.Support.Media.Compat.dll",
+      "Folder": "monoandroid81",
+      "Declared": "MonoAndroid,Version=v8.0",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.Android.Support.v7.CardView@28.0.0.3",
+      "Entry": "lib/monoandroid60/Xamarin.Android.Support.v7.CardView.dll",
+      "Folder": "monoandroid60",
+      "Declared": "MonoAndroid,Version=v4.0.3",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.Android.Support.v7.CardView@28.0.0.3",
+      "Entry": "lib/monoandroid71/Xamarin.Android.Support.v7.CardView.dll",
+      "Folder": "monoandroid71",
+      "Declared": "MonoAndroid,Version=v7.0",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.Android.Support.v7.CardView@28.0.0.3",
+      "Entry": "lib/monoandroid81/Xamarin.Android.Support.v7.CardView.dll",
+      "Folder": "monoandroid81",
+      "Declared": "MonoAndroid,Version=v8.0",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.Android.Support.v7.RecyclerView@28.0.0.3",
+      "Entry": "lib/monoandroid60/Xamarin.Android.Support.v7.RecyclerView.dll",
+      "Folder": "monoandroid60",
+      "Declared": "MonoAndroid,Version=v4.0.3",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.Android.Support.v7.RecyclerView@28.0.0.3",
+      "Entry": "lib/monoandroid71/Xamarin.Android.Support.v7.RecyclerView.dll",
+      "Folder": "monoandroid71",
+      "Declared": "MonoAndroid,Version=v7.0",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.Android.Support.v7.RecyclerView@28.0.0.3",
+      "Entry": "lib/monoandroid81/Xamarin.Android.Support.v7.RecyclerView.dll",
+      "Folder": "monoandroid81",
+      "Declared": "MonoAndroid,Version=v8.0",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.Android.Support.Vector.Drawable@28.0.0.3",
+      "Entry": "lib/monoandroid60/Xamarin.Android.Support.Vector.Drawable.dll",
+      "Folder": "monoandroid60",
+      "Declared": "MonoAndroid,Version=v4.0.3",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.Android.Support.Vector.Drawable@28.0.0.3",
+      "Entry": "lib/monoandroid71/Xamarin.Android.Support.Vector.Drawable.dll",
+      "Folder": "monoandroid71",
+      "Declared": "MonoAndroid,Version=v7.0",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.Android.Support.Vector.Drawable@28.0.0.3",
+      "Entry": "lib/monoandroid81/Xamarin.Android.Support.Vector.Drawable.dll",
+      "Folder": "monoandroid81",
+      "Declared": "MonoAndroid,Version=v8.0",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.Essentials@1.8.1",
+      "Entry": "lib/uap10.0.16299/Xamarin.Essentials.dll",
+      "Folder": "uap10.0.16299",
+      "Declared": ".NETCore,Version=v5.0",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.FFImageLoading.Forms@2.4.11.982",
+      "Entry": "lib/MonoAndroid10/FFImageLoading.Forms.Platform.dll",
+      "Folder": "MonoAndroid10",
+      "Declared": "MonoAndroid,Version=v8.1",
+      "Verdict": "Incompatible",
+      "Primary": false,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.FFImageLoading.Forms@2.4.11.982",
+      "Entry": "lib/MonoAndroid10/FFImageLoading.Forms.dll",
+      "Folder": "MonoAndroid10",
+      "Declared": ".NETStandard,Version=v1.1",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.FFImageLoading.Forms@2.4.11.982",
+      "Entry": "lib/Xamarin.Mac20/FFImageLoading.Forms.dll",
+      "Folder": "Xamarin.Mac20",
+      "Declared": ".NETStandard,Version=v1.1",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.FFImageLoading.Forms@2.4.11.982",
+      "Entry": "lib/Xamarin.iOS10/FFImageLoading.Forms.dll",
+      "Folder": "Xamarin.iOS10",
+      "Declared": ".NETStandard,Version=v1.1",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.FFImageLoading.Forms@2.4.11.982",
+      "Entry": "lib/netstandard1.0/FFImageLoading.Forms.dll",
+      "Folder": "netstandard1.0",
+      "Declared": ".NETStandard,Version=v1.1",
+      "Verdict": "Incompatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Xamarin.FFImageLoading.Forms@2.4.11.982",
+      "Entry": "lib/portable-win\u002Bnet45\u002Bwp80\u002Bwin81\u002Bwpa81/FFImageLoading.Forms.dll",
+      "Folder": "portable-win\u002Bnet45\u002Bwp80\u002Bwin81\u002Bwpa81",
+      "Declared": ".NETStandard,Version=v1.1",
+      "Verdict": "Incompatible",
+      "Primary": false,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.FFImageLoading.Forms@2.4.11.982",
+      "Entry": "lib/tizen40/FFImageLoading.Forms.dll",
+      "Folder": "tizen40",
+      "Declared": ".NETStandard,Version=v1.1",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.FFImageLoading.Forms@2.4.11.982",
+      "Entry": "lib/uap/FFImageLoading.Forms.Platform.dll",
+      "Folder": "uap",
+      "Declared": ".NETCore,Version=v5.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.FFImageLoading.Forms@2.4.11.982",
+      "Entry": "lib/uap/FFImageLoading.Forms.dll",
+      "Folder": "uap",
+      "Declared": ".NETStandard,Version=v1.1",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.FFImageLoading.Transformations@2.4.11.982",
+      "Entry": "lib/MonoAndroid10/FFImageLoading.Transformations.dll",
+      "Folder": "MonoAndroid10",
+      "Declared": "MonoAndroid,Version=v9.0",
+      "Verdict": "Incompatible",
+      "Primary": false,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.FFImageLoading.Transformations@2.4.11.982",
+      "Entry": "lib/netstandard1.0/FFImageLoading.Transformations.dll",
+      "Folder": "netstandard1.0",
+      "Declared": ".NETStandard,Version=v1.1",
+      "Verdict": "Incompatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Xamarin.FFImageLoading.Transformations@2.4.11.982",
+      "Entry": "lib/portable-win\u002Bnet45\u002Bwp80\u002Bwin81\u002Bwpa81/FFImageLoading.Transformations.dll",
+      "Folder": "portable-win\u002Bnet45\u002Bwp80\u002Bwin81\u002Bwpa81",
+      "Declared": ".NETStandard,Version=v1.1",
+      "Verdict": "Incompatible",
+      "Primary": false,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.FFImageLoading.Transformations@2.4.11.982",
+      "Entry": "lib/uap/FFImageLoading.Transformations.dll",
+      "Folder": "uap",
+      "Declared": ".NETStandard,Version=v1.1",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.FFImageLoading.Transformations@2.4.11.982",
+      "Entry": "lib/win81/FFImageLoading.Transformations.dll",
+      "Folder": "win81",
+      "Declared": ".NETStandard,Version=v1.1",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.FFImageLoading.Transformations@2.4.11.982",
+      "Entry": "lib/wpa81/FFImageLoading.Transformations.dll",
+      "Folder": "wpa81",
+      "Declared": ".NETStandard,Version=v1.1",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.FFImageLoading@2.4.11.982",
+      "Entry": "lib/MonoAndroid10/FFImageLoading.Platform.dll",
+      "Folder": "MonoAndroid10",
+      "Declared": "MonoAndroid,Version=v8.1",
+      "Verdict": "Incompatible",
+      "Primary": false,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.FFImageLoading@2.4.11.982",
+      "Entry": "lib/MonoAndroid10/FFImageLoading.dll",
+      "Folder": "MonoAndroid10",
+      "Declared": ".NETStandard,Version=v1.1",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.FFImageLoading@2.4.11.982",
+      "Entry": "lib/Xamarin.Mac20/FFImageLoading.dll",
+      "Folder": "Xamarin.Mac20",
+      "Declared": ".NETStandard,Version=v1.1",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.FFImageLoading@2.4.11.982",
+      "Entry": "lib/Xamarin.iOS10/FFImageLoading.dll",
+      "Folder": "Xamarin.iOS10",
+      "Declared": ".NETStandard,Version=v1.1",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.FFImageLoading@2.4.11.982",
+      "Entry": "lib/netstandard1.0/FFImageLoading.Platform.dll",
+      "Folder": "netstandard1.0",
+      "Declared": ".NETStandard,Version=v1.1",
+      "Verdict": "Incompatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Xamarin.FFImageLoading@2.4.11.982",
+      "Entry": "lib/netstandard1.0/FFImageLoading.dll",
+      "Folder": "netstandard1.0",
+      "Declared": ".NETStandard,Version=v1.1",
+      "Verdict": "Incompatible",
+      "Primary": false,
+      "Living": true
+    },
+    {
+      "Package": "Xamarin.FFImageLoading@2.4.11.982",
+      "Entry": "lib/portable-win\u002Bnet45\u002Bwp80\u002Bwin81\u002Bwpa81/FFImageLoading.Platform.dll",
+      "Folder": "portable-win\u002Bnet45\u002Bwp80\u002Bwin81\u002Bwpa81",
+      "Declared": ".NETStandard,Version=v1.1",
+      "Verdict": "Incompatible",
+      "Primary": false,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.FFImageLoading@2.4.11.982",
+      "Entry": "lib/portable-win\u002Bnet45\u002Bwp80\u002Bwin81\u002Bwpa81/FFImageLoading.dll",
+      "Folder": "portable-win\u002Bnet45\u002Bwp80\u002Bwin81\u002Bwpa81",
+      "Declared": ".NETStandard,Version=v1.1",
+      "Verdict": "Incompatible",
+      "Primary": false,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.FFImageLoading@2.4.11.982",
+      "Entry": "lib/tizen40/FFImageLoading.dll",
+      "Folder": "tizen40",
+      "Declared": ".NETStandard,Version=v1.1",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.FFImageLoading@2.4.11.982",
+      "Entry": "lib/uap/FFImageLoading.Platform.dll",
+      "Folder": "uap",
+      "Declared": ".NETPortable,Version=v4.6,Profile=Profile32",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.FFImageLoading@2.4.11.982",
+      "Entry": "lib/uap/FFImageLoading.dll",
+      "Folder": "uap",
+      "Declared": ".NETStandard,Version=v1.1",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.FFImageLoading@2.4.11.982",
+      "Entry": "lib/win81/FFImageLoading.Platform.dll",
+      "Folder": "win81",
+      "Declared": ".NETPortable,Version=v4.6,Profile=Profile32",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.FFImageLoading@2.4.11.982",
+      "Entry": "lib/win81/FFImageLoading.dll",
+      "Folder": "win81",
+      "Declared": ".NETStandard,Version=v1.1",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.FFImageLoading@2.4.11.982",
+      "Entry": "lib/wpa81/FFImageLoading.Platform.dll",
+      "Folder": "wpa81",
+      "Declared": ".NETPortable,Version=v4.6,Profile=Profile32",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.FFImageLoading@2.4.11.982",
+      "Entry": "lib/wpa81/FFImageLoading.dll",
+      "Folder": "wpa81",
+      "Declared": ".NETStandard,Version=v1.1",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.Forms.Maps@4.3.0.991211",
+      "Entry": "lib/MonoAndroid81/Xamarin.Forms.Maps.dll",
+      "Folder": "MonoAndroid81",
+      "Declared": ".NETStandard,Version=v2.0",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.Forms.Maps@4.3.0.991211",
+      "Entry": "lib/MonoAndroid90/Xamarin.Forms.Maps.dll",
+      "Folder": "MonoAndroid90",
+      "Declared": ".NETStandard,Version=v2.0",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.Forms.Maps@4.3.0.991211",
+      "Entry": "lib/Xamarin.Mac/Xamarin.Forms.Maps.dll",
+      "Folder": "Xamarin.Mac",
+      "Declared": ".NETStandard,Version=v2.0",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.Forms.Maps@4.3.0.991211",
+      "Entry": "lib/Xamarin.Mac/Xamarin.Forms.Maps.macOS.dll",
+      "Folder": "Xamarin.Mac",
+      "Declared": "Xamarin.Mac,Version=v2.0",
+      "Verdict": "Incompatible",
+      "Primary": false,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.Forms.Maps@4.3.0.991211",
+      "Entry": "lib/Xamarin.iOS10/Xamarin.Forms.Maps.dll",
+      "Folder": "Xamarin.iOS10",
+      "Declared": ".NETStandard,Version=v2.0",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.Forms.Maps@4.3.0.991211",
+      "Entry": "lib/tizen40/Xamarin.Forms.Maps.dll",
+      "Folder": "tizen40",
+      "Declared": ".NETStandard,Version=v2.0",
+      "Verdict": "Compatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.Forms.Maps@4.3.0.991211",
+      "Entry": "lib/uap10.0/Xamarin.Forms.Maps.UWP.dll",
+      "Folder": "uap10.0",
+      "Declared": ".NETCore,Version=v5.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.Forms.Maps@4.3.0.991211",
+      "Entry": "lib/uap10.0/Xamarin.Forms.Maps.dll",
+      "Folder": "uap10.0",
+      "Declared": ".NETStandard,Version=v2.0",
+      "Verdict": "Incompatible",
+      "Primary": true,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.Forms@4.3.0.991211",
+      "Entry": "lib/MonoAndroid81/FormsViewGroup.dll",
+      "Folder": "MonoAndroid81",
+      "Declared": "MonoAndroid,Version=v7.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.Forms@4.3.0.991211",
+      "Entry": "lib/MonoAndroid81/Xamarin.Forms.Core.dll",
+      "Folder": "MonoAndroid81",
+      "Declared": ".NETStandard,Version=v2.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.Forms@4.3.0.991211",
+      "Entry": "lib/MonoAndroid81/Xamarin.Forms.Xaml.dll",
+      "Folder": "MonoAndroid81",
+      "Declared": ".NETStandard,Version=v2.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.Forms@4.3.0.991211",
+      "Entry": "lib/MonoAndroid90/FormsViewGroup.dll",
+      "Folder": "MonoAndroid90",
+      "Declared": "MonoAndroid,Version=v7.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.Forms@4.3.0.991211",
+      "Entry": "lib/MonoAndroid90/Xamarin.Forms.Core.dll",
+      "Folder": "MonoAndroid90",
+      "Declared": ".NETStandard,Version=v2.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.Forms@4.3.0.991211",
+      "Entry": "lib/MonoAndroid90/Xamarin.Forms.Xaml.dll",
+      "Folder": "MonoAndroid90",
+      "Declared": ".NETStandard,Version=v2.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.Forms@4.3.0.991211",
+      "Entry": "lib/Xamarin.Mac/Xamarin.Forms.Core.dll",
+      "Folder": "Xamarin.Mac",
+      "Declared": ".NETStandard,Version=v2.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.Forms@4.3.0.991211",
+      "Entry": "lib/Xamarin.Mac/Xamarin.Forms.Platform.dll",
+      "Folder": "Xamarin.Mac",
+      "Declared": ".NETStandard,Version=v2.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.Forms@4.3.0.991211",
+      "Entry": "lib/Xamarin.Mac/Xamarin.Forms.Platform.macOS.dll",
+      "Folder": "Xamarin.Mac",
+      "Declared": "Xamarin.Mac,Version=v2.0",
+      "Verdict": "Incompatible",
+      "Primary": false,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.Forms@4.3.0.991211",
+      "Entry": "lib/Xamarin.Mac/Xamarin.Forms.Xaml.dll",
+      "Folder": "Xamarin.Mac",
+      "Declared": ".NETStandard,Version=v2.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.Forms@4.3.0.991211",
+      "Entry": "lib/Xamarin.iOS10/Xamarin.Forms.Core.dll",
+      "Folder": "Xamarin.iOS10",
+      "Declared": ".NETStandard,Version=v2.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.Forms@4.3.0.991211",
+      "Entry": "lib/Xamarin.iOS10/Xamarin.Forms.Xaml.dll",
+      "Folder": "Xamarin.iOS10",
+      "Declared": ".NETStandard,Version=v2.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.Forms@4.3.0.991211",
+      "Entry": "lib/tizen40/Xamarin.Forms.Core.dll",
+      "Folder": "tizen40",
+      "Declared": ".NETStandard,Version=v2.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.Forms@4.3.0.991211",
+      "Entry": "lib/tizen40/Xamarin.Forms.Xaml.dll",
+      "Folder": "tizen40",
+      "Declared": ".NETStandard,Version=v2.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.Forms@4.3.0.991211",
+      "Entry": "lib/uap10.0/Xamarin.Forms.Core.dll",
+      "Folder": "uap10.0",
+      "Declared": ".NETStandard,Version=v2.0",
+      "Verdict": "Incompatible",
+      "Primary": false,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.Forms@4.3.0.991211",
+      "Entry": "lib/uap10.0/Xamarin.Forms.Platform.UAP.dll",
+      "Folder": "uap10.0",
+      "Declared": ".NETCore,Version=v5.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.Forms@4.3.0.991211",
+      "Entry": "lib/uap10.0/Xamarin.Forms.Platform.dll",
+      "Folder": "uap10.0",
+      "Declared": ".NETStandard,Version=v2.0",
+      "Verdict": "Incompatible",
+      "Primary": false,
+      "Living": false
+    },
+    {
+      "Package": "Xamarin.Forms@4.3.0.991211",
+      "Entry": "lib/uap10.0/Xamarin.Forms.Xaml.dll",
+      "Folder": "uap10.0",
+      "Declared": ".NETStandard,Version=v2.0",
+      "Verdict": "Incompatible",
+      "Primary": false,
+      "Living": false
+    },
+    {
+      "Package": "ZXing.Net@0.16.11",
+      "Entry": "lib/portable-win\u002Bnet40\u002Bsl4\u002Bsl5\u002Bwp7\u002Bwp71\u002Bwp8/zxing.portable.dll",
+      "Folder": "portable-win\u002Bnet40\u002Bsl4\u002Bsl5\u002Bwp7\u002Bwp71\u002Bwp8",
+      "Declared": ".NETPortable,Version=v4.0,Profile=Profile1",
+      "Verdict": "Incompatible",
+      "Primary": false,
+      "Living": false
+    },
+    {
+      "Package": "ZXing.Net@0.16.11",
+      "Entry": "lib/sl3-wp/zxing.wp7.0.dll",
+      "Folder": "sl3-wp",
+      "Declared": "Silverlight,Version=v4.0,Profile=WindowsPhone",
+      "Verdict": "Incompatible",
+      "Primary": false,
+      "Living": false
+    },
+    {
+      "Package": "ZXing.Net@0.16.11",
+      "Entry": "lib/uap10/zxing.dll",
+      "Folder": "uap10",
+      "Declared": ".NETCore,Version=v5.0",
+      "Verdict": "Compatible",
+      "Primary": false,
+      "Living": false
+    },
+    {
+      "Package": "ZXing.Net@0.16.11",
+      "Entry": "lib/windows8-managed/zxing.winrt.dll",
+      "Folder": "windows8-managed",
+      "Declared": ".NETCore,Version=v4.5.1",
+      "Verdict": "Incompatible",
+      "Primary": false,
+      "Living": false
+    }
+  ]
+}
