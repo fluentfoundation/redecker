@@ -247,6 +247,34 @@ rounds of correction later it is at 0.2%, and the defect it was written to catch
 Deleting it after round two would have thrown away a working rule and the two false-positive classes
 it went on to teach us about.
 
+## Symbol coverage, and what 232 packages settled
+
+Before writing [RDK0009](/rules/rdk0009), the question was whether partial symbol coverage happens
+at all. Of 232 corpus packages shipping `lib/` assemblies:
+
+| Outcome | Packages |
+| --- | ---: |
+| No symbol package at all | 174 |
+| Symbols covering every shipped assembly | 57 |
+| Symbols with a gap | 1 |
+
+Two things follow, and both shaped the rule.
+
+**Publishing no symbols is a choice, not a defect** — three quarters of packages make it, so the
+rule stays silent there rather than nagging.
+
+**Complete coverage is the convention when symbols do ship**, at 57 of 58. That is what makes a gap
+worth reporting: it is not a matter of taste, it is a deviation from what essentially everybody
+does.
+
+And the single exception taught the exclusion. `Microsoft.VisualStudio.Validation` has 26 uncovered
+assemblies, all satellites — `lib/net8.0/de/…resources.dll` and its siblings — which correctly have
+no PDBs, because a resource assembly has no code to step through. Only assemblies directly in
+`lib/<framework>/` are considered.
+
+Had the rule been written from the idea alone, that package would have been its first false
+positive.
+
 ## Rules we decided not to write
 
 Knowing why something was rejected is worth as much as knowing why something shipped.

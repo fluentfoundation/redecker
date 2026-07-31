@@ -20,6 +20,10 @@ public class HintEvaluatorTests
         public Task<PackageArchive?> GetAsync(string id, string version, CancellationToken cancellationToken) =>
             Task.FromResult(_packages.TryGetValue($"{id}@{version}", out var factory) ? factory() : null);
 
+        // No fake symbol packages: these tests exercise hints, not symbol coverage.
+        public Task<PackageArchive?> GetSymbolsAsync(string id, string version, CancellationToken ct) =>
+            Task.FromResult<PackageArchive?>(null);
+
         public Task<IReadOnlyList<string>> GetVersionsAsync(string id, CancellationToken cancellationToken) =>
             Task.FromResult<IReadOnlyList<string>>(
                 _packages.Keys

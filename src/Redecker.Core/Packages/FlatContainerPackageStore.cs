@@ -13,6 +13,12 @@ public sealed class FlatContainerPackageStore : IPackageStore, IDisposable
     /// <summary>The flat container for nuget.org.</summary>
     public const string NuGetOrg = "https://api.nuget.org/v3-flatcontainer";
 
+    /// <summary>
+    /// Where nuget.org serves symbol packages. Deliberately separate: the flat container does not
+    /// serve <c>.snupkg</c> at all, and the obvious URL returns 404.
+    /// </summary>
+    public const string SymbolEndpoint = "https://globalcdn.nuget.org/symbol-packages";
+
     private readonly HttpClient _http;
     private readonly bool _ownsHttpClient;
     private readonly string _baseUrl;
@@ -67,6 +73,44 @@ public sealed class FlatContainerPackageStore : IPackageStore, IDisposable
         {
             // Write via a temp file so a cancelled download cannot leave a truncated package
             // behind that every later run would happily read.
+            var target = Path.Combine(_cacheDirectory, fileName);
+            var temp = target + ".tmp";
+            await File.WriteAllBytesAsync(temp, bytes, cancellationToken).ConfigureAwait(false);
+            File.Move(temp, target, overwrite: true);
+        }
+
+        return PackageArchive.Open(id, version, new MemoryStream(bytes, writable: false));
+    }
+
+    /// <inheritdoc />
+    public async Task<PackageArchive?> GetSymbolsAsync(
+        string id, string version, CancellationToken cancellationToken)
+    {
+        var fileName = $"{id.ToLowerInvariant()}.{version.ToLowerInvariant()}.snupkg";
+
+        if (_cacheDirectory is not null)
+        {
+            var cached = Path.Combine(_cacheDirectory, fileName);
+            if (File.Exists(cached))
+            {
+                return PackageArchive.Open(id, version, File.OpenRead(cached));
+            }
+        }
+
+        using var response = await _http
+            .GetAsync($"{SymbolEndpoint}/{fileName}", cancellationToken).ConfigureAwait(false);
+
+        if (response.StatusCode is HttpStatusCode.NotFound or HttpStatusCode.Forbidden)
+        {
+            // No symbols published, which is a choice rather than an error.
+            return null;
+        }
+
+        response.EnsureSuccessStatusCode();
+        var bytes = await response.Content.ReadAsByteArrayAsync(cancellationToken).ConfigureAwait(false);
+
+        if (_cacheDirectory is not null)
+        {
             var target = Path.Combine(_cacheDirectory, fileName);
             var temp = target + ".tmp";
             await File.WriteAllBytesAsync(temp, bytes, cancellationToken).ConfigureAwait(false);

@@ -79,6 +79,7 @@ export default defineConfig({
                         { text: 'RDK0006 Unimportable build file', link: '/rules/rdk0006' },
                         { text: 'RDK0007 Untracked output copies', link: '/rules/rdk0007' },
                         { text: 'RDK0008 Analyzer placement', link: '/rules/rdk0008' },
+                        { text: 'RDK0009 Incomplete symbol package', link: '/rules/rdk0009' },
                     ]
                 },
                 {

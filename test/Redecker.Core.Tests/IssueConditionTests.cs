@@ -23,6 +23,10 @@ public class IssueConditionTests
             Task.FromResult<PackageArchive?>(
                 new SyntheticPackage().With($"{id}.nuspec", Nuspec).Build(id, version));
 
+        // No fake symbol packages: these tests exercise hints, not symbol coverage.
+        public Task<PackageArchive?> GetSymbolsAsync(string id, string version, CancellationToken ct) =>
+            Task.FromResult<PackageArchive?>(null);
+
         public Task<IReadOnlyList<string>> GetVersionsAsync(string id, CancellationToken ct) =>
             Task.FromResult<IReadOnlyList<string>>(["1.0.0"]);
     }

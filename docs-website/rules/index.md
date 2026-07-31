@@ -10,6 +10,7 @@
 | [RDK0006](./rdk0006) | warning | Build file nothing inside the package imports | `inspect` |
 | [RDK0007](./rdk0007) | warning | Output copies MSBuild does not track in FileWrites | `inspect` |
 | [RDK0008](./rdk0008) | warning | Analyzer assemblies under a target framework folder | `inspect` |
+| [RDK0009](./rdk0009) | warning | Symbol package that does not cover every shipped assembly | `inspect` |
 
 ## Publishing your own package?
 

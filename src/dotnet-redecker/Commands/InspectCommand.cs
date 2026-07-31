@@ -96,7 +96,17 @@ public static class InspectCommand
         }
 
         using var package = PackageArchive.OpenFile(path);
-        return Report.Write(SinglePackageRules(package), package.Moniker);
+        var findings = SinglePackageRules(package);
+
+        // dotnet pack writes the .snupkg beside the .nupkg, so a local check needs no network.
+        var symbolPath = Path.ChangeExtension(path, ".snupkg");
+        if (File.Exists(symbolPath))
+        {
+            using var symbols = PackageArchive.OpenFile(symbolPath);
+            findings.AddRange(new SymbolCoverageRule().Inspect(package, symbols));
+        }
+
+        return Report.Write(findings, package.Moniker);
     }
 
     /// <summary>Every rule that needs only one version of a package.</summary>
@@ -129,6 +139,13 @@ public static class InspectCommand
         }
 
         var findings = SinglePackageRules(candidate);
+
+        using (var symbols = await store.GetSymbolsAsync(id, to, cancellationToken).ConfigureAwait(false))
+        {
+            // A null here means no symbol package was published, which the rule treats as a
+            // choice rather than a defect.
+            findings.AddRange(new SymbolCoverageRule().Inspect(candidate, symbols));
+        }
 
         if (from is not null)
         {
