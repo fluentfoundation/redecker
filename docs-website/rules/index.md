@@ -9,6 +9,7 @@
 | [RDK0005](./rdk0005) | error | A .NET tool package that cannot be installed or run | `inspect` |
 | [RDK0006](./rdk0006) | warning | Build file nothing inside the package imports | `inspect` |
 | [RDK0007](./rdk0007) | warning | Output copies MSBuild does not track in FileWrites | `inspect` |
+| [RDK0008](./rdk0008) | warning | Analyzer assemblies under a target framework folder | `inspect` |
 
 ## Publishing your own package?
 

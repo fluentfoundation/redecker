@@ -132,6 +132,7 @@ public static class Program
         new ToolPackageRule(),
         new UnimportableBuildFolderRule(),
         new UntrackedOutputCopyRule(),
+        new AnalyzerPlacementRule(),
     ];
 
     /// <summary>

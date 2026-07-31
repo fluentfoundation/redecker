@@ -108,6 +108,7 @@ public static class InspectCommand
             new ToolPackageRule(),
             new UnimportableBuildFolderRule(),
             new UntrackedOutputCopyRule(),
+            new AnalyzerPlacementRule(),
         ];
 
         return rules.SelectMany(r => r.Inspect(package)).ToList();

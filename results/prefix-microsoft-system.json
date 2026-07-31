@@ -7,23 +7,25 @@
     "RDK0001",
     "RDK0005",
     "RDK0006",
-    "RDK0007"
+    "RDK0007",
+    "RDK0008"
   ],
   "RuleNames": [
     "dangling asset reference",
     "tool package not installable",
     "unimportable build file",
-    "untracked output copy"
+    "untracked output copy",
+    "analyzer under a framework folder"
   ],
   "Packages": [
     {
       "Id": "Microsoft.Agents.AI",
-      "Version": "1.15.0",
+      "Version": "1.16.0",
       "Findings": []
     },
     {
       "Id": "Microsoft.Agents.AI.Abstractions",
-      "Version": "1.15.0",
+      "Version": "1.16.0",
       "Findings": []
     },
     {
@@ -33,17 +35,17 @@
     },
     {
       "Id": "Microsoft.Agents.AI.OpenAI",
-      "Version": "1.15.0",
+      "Version": "1.16.0",
       "Findings": []
     },
     {
       "Id": "Microsoft.Agents.AI.Workflows",
-      "Version": "1.15.0",
+      "Version": "1.16.0",
       "Findings": []
     },
     {
       "Id": "Microsoft.Agents.AI.Workflows.Generators",
-      "Version": "1.15.0",
+      "Version": "1.16.0",
       "Findings": []
     },
     {
@@ -123,7 +125,12 @@
     },
     {
       "Id": "Microsoft.AI.Foundry.Local",
-      "Version": "1.2.3",
+      "Version": "1.2.4",
+      "Findings": []
+    },
+    {
+      "Id": "Microsoft.AI.Foundry.Local.Core",
+      "Version": "1.2.4",
       "Findings": []
     },
     {
@@ -2651,7 +2658,7 @@
     },
     {
       "Id": "Microsoft.Azure.Functions.Worker.Extensions.DurableTask.SqlServer",
-      "Version": "1.6.0",
+      "Version": "1.8.0",
       "Findings": []
     },
     {
@@ -4392,7 +4399,7 @@
     },
     {
       "Id": "Microsoft.DeclarativeAgents.Manifest",
-      "Version": "3.15.0",
+      "Version": "3.16.0",
       "Findings": []
     },
     {
@@ -4407,27 +4414,27 @@
     },
     {
       "Id": "Microsoft.DevTunnels.Connections",
-      "Version": "1.3.50",
+      "Version": "1.3.51",
       "Findings": []
     },
     {
       "Id": "Microsoft.DevTunnels.Contracts",
-      "Version": "1.3.50",
+      "Version": "1.3.51",
       "Findings": []
     },
     {
       "Id": "Microsoft.DevTunnels.Management",
-      "Version": "1.3.50",
+      "Version": "1.3.51",
       "Findings": []
     },
     {
       "Id": "Microsoft.DevTunnels.Ssh",
-      "Version": "3.12.37",
+      "Version": "3.12.40",
       "Findings": []
     },
     {
       "Id": "Microsoft.DevTunnels.Ssh.Tcp",
-      "Version": "3.12.37",
+      "Version": "3.12.40",
       "Findings": []
     },
     {
@@ -4537,7 +4544,7 @@
     },
     {
       "Id": "Microsoft.Direct3D.D3D12",
-      "Version": "1.619.4",
+      "Version": "1.619.5",
       "Findings": []
     },
     {
@@ -4878,12 +4885,12 @@
     },
     {
       "Id": "Microsoft.DurableTask.SqlServer",
-      "Version": "1.7.0",
+      "Version": "1.8.0",
       "Findings": []
     },
     {
       "Id": "Microsoft.DurableTask.SqlServer.AzureFunctions",
-      "Version": "1.6.0",
+      "Version": "1.8.0",
       "Findings": []
     },
     {
@@ -4913,7 +4920,7 @@
     },
     {
       "Id": "Microsoft.Dynamics.BusinessCentral.Translations",
-      "Version": "29.0.26208.4",
+      "Version": "29.0.26211.1",
       "Findings": []
     },
     {
@@ -5563,22 +5570,22 @@
     },
     {
       "Id": "Microsoft.FluentUI.AspNetCore.Components",
-      "Version": "4.14.3",
+      "Version": "4.14.4",
       "Findings": []
     },
     {
       "Id": "Microsoft.FluentUI.AspNetCore.Components.DataGrid.EntityFrameworkAdapter",
-      "Version": "4.14.3",
+      "Version": "4.14.4",
       "Findings": []
     },
     {
       "Id": "Microsoft.FluentUI.AspNetCore.Components.Emoji",
-      "Version": "4.14.3",
+      "Version": "4.14.4",
       "Findings": []
     },
     {
       "Id": "Microsoft.FluentUI.AspNetCore.Components.Icons",
-      "Version": "4.14.3",
+      "Version": "4.14.4",
       "Findings": []
     },
     {
@@ -5603,7 +5610,7 @@
     },
     {
       "Id": "Microsoft.Garnet",
-      "Version": "2.1.0",
+      "Version": "2.1.1",
       "Findings": []
     },
     {
@@ -5896,72 +5903,72 @@
     },
     {
       "Id": "Microsoft.Identity.Web",
-      "Version": "4.14.1",
+      "Version": "4.14.2",
       "Findings": []
     },
     {
       "Id": "Microsoft.Identity.Web.Azure",
-      "Version": "4.14.1",
+      "Version": "4.14.2",
       "Findings": []
     },
     {
       "Id": "Microsoft.Identity.Web.Certificate",
-      "Version": "4.14.1",
+      "Version": "4.14.2",
       "Findings": []
     },
     {
       "Id": "Microsoft.Identity.Web.Certificateless",
-      "Version": "4.14.1",
+      "Version": "4.14.2",
       "Findings": []
     },
     {
       "Id": "Microsoft.Identity.Web.Diagnostics",
-      "Version": "4.14.1",
+      "Version": "4.14.2",
       "Findings": []
     },
     {
       "Id": "Microsoft.Identity.Web.DownstreamApi",
-      "Version": "4.14.1",
+      "Version": "4.14.2",
       "Findings": []
     },
     {
       "Id": "Microsoft.Identity.Web.GraphServiceClient",
-      "Version": "4.14.1",
+      "Version": "4.14.2",
       "Findings": []
     },
     {
       "Id": "Microsoft.Identity.Web.GraphServiceClientBeta",
-      "Version": "4.14.1",
+      "Version": "4.14.2",
       "Findings": []
     },
     {
       "Id": "Microsoft.Identity.Web.MicrosoftGraph",
-      "Version": "4.14.1",
+      "Version": "4.14.2",
       "Findings": []
     },
     {
       "Id": "Microsoft.Identity.Web.MicrosoftGraphBeta",
-      "Version": "4.14.1",
+      "Version": "4.14.2",
       "Findings": []
     },
     {
       "Id": "Microsoft.Identity.Web.OWIN",
-      "Version": "4.14.1",
+      "Version": "4.14.2",
       "Findings": []
     },
     {
       "Id": "Microsoft.Identity.Web.TokenAcquisition",
-      "Version": "4.14.1",
+      "Version": "4.14.2",
       "Findings": []
     },
     {
       "Id": "Microsoft.Identity.Web.TokenCache",
-      "Version": "4.14.1",
+      "Version": "4.14.2",
       "Findings": []
     },
     {
       "Id": "Microsoft.Identity.Web.UI",
-      "Version": "4.14.1",
+      "Version": "4.14.2",
       "Findings": []
     },
     {
@@ -7923,48 +7930,17 @@
     },
     {
       "Id": "Microsoft.ML.OnnxRuntimeGenAI",
-      "Version": "0.14.1",
+      "Version": "0.15.0",
       "Findings": []
     },
     {
-      "Id": "Microsoft.ML.OnnxRuntimeGenAI.Cuda",
-      "Version": "0.14.1",
-      "Findings": [
-        {
-          "Code": "RDK0001",
-          "Severity": "Error",
-          "Title": "build/native/Microsoft.ML.OnnxRuntimeGenAI.Cuda.props references runtimes/win-arm64/native/onnxruntime-genai.dll, which the package does not contain"
-        },
-        {
-          "Code": "RDK0001",
-          "Severity": "Error",
-          "Title": "build/net8.0/Microsoft.ML.OnnxRuntimeGenAI.Cuda.props references runtimes/win-arm64/native/onnxruntime-genai.dll, which the package does not contain"
-        },
-        {
-          "Code": "RDK0001",
-          "Severity": "Error",
-          "Title": "build/net9.0-ios15.4/Microsoft.ML.OnnxRuntimeGenAI.Cuda.targets references runtimes/ios/native/onnxruntime-genai.xcframework.zip, which the package does not contain"
-        },
-        {
-          "Code": "RDK0001",
-          "Severity": "Error",
-          "Title": "build/netstandard2.0/Microsoft.ML.OnnxRuntimeGenAI.Cuda.props references runtimes/win-arm64/native/onnxruntime-genai.dll, which the package does not contain"
-        },
-        {
-          "Code": "RDK0001",
-          "Severity": "Error",
-          "Title": "buildTransitive/net9.0-ios15.4/Microsoft.ML.OnnxRuntimeGenAI.Cuda.targets references runtimes/ios/native/onnxruntime-genai.xcframework.zip, which the package does not contain"
-        }
-      ]
-    },
-    {
       "Id": "Microsoft.ML.OnnxRuntimeGenAI.Foundry",
-      "Version": "0.14.1",
+      "Version": "0.15.0",
       "Findings": []
     },
     {
       "Id": "Microsoft.ML.OnnxRuntimeGenAI.Managed",
-      "Version": "0.14.1",
+      "Version": "0.15.0",
       "Findings": []
     },
     {
@@ -11942,32 +11918,32 @@
     },
     {
       "Id": "Microsoft.ServiceFabric",
-      "Version": "11.6.235",
+      "Version": "11.6.239",
       "Findings": []
     },
     {
       "Id": "Microsoft.ServiceFabric.Actors",
-      "Version": "8.6.235",
+      "Version": "8.6.239",
       "Findings": []
     },
     {
       "Id": "Microsoft.ServiceFabric.Actors.Wcf",
-      "Version": "8.6.235",
+      "Version": "8.6.239",
       "Findings": []
     },
     {
       "Id": "Microsoft.ServiceFabric.AspNetCore.Abstractions",
-      "Version": "8.6.235",
+      "Version": "8.6.239",
       "Findings": []
     },
     {
       "Id": "Microsoft.ServiceFabric.AspNetCore.HttpSys",
-      "Version": "8.6.235",
+      "Version": "8.6.239",
       "Findings": []
     },
     {
       "Id": "Microsoft.ServiceFabric.AspNetCore.Kestrel",
-      "Version": "8.6.235",
+      "Version": "8.6.239",
       "Findings": []
     },
     {
@@ -11982,42 +11958,42 @@
     },
     {
       "Id": "Microsoft.ServiceFabric.Data",
-      "Version": "8.6.235",
+      "Version": "8.6.239",
       "Findings": []
     },
     {
       "Id": "Microsoft.ServiceFabric.Data.Extensions",
-      "Version": "8.6.235",
+      "Version": "8.6.239",
       "Findings": []
     },
     {
       "Id": "Microsoft.ServiceFabric.Data.Interfaces",
-      "Version": "8.6.235",
+      "Version": "8.6.239",
       "Findings": []
     },
     {
       "Id": "Microsoft.ServiceFabric.Diagnostics.Internal",
-      "Version": "8.6.235",
+      "Version": "8.6.239",
       "Findings": []
     },
     {
       "Id": "Microsoft.ServiceFabric.FabricTransport.Internal",
-      "Version": "8.6.235",
+      "Version": "8.6.239",
       "Findings": []
     },
     {
       "Id": "Microsoft.ServiceFabric.Services",
-      "Version": "8.6.235",
+      "Version": "8.6.239",
       "Findings": []
     },
     {
       "Id": "Microsoft.ServiceFabric.Services.Remoting",
-      "Version": "8.6.235",
+      "Version": "8.6.239",
       "Findings": []
     },
     {
       "Id": "Microsoft.ServiceFabric.Services.Wcf",
-      "Version": "8.6.235",
+      "Version": "8.6.239",
       "Findings": []
     },
     {
@@ -12187,7 +12163,7 @@
     },
     {
       "Id": "Microsoft.SqlServer.TransactSql.ScriptDom",
-      "Version": "180.59.2",
+      "Version": "180.78.1",
       "Findings": []
     },
     {

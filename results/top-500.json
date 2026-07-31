@@ -7,18 +7,20 @@
     "RDK0001",
     "RDK0005",
     "RDK0006",
-    "RDK0007"
+    "RDK0007",
+    "RDK0008"
   ],
   "RuleNames": [
     "dangling asset reference",
     "tool package not installable",
     "unimportable build file",
-    "untracked output copy"
+    "untracked output copy",
+    "analyzer under a framework folder"
   ],
   "Packages": [
     {
       "Id": "Amazon.Lambda.Core",
-      "Version": "3.2.0",
+      "Version": "3.3.0",
       "Findings": []
     },
     {
@@ -38,17 +40,17 @@
     },
     {
       "Id": "Asp.Versioning.Abstractions",
-      "Version": "10.0.0",
+      "Version": "10.1.0",
       "Findings": []
     },
     {
       "Id": "Asp.Versioning.Http",
-      "Version": "10.0.0",
+      "Version": "10.0.1",
       "Findings": []
     },
     {
       "Id": "Asp.Versioning.Mvc",
-      "Version": "10.0.0",
+      "Version": "10.0.1",
       "Findings": []
     },
     {
@@ -113,7 +115,7 @@
     },
     {
       "Id": "AWSSDK.Lambda",
-      "Version": "4.0.104.3",
+      "Version": "4.0.105",
       "Findings": []
     },
     {
@@ -123,7 +125,7 @@
     },
     {
       "Id": "AWSSDK.S3",
-      "Version": "4.0.101.5",
+      "Version": "4.0.101.6",
       "Findings": []
     },
     {
@@ -248,7 +250,7 @@
     },
     {
       "Id": "BouncyCastle.Cryptography",
-      "Version": "2.6.2",
+      "Version": "2.7.0",
       "Findings": []
     },
     {
@@ -523,7 +525,7 @@
     },
     {
       "Id": "HtmlSanitizer",
-      "Version": "9.1.973",
+      "Version": "9.1.974",
       "Findings": []
     },
     {
@@ -1294,32 +1296,32 @@
     },
     {
       "Id": "Microsoft.Identity.Web",
-      "Version": "4.14.1",
+      "Version": "4.14.2",
       "Findings": []
     },
     {
       "Id": "Microsoft.Identity.Web.Certificate",
-      "Version": "4.14.1",
+      "Version": "4.14.2",
       "Findings": []
     },
     {
       "Id": "Microsoft.Identity.Web.Certificateless",
-      "Version": "4.14.1",
+      "Version": "4.14.2",
       "Findings": []
     },
     {
       "Id": "Microsoft.Identity.Web.Diagnostics",
-      "Version": "4.14.1",
+      "Version": "4.14.2",
       "Findings": []
     },
     {
       "Id": "Microsoft.Identity.Web.TokenAcquisition",
-      "Version": "4.14.1",
+      "Version": "4.14.2",
       "Findings": []
     },
     {
       "Id": "Microsoft.Identity.Web.TokenCache",
-      "Version": "4.14.1",
+      "Version": "4.14.2",
       "Findings": []
     },
     {
@@ -2276,7 +2278,7 @@
     },
     {
       "Id": "StackExchange.Redis",
-      "Version": "3.0.17",
+      "Version": "3.0.25",
       "Findings": []
     },
     {

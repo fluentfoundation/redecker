@@ -1,15 +1,16 @@
 # Corpus sweep: prefix-microsoft-system
 
-Generated 2026-07-29 18:32 UTC from nuget.org, ids starting with Microsoft. or System., published within 6 years.
+Generated 2026-07-31 01:33 UTC from nuget.org, ids starting with Microsoft. or System., published within 6 years.
 
 Examined **2681** of 2681 selected packages, skipped 0.
 
 | Rule | What it checks | Packages | Rate | Reading |
 | --- | --- | ---: | ---: | --- |
-| RDK0001 | dangling asset reference | 23 | 0.9% | plausible |
+| RDK0001 | dangling asset reference | 22 | 0.8% | plausible |
 | RDK0005 | tool package not installable | 0 | 0.0% | no findings |
 | RDK0006 | unimportable build file | 20 | 0.7% | plausible |
 | RDK0007 | untracked output copy | 20 | 0.7% | plausible |
+| RDK0008 | analyzer under a framework folder | 0 | 0.0% | no findings |
 
 ## RDK0001 — dangling asset reference
 
@@ -95,11 +96,6 @@ Examined **2681** of 2681 selected packages, skipped 0.
 - `Microsoft.ML.OnnxRuntime.MKLML@1.6.0` — build/native/Microsoft.ML.OnnxRuntime.MKLML.props references runtimes/win-x86/native/onnxruntime.dll, which the package does not contain
 - `Microsoft.ML.OnnxRuntime.MKLML@1.6.0` — build/netstandard1.1/Microsoft.ML.OnnxRuntime.MKLML.props references runtimes/win-x86/native/onnxruntime.lib, which the package does not contain
 - `Microsoft.ML.OnnxRuntime.MKLML@1.6.0` — build/netstandard1.1/Microsoft.ML.OnnxRuntime.MKLML.props references runtimes/win-x86/native/onnxruntime.dll, which the package does not contain
-- `Microsoft.ML.OnnxRuntimeGenAI.Cuda@0.14.1` — build/native/Microsoft.ML.OnnxRuntimeGenAI.Cuda.props references runtimes/win-arm64/native/onnxruntime-genai.dll, which the package does not contain
-- `Microsoft.ML.OnnxRuntimeGenAI.Cuda@0.14.1` — build/net8.0/Microsoft.ML.OnnxRuntimeGenAI.Cuda.props references runtimes/win-arm64/native/onnxruntime-genai.dll, which the package does not contain
-- `Microsoft.ML.OnnxRuntimeGenAI.Cuda@0.14.1` — build/net9.0-ios15.4/Microsoft.ML.OnnxRuntimeGenAI.Cuda.targets references runtimes/ios/native/onnxruntime-genai.xcframework.zip, which the package does not contain
-- `Microsoft.ML.OnnxRuntimeGenAI.Cuda@0.14.1` — build/netstandard2.0/Microsoft.ML.OnnxRuntimeGenAI.Cuda.props references runtimes/win-arm64/native/onnxruntime-genai.dll, which the package does not contain
-- `Microsoft.ML.OnnxRuntimeGenAI.Cuda@0.14.1` — buildTransitive/net9.0-ios15.4/Microsoft.ML.OnnxRuntimeGenAI.Cuda.targets references runtimes/ios/native/onnxruntime-genai.xcframework.zip, which the package does not contain
 - `Microsoft.ProjectReunion.InteractiveExperiences@0.8.12` — build/Microsoft.InteractiveExperiences.Capabilities.targets references build/build/Microsoft.InteractiveExperiences.Capabilities.props, which the package does not contain
 - `Microsoft.ProjectReunion.InteractiveExperiences@0.8.12` — build/Microsoft.InteractiveExperiences.Capabilities.targets references build/build/Microsoft.InteractiveExperiences.Capabilities.props, which the package does not contain
 - `Microsoft.ProjectReunion.WinUI@0.8.12` — build/Microsoft.ProjectReunion.Foundation.targets references build/Microsoft.ApplicationModel.Resources.targets, which the package does not contain
