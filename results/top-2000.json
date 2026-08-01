@@ -9,7 +9,8 @@
     "RDK0006",
     "RDK0007",
     "RDK0008",
-    "RDK0010"
+    "RDK0010",
+    "RDK0012"
   ],
   "RuleNames": [
     "dangling asset reference",
@@ -17,7 +18,8 @@
     "unimportable build file",
     "untracked output copy",
     "analyzer under a framework folder",
-    "assembly does not match its framework folder"
+    "assembly does not match its framework folder",
+    "stable package depends on a prerelease"
   ],
   "Packages": [
     {
@@ -1538,7 +1540,13 @@
     {
       "Id": "DH.Common",
       "Version": "10.0.2026.70900036",
-      "Findings": []
+      "Findings": [
+        {
+          "Code": "RDK0012",
+          "Severity": "Warning",
+          "Title": "a stable package depends on the prerelease Pek.Common 4.22.2026.416-beta1017"
+        }
+      ]
     },
     {
       "Id": "DH.Core",
@@ -1574,7 +1582,13 @@
     {
       "Id": "DH.Utils",
       "Version": "10.0.2026.70900036",
-      "Findings": []
+      "Findings": [
+        {
+          "Code": "RDK0012",
+          "Severity": "Warning",
+          "Title": "a stable package depends on the prerelease DH.NCode 4.24.2026.708-beta0703"
+        }
+      ]
     },
     {
       "Id": "DiffEngine",
@@ -3681,7 +3695,7 @@
     },
     {
       "Id": "Marten",
-      "Version": "9.22.1",
+      "Version": "9.22.2",
       "Findings": []
     },
     {
@@ -3806,7 +3820,7 @@
     },
     {
       "Id": "Meziantou.Analyzer",
-      "Version": "3.0.137",
+      "Version": "3.0.138",
       "Findings": []
     },
     {
@@ -5283,7 +5297,13 @@
     {
       "Id": "Microsoft.Maui.Essentials",
       "Version": "10.0.90",
-      "Findings": []
+      "Findings": [
+        {
+          "Code": "RDK0012",
+          "Severity": "Warning",
+          "Title": "a stable package depends on the prerelease Xamarin.AndroidX.Security.SecurityCrypto 1.1.0.4-alpha07"
+        }
+      ]
     },
     {
       "Id": "Microsoft.Maui.Graphics",
@@ -5980,7 +6000,13 @@
     {
       "Id": "Microsoft.NETCore.UniversalWindowsPlatform",
       "Version": "6.2.14",
-      "Findings": []
+      "Findings": [
+        {
+          "Code": "RDK0012",
+          "Severity": "Warning",
+          "Title": "a stable package depends on the prerelease Microsoft.Net.Native.Compiler 2.2.12-rel-31116-00"
+        }
+      ]
     },
     {
       "Id": "Microsoft.NetFramework.Analyzers",
@@ -7549,7 +7575,13 @@
     {
       "Id": "PdfSharpCore",
       "Version": "1.3.67",
-      "Findings": []
+      "Findings": [
+        {
+          "Code": "RDK0012",
+          "Severity": "Warning",
+          "Title": "a stable package depends on the prerelease SixLabors.Fonts 1.0.0-beta17"
+        }
+      ]
     },
     {
       "Id": "Perfolizer",
@@ -9309,7 +9341,7 @@
     },
     {
       "Id": "Verify",
-      "Version": "31.27.0",
+      "Version": "31.28.0",
       "Findings": []
     },
     {
@@ -9494,7 +9526,7 @@
     },
     {
       "Id": "Weasel.Core",
-      "Version": "9.21.1",
+      "Version": "9.23.0",
       "Findings": []
     },
     {

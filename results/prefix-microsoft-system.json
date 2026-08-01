@@ -9,7 +9,8 @@
     "RDK0006",
     "RDK0007",
     "RDK0008",
-    "RDK0010"
+    "RDK0010",
+    "RDK0012"
   ],
   "RuleNames": [
     "dangling asset reference",
@@ -17,7 +18,8 @@
     "unimportable build file",
     "untracked output copy",
     "analyzer under a framework folder",
-    "assembly does not match its framework folder"
+    "assembly does not match its framework folder",
+    "stable package depends on a prerelease"
   ],
   "Packages": [
     {
@@ -3032,7 +3034,13 @@
     {
       "Id": "Microsoft.Azure.Quantum.Client",
       "Version": "0.17.2105144881",
-      "Findings": []
+      "Findings": [
+        {
+          "Code": "RDK0012",
+          "Severity": "Warning",
+          "Title": "a stable package depends on the prerelease Microsoft.Identity.Client.Extensions.Msal 2.10.0-preview"
+        }
+      ]
     },
     {
       "Id": "Microsoft.Azure.Relay",
@@ -3189,7 +3197,13 @@
     {
       "Id": "Microsoft.Azure.WebJobs.Extensions.OpenApi",
       "Version": "1.6.0",
-      "Findings": []
+      "Findings": [
+        {
+          "Code": "RDK0012",
+          "Severity": "Warning",
+          "Title": "a stable package depends on the prerelease Microsoft.Azure.WebJobs.Script.Abstractions 1.0.0-preview"
+        }
+      ]
     },
     {
       "Id": "Microsoft.Azure.WebJobs.Extensions.OpenApi.Configuration.AppSettings",
@@ -3334,6 +3348,11 @@
           "Code": "RDK0010",
           "Severity": "Warning",
           "Title": "lib/netcoreapp3.1/ contains an assembly built for .NETFramework,Version=v4.0"
+        },
+        {
+          "Code": "RDK0012",
+          "Severity": "Warning",
+          "Title": "a stable package depends on the prerelease Microsoft.Azure.WebJobs.Script.Abstractions 1.0.0-preview"
         }
       ]
     },
@@ -4600,7 +4619,13 @@
     {
       "Id": "Microsoft.DocAsCode.Build.Engine",
       "Version": "2.67.5",
-      "Findings": []
+      "Findings": [
+        {
+          "Code": "RDK0012",
+          "Severity": "Warning",
+          "Title": "a stable package depends on the prerelease Jint 3.0.0-beta-2049"
+        }
+      ]
     },
     {
       "Id": "Microsoft.DocAsCode.Build.ManagedReference",
@@ -4720,7 +4745,13 @@
     {
       "Id": "Microsoft.DocAsCode.Metadata.ManagedReference",
       "Version": "2.61.0",
-      "Findings": []
+      "Findings": [
+        {
+          "Code": "RDK0012",
+          "Severity": "Warning",
+          "Title": "a stable package depends on the prerelease ICSharpCode.Decompiler 8.0.0.7246-preview3"
+        }
+      ]
     },
     {
       "Id": "Microsoft.DocAsCode.Plugins",
@@ -5804,7 +5835,13 @@
     {
       "Id": "Microsoft.Graph.Communications.Calls.Media",
       "Version": "1.2.0.17950",
-      "Findings": []
+      "Findings": [
+        {
+          "Code": "RDK0012",
+          "Severity": "Warning",
+          "Title": "a stable package depends on the prerelease Microsoft.Skype.Bots.Media 1.31.0.225-preview"
+        }
+      ]
     },
     {
       "Id": "Microsoft.Graph.Communications.Client",
@@ -5959,7 +5996,13 @@
     {
       "Id": "Microsoft.Identity.Web.GraphServiceClientBeta",
       "Version": "4.14.2",
-      "Findings": []
+      "Findings": [
+        {
+          "Code": "RDK0012",
+          "Severity": "Warning",
+          "Title": "a stable package depends on the prerelease Microsoft.Graph.Beta 5.56.0-preview"
+        }
+      ]
     },
     {
       "Id": "Microsoft.Identity.Web.MicrosoftGraph",
@@ -5969,7 +6012,13 @@
     {
       "Id": "Microsoft.Identity.Web.MicrosoftGraphBeta",
       "Version": "4.14.2",
-      "Findings": []
+      "Findings": [
+        {
+          "Code": "RDK0012",
+          "Severity": "Warning",
+          "Title": "a stable package depends on the prerelease Microsoft.Graph.Beta 4.57.0-preview"
+        }
+      ]
     },
     {
       "Id": "Microsoft.Identity.Web.OWIN",
@@ -7468,7 +7517,13 @@
     {
       "Id": "Microsoft.Maui.Essentials",
       "Version": "10.0.90",
-      "Findings": []
+      "Findings": [
+        {
+          "Code": "RDK0012",
+          "Severity": "Warning",
+          "Title": "a stable package depends on the prerelease Xamarin.AndroidX.Security.SecurityCrypto 1.1.0.4-alpha07"
+        }
+      ]
     },
     {
       "Id": "Microsoft.Maui.Essentials.Msi.x64",
@@ -10237,7 +10292,13 @@
     {
       "Id": "Microsoft.OpenApi.Kiota.Builder",
       "Version": "1.23.0",
-      "Findings": []
+      "Findings": [
+        {
+          "Code": "RDK0012",
+          "Severity": "Warning",
+          "Title": "a stable package depends on 2 prereleases"
+        }
+      ]
     },
     {
       "Id": "Microsoft.OpenApi.OData",
@@ -13175,6 +13236,11 @@
           "Code": "RDK0001",
           "Severity": "Error",
           "Title": "build/Microsoft.Windows.CsWin32.targets references analyzers/dotnet/roslyn5.0, which the package does not contain"
+        },
+        {
+          "Code": "RDK0012",
+          "Severity": "Warning",
+          "Title": "a stable package depends on 3 prereleases"
         }
       ]
     },

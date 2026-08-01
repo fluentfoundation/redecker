@@ -1,6 +1,6 @@
 # Corpus sweep: prefix-microsoft-system
 
-Generated 2026-07-31 20:45 UTC from nuget.org, ids starting with Microsoft. or System., published within 6 years.
+Generated 2026-08-01 02:01 UTC from nuget.org, ids starting with Microsoft. or System., published within 6 years.
 
 Examined **2682** of 2682 selected packages, skipped 0.
 
@@ -12,6 +12,7 @@ Examined **2682** of 2682 selected packages, skipped 0.
 | RDK0007 | untracked output copy | 20 | 0.7% | plausible |
 | RDK0008 | analyzer under a framework folder | 0 | 0.0% | no findings |
 | RDK0010 | assembly does not match its framework folder | 16 | 0.6% | plausible |
+| RDK0012 | stable package depends on a prerelease | 11 | 0.4% | plausible |
 
 ## RDK0001 — dangling asset reference
 
@@ -194,3 +195,17 @@ Examined **2682** of 2682 selected packages, skipped 0.
 - `Microsoft.VisualStudio.TextTemplating.Interfaces.15.0@16.10.31320.204` — lib/net45/ contains an assembly built for .NETFramework,Version=v4.7.2
 - `Microsoft.VisualStudio.TextTemplating.VSHost.15.0@16.10.31321.278` — lib/net45/ contains an assembly built for .NETFramework,Version=v4.7.2
 - `System.Security.Cryptography.OpenSsl@5.0.0` — lib/net461/ contains an assembly built for .NETFramework,Version=v4.7
+
+## RDK0012 — stable package depends on a prerelease
+
+- `Microsoft.Azure.Quantum.Client@0.17.2105144881` — a stable package depends on the prerelease Microsoft.Identity.Client.Extensions.Msal 2.10.0-preview
+- `Microsoft.Azure.WebJobs.Extensions.OpenApi@1.6.0` — a stable package depends on the prerelease Microsoft.Azure.WebJobs.Script.Abstractions 1.0.0-preview
+- `Microsoft.Azure.Workflows.WebJobs.Extension@1.44.16` — a stable package depends on the prerelease Microsoft.Azure.WebJobs.Script.Abstractions 1.0.0-preview
+- `Microsoft.DocAsCode.Build.Engine@2.67.5` — a stable package depends on the prerelease Jint 3.0.0-beta-2049
+- `Microsoft.DocAsCode.Metadata.ManagedReference@2.61.0` — a stable package depends on the prerelease ICSharpCode.Decompiler 8.0.0.7246-preview3
+- `Microsoft.Graph.Communications.Calls.Media@1.2.0.17950` — a stable package depends on the prerelease Microsoft.Skype.Bots.Media 1.31.0.225-preview
+- `Microsoft.Identity.Web.GraphServiceClientBeta@4.14.2` — a stable package depends on the prerelease Microsoft.Graph.Beta 5.56.0-preview
+- `Microsoft.Identity.Web.MicrosoftGraphBeta@4.14.2` — a stable package depends on the prerelease Microsoft.Graph.Beta 4.57.0-preview
+- `Microsoft.Maui.Essentials@10.0.90` — a stable package depends on the prerelease Xamarin.AndroidX.Security.SecurityCrypto 1.1.0.4-alpha07
+- `Microsoft.OpenApi.Kiota.Builder@1.23.0` — a stable package depends on 2 prereleases
+- `Microsoft.Windows.CsWin32@0.3.298` — a stable package depends on 3 prereleases

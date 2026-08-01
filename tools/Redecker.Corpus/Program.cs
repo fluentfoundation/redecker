@@ -141,6 +141,7 @@ public static class Program
         new UntrackedOutputCopyRule(),
         new AnalyzerPlacementRule(),
         new FrameworkFolderMismatchRule(),
+        new PrereleaseDependencyRule(),
     ];
 
     /// <summary>

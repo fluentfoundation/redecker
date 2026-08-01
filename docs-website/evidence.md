@@ -247,6 +247,33 @@ rounds of correction later it is at 0.2%, and the defect it was written to catch
 Deleting it after round two would have thrown away a working rule and the two false-positive classes
 it went on to teach us about.
 
+## Looking for a rule instead of waiting for one
+
+Every rule up to this point came from a package somebody happened to notice, which biases the set
+towards whatever broke recently in one person's build. [Issue
+#6](https://github.com/fluentfoundation/redecker/issues/6) argues the corpus should be able to
+*suggest* rules, not only validate them.
+
+So four cheap checks were run across 4,235 cached packages, with no rule written for any of them
+yet, purely to see which had a plausible shape:
+
+| Candidate | Packages | Verdict |
+| --- | ---: | --- |
+| Stable package depends on a prerelease | 22 (0.52%) | **became [RDK0012](/rules/rdk0012)** |
+| `lib/<tfm>/` with no assembly and no `_._` marker | 24 (0.57%) | dropped — mostly `lib/native/` and localisation packages |
+| Package depends on itself | 0 | dropped |
+| XML doc file with no matching assembly | 235 (5.55%) | dropped — too common to be a defect |
+
+The two useful numbers here are the zero and the 5.55%. A check that never fires is describing a
+problem that does not exist, and one that fires on a twentieth of everything is describing a
+convention rather than a defect. Both are worth knowing **before** writing the rule, and both cost
+about a minute to establish because the corpus was already on disk.
+
+The survey also found its own bug. Its first pass matched a pattern against the dependency version
+string, which flags `[1.0.0, 2.0.0-preview)` — a range whose *upper* bound is a prerelease and which
+resolves to a stable version. The shipped rule parses ranges properly and looks only at
+`MinVersion`, because the lower bound is what restore actually picks.
+
 ## What restore actually does about a mismatched provider
 
 [RDK0011](/rules/rdk0011) reports a package left behind by a version bump — a database provider

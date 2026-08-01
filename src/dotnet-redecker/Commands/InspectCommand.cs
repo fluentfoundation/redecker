@@ -120,6 +120,7 @@ public static class InspectCommand
             new UntrackedOutputCopyRule(),
             new AnalyzerPlacementRule(),
             new FrameworkFolderMismatchRule(),
+            new PrereleaseDependencyRule(),
         ];
 
         return rules.SelectMany(r => r.Inspect(package)).ToList();

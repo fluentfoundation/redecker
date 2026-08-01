@@ -13,6 +13,7 @@
 | [RDK0009](./rdk0009) | warning | Symbol package that does not cover every shipped assembly | `inspect` |
 | [RDK0010](./rdk0010) | warning | Assembly under a `lib/<framework>/` folder it does not satisfy | `inspect` |
 | [RDK0011](./rdk0011) | warning | A package left behind by a version bump to something it constrains | `check --online` |
+| [RDK0012](./rdk0012) | warning | A stable package that depends on a prerelease | `inspect` |
 
 ## Publishing your own package?
 

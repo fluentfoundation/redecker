@@ -9,7 +9,8 @@
     "RDK0006",
     "RDK0007",
     "RDK0008",
-    "RDK0010"
+    "RDK0010",
+    "RDK0012"
   ],
   "RuleNames": [
     "dangling asset reference",
@@ -17,7 +18,8 @@
     "unimportable build file",
     "untracked output copy",
     "analyzer under a framework folder",
-    "assembly does not match its framework folder"
+    "assembly does not match its framework folder",
+    "stable package depends on a prerelease"
   ],
   "Packages": [
     {
