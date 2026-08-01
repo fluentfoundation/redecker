@@ -247,6 +247,45 @@ rounds of correction later it is at 0.2%, and the defect it was written to catch
 Deleting it after round two would have thrown away a working rule and the two false-positive classes
 it went on to teach us about.
 
+## What restore actually does about a mismatched provider
+
+[RDK0011](/rules/rdk0011) reports a package left behind by a version bump — a database provider
+still on last year's release while EF Core moved a major. The obvious objection is that NuGet
+already raises `NU1608` for this, which would make the rule redundant.
+
+Settling that from memory was not good enough, so it was settled with four throwaway projects and a
+real `dotnet restore` against real packages:
+
+| What was pinned | Diagnostic | Restore | Build |
+| --- | --- | --- | --- |
+| `Npgsql` 8.0.11, which declares an unbounded minimum | none at all | succeeds | succeeds |
+| `Pomelo` 9.0.0 with EF Core Relational 10.0.0 | **`NU1608` warning** | succeeds | succeeds, **and runs** |
+| `Npgsql` 9.0.4 with EF Core Relational 10.0.0 | `NU1608` + `NU1107` error | fails | — |
+| `Npgsql` 9.0.4 with EF Core Relational 9.0.0 | `NU1605` error | fails | — |
+
+The second row is the rule's whole justification, and it was not obvious in advance. Pomelo
+constrains a single package, so pinning above its range cannot raise the version-conflict error;
+the program builds and runs with a provider on a core version it declares it does not support. The
+third row differs only because Npgsql constrains *two* packages, which is what turns the warning
+into an error — a difference in how the provider was authored, not in how wrong the result is.
+
+The first row is the quiet one. A dependency declared as a bare minimum with no upper bound accepts
+anything above it forever, so restore has nothing to say at all.
+
+**The rule that survived this is narrower than the one proposed.** It fires only where restore is
+permissive, and stays silent on the two shapes that already fail a build, because a rule that
+repeats an error you have already seen is noise.
+
+### And the same evidence caught a bug in the fix
+
+The rule suggests which version to move to. Asked which Pomelo release accepts EF Core 10.0.0, the
+first implementation answered **7.0.0** — truthfully. Pomelo 7 declares an unbounded minimum, so it
+admits anything above it, exactly like the first row of that table.
+
+Suggesting it would have downgraded a provider by two majors to fix a version bump. Only releases
+newer than the one in hand are considered now, and when none of them work the rule says so rather
+than inventing something.
+
 ## The rule that was almost unusable
 
 [RDK0010](/rules/rdk0010) checks that an assembly under `lib/<framework>/` can actually be loaded

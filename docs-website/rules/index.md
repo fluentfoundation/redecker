@@ -12,6 +12,7 @@
 | [RDK0008](./rdk0008) | warning | Analyzer assemblies under a target framework folder | `inspect` |
 | [RDK0009](./rdk0009) | warning | Symbol package that does not cover every shipped assembly | `inspect` |
 | [RDK0010](./rdk0010) | warning | Assembly under a `lib/<framework>/` folder it does not satisfy | `inspect` |
+| [RDK0011](./rdk0011) | warning | A package left behind by a version bump to something it constrains | `check --online` |
 
 ## Publishing your own package?
 

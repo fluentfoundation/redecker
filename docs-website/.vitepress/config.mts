@@ -81,6 +81,7 @@ export default defineConfig({
                         { text: 'RDK0008 Analyzer placement', link: '/rules/rdk0008' },
                         { text: 'RDK0009 Incomplete symbol package', link: '/rules/rdk0009' },
                         { text: 'RDK0010 Framework folder mismatch', link: '/rules/rdk0010' },
+                        { text: 'RDK0011 Left behind by a bump', link: '/rules/rdk0011' },
                     ]
                 },
                 {

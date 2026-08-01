@@ -19,7 +19,7 @@ dotnet add package Redecker.MSBuild            # fail the build instead
 broom makers, because the job is sweeping stale dependencies out — and knowing which dust is
 load-bearing.
 
-> **Status:** early. Ten rules and three commands work end to end, tested against real packages
+> **Status:** early. Eleven rules and three commands work end to end, tested against real packages
 > and the real GitHub API. [Not built yet](#not-built-yet) is honest.
 
 ## Thirty seconds
@@ -254,6 +254,7 @@ nor banding can express. Tracked in [#1](https://github.com/fluentfoundation/red
 | --- | --- | --- |
 | `redecker inspect <id> --to <ver> [--from <ver>]` | Read a package version and check it. Exit 1 on any error finding. | yes |
 | `redecker check <path>` | Check that the versions a repository declares are coherent. | no |
+| `redecker check <path> --online` | Also check the constraints declared packages place on each other. | yes |
 | `redecker hints <path> [--check]` | List pin rationales; re-evaluate exit conditions. | with `--check` |
 
 ## Rules
@@ -270,6 +271,7 @@ nor banding can express. Tracked in [#1](https://github.com/fluentfoundation/red
 | `RDK0008` | warning | Analyzer assemblies under a target framework folder |
 | `RDK0009` | warning | Symbol package that does not cover every shipped assembly |
 | `RDK0010` | warning | Assembly under a `lib/<framework>/` folder it does not satisfy |
+| `RDK0011` | warning | A package left behind by a version bump to something it constrains |
 
 ### Shipping a package? Check it before it is permanent
 

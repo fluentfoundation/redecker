@@ -138,6 +138,9 @@ public sealed class PackageArchive : IDisposable
         return path is null ? null : ReadText(path);
     }
 
+    /// <summary>The version ranges this package declares on other packages.</summary>
+    public IReadOnlyList<PackageDependency> Dependencies() => NuspecDependencies.Read(Nuspec());
+
     /// <summary>
     /// Whether the package declares itself a .NET CLI tool, which brings structural requirements
     /// nothing else has.
